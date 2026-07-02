@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Construction Homes in Prosper, TX | Logan Nelson, DFW Buyer Specialist</title>
+<meta name="description" content="Only a few Phase One homes remain at The Reserve at Prosper Ridge. Book a free 1-on-1 buyer consultation with DFW new construction specialist Logan Nelson.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #0e1c2f;
+  --navy-2: #16283f;
+  --gold: #c8a45c;
+  --gold-light: #e3cd9a;
+  --ivory: #faf7f0;
+  --ink: #1c2733;
+  --muted: #5d6b7a;
+  --line: #e5ddcc;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.25; font-weight: 600; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+.btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 17px 34px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+.btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-outline {
+  background: transparent;
+  color: var(--ivory);
+  border: 1px solid rgba(250,247,240,0.5);
+}
+.btn-outline:hover { background: rgba(250,247,240,0.1); }
+
+/* ─── TOP BAR ─── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--navy);
+  color: var(--ivory);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(200,164,92,0.35);
+}
+.topbar .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { font-family: 'Playfair Display', serif; font-size: 20px; letter-spacing: 1px; }
+.brand span { color: var(--gold); }
+.brand small { display: block; font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; color: #93a3b5; }
+.topbar .btn { padding: 11px 20px; font-size: 12.5px; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, #1f3450 100%);
+  color: var(--ivory);
+  overflow: hidden;
+}
+.hero-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+}
+.hero-inner {
+  position: relative;
+  padding: 96px 0 88px;
+  max-width: 780px;
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,164,92,0.5);
+  border-radius: 100px;
+  padding: 7px 18px;
+  margin-bottom: 26px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  margin-bottom: 22px;
+}
+.hero h1 em { font-style: normal; color: var(--gold-light); }
+.hero p.lead {
+  font-size: 1.12rem;
+  color: #cfd8e2;
+  max-width: 620px;
+  margin-bottom: 34px;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.hero-note { margin-top: 18px; font-size: 13.5px; color: #93a3b5; }
+
+/* ─── VIDEO SLOT ─── */
+.video-band { background: var(--navy-2); padding: 0 0 72px; }
+.video-frame {
+  max-width: 760px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #0a1524, #1a2c45);
+  border: 1px solid rgba(200,164,92,0.4);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #93a3b5;
+  text-align: center;
+  padding: 24px;
+}
+.play-dot {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+}
+.play-dot::after {
+  content: '';
+  border-left: 20px solid var(--navy);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 5px;
+}
+.video-frame strong { color: var(--ivory); font-size: 1.05rem; font-weight: 600; }
+
+/* ─── URGENCY STRIP ─── */
+.urgency {
+  background: var(--gold);
+  color: var(--navy);
+  text-align: center;
+  padding: 15px 24px;
+  font-weight: 600;
+  font-size: 15.5px;
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 84px 0; }
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.section-title { font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin-bottom: 16px; }
+.section-sub { color: var(--muted); max-width: 640px; margin-bottom: 48px; }
+
+/* ─── USP GRID ─── */
+.usp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.usp {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 30px 26px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.usp:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(14,28,47,0.09); }
+.usp h3 { font-size: 1.12rem; margin-bottom: 10px; }
+.usp p { font-size: 0.94rem; color: var(--muted); }
+
+/* ─── CONSULT INCLUDES ─── */
+.includes { background: var(--navy); color: var(--ivory); }
+.includes .section-title { color: var(--ivory); }
+.includes .section-sub { color: #aebccb; }
+.include-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 40px; max-width: 880px; }
+.include-item {
+  display: flex;
+  gap: 14px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(200,164,92,0.25);
+  border-radius: 6px;
+}
+.include-item .tick {
+  flex: none;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 800;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.include-item strong { display: block; font-size: 1rem; margin-bottom: 3px; }
+.include-item p { font-size: 0.88rem; color: #aebccb; }
+
+/* ─── HOMES ─── */
+.homes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.home-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.home-card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(14,28,47,0.1); }
+.home-photo {
+  height: 210px;
+  position: relative;
+  background: linear-gradient(135deg, #22364f, #46586e);
+}
+.home-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.home-tag {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 3px;
+}
+.home-body { padding: 24px; }
+.home-body h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.home-price { color: var(--gold); font-weight: 700; font-size: 1rem; margin-bottom: 12px; }
+.home-specs { display: flex; gap: 16px; font-size: 0.86rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+
+/* ─── STEPS ─── */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; counter-reset: step; }
+.step {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 34px 28px;
+  position: relative;
+}
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.step h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.step p { font-size: 0.92rem; color: var(--muted); }
+
+/* ─── FORM ─── */
+.form-section { background: var(--navy-2); color: var(--ivory); }
+.form-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: start;
+}
+.form-side h2 { color: var(--ivory); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 18px; }
+.form-side p { color: #aebccb; margin-bottom: 22px; font-size: 1rem; }
+.assurance { list-style: none; }
+.assurance li {
+  padding: 9px 0 9px 30px;
+  position: relative;
+  color: #cfd8e2;
+  font-size: 0.95rem;
+}
+.assurance li::before {
+  content: '\2713';
+  position: absolute; left: 0;
+  color: var(--gold);
+  font-weight: 800;
+}
+.lead-form {
+  background: #fff;
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 38px 34px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+}
+.lead-form h3 { font-size: 1.3rem; margin-bottom: 6px; }
+.lead-form .form-note { font-size: 0.88rem; color: var(--muted); margin-bottom: 24px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.4px; margin-bottom: 6px; color: var(--navy); }
+.field input, .field select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d8d2c4;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--ivory);
+  color: var(--ink);
+}
+.field input:focus, .field select:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.lead-form .btn { width: 100%; margin-top: 8px; }
+.privacy { font-size: 0.78rem; color: var(--muted); margin-top: 14px; text-align: center; }
+
+/* thank-you state */
+.thanks { display: none; text-align: center; padding: 30px 6px; }
+.thanks.show { display: block; }
+.thanks .tick-big {
+  width: 62px; height: 62px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  font-size: 30px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+}
+.thanks h3 { margin-bottom: 12px; }
+.thanks p { font-size: 0.95rem; color: var(--muted); margin-bottom: 10px; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy);
+  color: #7f90a3;
+  padding: 44px 24px;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.9;
+}
+footer .brand { color: var(--ivory); margin-bottom: 10px; }
+footer .demo-note { color: #55677c; margin-top: 16px; font-size: 0.74rem; }
+
+/* ─── FADE ─── */
+.fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .usp-grid, .homes-grid, .steps { grid-template-columns: 1fr 1fr; }
+  .form-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .include-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  section { padding: 64px 0; }
+  .usp-grid, .homes-grid, .steps { grid-template-columns: 1fr; }
+  .hero-inner { padding: 72px 0 64px; }
+  .topbar .brand small { display: none; }
+  .field-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="brand">Logan <span>Nelson</span>
+      <small>DFW New Construction Specialist</small>
+    </div>
+    <a href="#book" class="btn">Book Free Consultation</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800&q=80" alt="" onerror="this.remove()">
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow">Prosper &middot; Dallas&ndash;Fort Worth, Texas</span>
+      <h1>New Construction Homes in DFW's Fastest-Growing Corridor.<br>
+      <em>Only 7 Homes Remain in Phase One</em> at The Reserve at Prosper Ridge.</h1>
+      <p class="lead">Get first access to remaining inventory, builder incentives, and lot selection before this phase sells out. Start with a free one-on-one buyer consultation, no pressure and no obligation.</p>
+      <div class="hero-ctas">
+        <a href="#book" class="btn">Book Your Free 1-on-1 Consultation</a>
+        <a href="#homes" class="btn btn-outline">View Remaining Homes</a>
+      </div>
+      <p class="hero-note">Exclusive representation. Your consultation is with Logan directly, not a call center.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div class="video-band">
+  <div class="container">
+    <div class="video-frame">
+      <div class="play-dot"></div>
+      <strong>Watch: What's Left in Phase One and How Buyers Are Securing Incentives</strong>
+      <span style="font-size:13px;">[ Agent intro video embeds here: 60 to 90 seconds ]</span>
+    </div>
+  </div>
+</div>
+
+<!-- URGENCY -->
+<div class="urgency">Phase One pricing ends when the final home is reserved. Phase Two releases at higher price points.</div>
+
+<!-- WHY LOGAN -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Why Buyers Work With Logan</div>
+      <h2 class="section-title">Buying New Construction Without Representation Costs You Money</h2>
+      <p class="section-sub">The builder's sales office works for the builder. Logan works for you, at no cost to you, because the builder pays the buyer agent commission.</p>
+    </div>
+    <div class="usp-grid fade-in">
+      <div class="usp">
+        <h3>Personalized Advice</h3>
+        <p>One-on-one guidance based on your budget, timeline, and needs. No generic lists, no pressure to stretch beyond what makes sense for you.</p>
+      </div>
+      <div class="usp">
+        <h3>Local Market Insight</h3>
+        <p>Which corridors are appreciating, where new schools and highways are planned, and which builders deliver on time in DFW.</p>
+      </div>
+      <div class="usp">
+        <h3>Contract-First Approach</h3>
+        <p>Builder contracts are written by builder attorneys. Every clause gets reviewed and explained before you sign anything.</p>
+      </div>
+      <div class="usp">
+        <h3>Best Product Match</h3>
+        <p>Floor plan, lot, elevation, and phase compared across the community and against nearby competing developments.</p>
+      </div>
+      <div class="usp">
+        <h3>Builder Negotiation</h3>
+        <p>Incentives, upgrades, closing cost credits, and rate buydowns. Builders rarely move on price, but they move on everything else.</p>
+      </div>
+      <div class="usp">
+        <h3>End-to-End Support</h3>
+        <p>From first tour through design center, inspections, final walkthrough, and closing day. You are never handed off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION INCLUDES -->
+<section class="includes">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Start With a Conversation</div>
+      <h2 class="section-title">Your Free Consultation Includes</h2>
+      <p class="section-sub">A working session, not a sales pitch. You leave with a plan whether or not we work together.</p>
+    </div>
+    <div class="include-list fade-in">
+      <div class="include-item"><div class="tick">&#10003;</div><div><strong>Curated Home Shortlist</strong><p>Remaining Phase One inventory matched to your criteria, plus comparable new builds nearby.</p></div></div>
+      <div class="include-item"><div class="tick">&#10003;</div><div><strong>Neighborhood &amp; Schools Briefing</strong><p>Growth data, commute times, school ratings, and what's being built around the community next.</p></div></div>
+      <div class="include-item"><div class="tick">&#10003;</div><div><strong>Incentive &amp; Upgrade Comparison</strong><p>Current builder incentives and which upgrades hold value at resale versus which to skip.</p></div></div>
+      <div class="include-item"><div class="tick">&#10003;</div><div><strong>Appreciation &amp; ROI Outlook</strong><p>What comparable phases have done historically and what that suggests for your purchase.</p></div></div>
+      <div class="include-item"><div class="tick">&#10003;</div><div><strong>Negotiation Strategy</strong><p>Exactly what we will ask the builder for on your behalf, and in what order, before you commit.</p></div></div>
+      <div class="include-item"><div class="tick">&#10003;</div><div><strong>Post-Close Support</strong><p>Warranty walkthroughs, punch list follow-up, and a direct line to Logan after you move in.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOMES -->
+<section id="homes">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Remaining Phase One Inventory</div>
+      <h2 class="section-title">A Look at What's Still Available</h2>
+      <p class="section-sub">Inventory changes weekly. Your consultation includes the current list with lot positions and completion dates.</p>
+    </div>
+    <div class="homes-grid fade-in">
+      <div class="home-card">
+        <div class="home-photo">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80" alt="Single-story home exterior" onerror="this.remove()">
+          <span class="home-tag">Move-in Ready</span>
+        </div>
+        <div class="home-body">
+          <h3>The Caldwell</h3>
+          <div class="home-price">From the mid $500s</div>
+          <div class="home-specs"><span>4 Bed</span><span>3 Bath</span><span>2,650 SqFt</span></div>
+        </div>
+      </div>
+      <div class="home-card">
+        <div class="home-photo">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80" alt="Two-story brick home exterior" onerror="this.remove()">
+          <span class="home-tag">Est. 60 Days</span>
+        </div>
+        <div class="home-body">
+          <h3>The Brazos</h3>
+          <div class="home-price">From the low $600s</div>
+          <div class="home-specs"><span>5 Bed</span><span>4 Bath</span><span>3,180 SqFt</span></div>
+        </div>
+      </div>
+      <div class="home-card">
+        <div class="home-photo">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900&q=80" alt="Home exterior at dusk" onerror="this.remove()">
+          <span class="home-tag">Final Corner Lot</span>
+        </div>
+        <div class="home-body">
+          <h3>The Legacy</h3>
+          <div class="home-price">From the high $600s</div>
+          <div class="home-specs"><span>5 Bed</span><span>4.5 Bath</span><span>3,540 SqFt</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Three Steps to Your New Home</h2>
+    </div>
+    <div class="steps fade-in">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Book Your Consultation</h3>
+        <p>A 20-minute call or in-person meeting. We map your budget, timeline, and must-haves, and review current inventory.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Tour With Logan</h3>
+        <p>Private tours of the homes and lots that fit. See the community, the phase map, and what's coming next door.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Negotiate &amp; Close</h3>
+        <p>Logan negotiates incentives and upgrades, manages inspections and paperwork, and walks you through closing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="book">
+  <div class="container">
+    <div class="form-wrap">
+      <div class="form-side fade-in">
+        <div class="section-label">Reserve Your Consultation</div>
+        <h2>Serious About Buying in the Next 3 to 12 Months? Let's Talk.</h2>
+        <p>This consultation is for buyers who are ready to move within the year. If that's you, you'll get direct, honest guidance and first access to remaining inventory.</p>
+        <ul class="assurance">
+          <li>Free, with zero obligation</li>
+          <li>You work with Logan directly, never a call center</li>
+          <li>Your information is never sold or shared with other agents</li>
+          <li>Buyer representation costs you nothing, the builder pays it</li>
+        </ul>
+      </div>
+      <div class="lead-form fade-in">
+        <form id="leadForm" autocomplete="on">
+          <h3>Book Your Free Buyer Consultation</h3>
+          <p class="form-note">Takes 30 seconds. Logan personally reviews every request.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" required placeholder="First name">
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" required placeholder="Last name">
+            </div>
+          </div>
+          <div class="field">
+            <label for="phone">Mobile Phone</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(214) 555-0000">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@email.com">
+          </div>
+          <div class="field">
+            <label for="timeline">When are you looking to buy?</label>
+            <select id="timeline" name="timeline" required>
+              <option value="">Select one</option>
+              <option>Within 3 months</option>
+              <option>3 to 6 months</option>
+              <option>6 to 12 months</option>
+              <option>Just researching for now</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="budget">Price Range</label>
+              <select id="budget" name="budget" required>
+                <option value="">Select one</option>
+                <option>$400k to $500k</option>
+                <option>$500k to $650k</option>
+                <option>$650k to $800k</option>
+                <option>$800k+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="preapproved">Pre-approved for a mortgage?</label>
+              <select id="preapproved" name="preapproved" required>
+                <option value="">Select one</option>
+                <option>Yes</option>
+                <option>Not yet, need a referral</option>
+                <option>Paying cash</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn">Get My Consultation Time</button>
+          <p class="privacy">Your information stays with Logan's team. No spam, no shared leads, opt out anytime.</p>
+        </form>
+        <div class="thanks" id="thanks">
+          <div class="tick-big">&#10003;</div>
+          <h3>You're In. Here's What Happens Next.</h3>
+          <p><strong>1.</strong> You'll get a text within minutes to confirm your consultation time.</p>
+          <p><strong>2.</strong> Logan reviews your goals and pulls current inventory before the call.</p>
+          <p><strong>3.</strong> You leave the consultation with a shortlist and a clear plan.</p>
+          <p style="margin-top:16px; font-size:0.85rem;">[ Thank-you page video embeds here ]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">Logan <span style="color:var(--gold)">Nelson</span></div>
+  <p>Logan Nelson Group &middot; Brokered by [Brokerage Name] &middot; Dallas&ndash;Fort Worth, TX &middot; (214) 555-0147</p>
+  <p>Licensed Texas Real Estate Agent. All information deemed reliable but not guaranteed. Pricing, availability, and incentives subject to change without notice. Equal Housing Opportunity.</p>
+  <p class="demo-note">Sample demonstration page. Community, inventory, and contact details shown are illustrative placeholders.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+  // Safety net: never leave content hidden if the observer doesn't fire
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) { el.classList.add('visible'); });
+  }, 1500);
+
+  var form = document.getElementById('leadForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Demo only: production version posts to the GHL inbound webhook + fires Meta Pixel Lead event
+    form.style.display = 'none';
+    document.getElementById('thanks').classList.add('show');
+  });
+});
+</script>
+
+</body>
+</html>

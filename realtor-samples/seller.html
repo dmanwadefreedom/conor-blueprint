@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behind on Your Mortgage? Know Your Options | Logan Nelson, DFW Foreclosure &amp; Short Sale Specialist</title>
+<meta name="description" content="Facing foreclosure in Dallas-Fort Worth? You have more options than the bank tells you. Get a free, confidential home equity and options review with Logan Nelson.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --forest: #0f2e24;
+  --forest-2: #16402f;
+  --sage: #4c8a6d;
+  --mint: #a9d6be;
+  --cream: #f7f5ef;
+  --ink: #22302a;
+  --muted: #5d6e64;
+  --line: #dfdccd;
+  --amber: #d9a441;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: 'Lora', Georgia, serif; line-height: 1.28; font-weight: 600; }
+
+.container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+.btn {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--forest);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  padding: 17px 32px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.25s, transform 0.25s;
+}
+.btn:hover { filter: brightness(1.08); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--cream); border: 1px solid rgba(247,245,239,0.45); }
+.btn-ghost:hover { background: rgba(247,245,239,0.08); }
+
+/* ─── TOP BAR ─── */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--forest);
+  color: var(--cream);
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(169,214,190,0.25);
+}
+.topbar .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { font-family: 'Lora', serif; font-size: 19px; }
+.brand span { color: var(--mint); }
+.brand small { display: block; font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: #9db8a9; }
+.topbar .btn { padding: 10px 18px; font-size: 12.5px; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  background: linear-gradient(155deg, var(--forest) 0%, var(--forest-2) 65%, #1d5038 100%);
+  color: var(--cream);
+  overflow: hidden;
+}
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.16; }
+.hero-inner { position: relative; padding: 92px 0 80px; max-width: 800px; }
+.eyebrow {
+  display: inline-block;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--mint);
+  border: 1px solid rgba(169,214,190,0.45);
+  border-radius: 100px;
+  padding: 7px 18px;
+  margin-bottom: 26px;
+}
+.hero h1 { font-size: clamp(1.9rem, 4.4vw, 2.9rem); margin-bottom: 22px; }
+.hero h1 em { font-style: normal; color: var(--mint); }
+.hero p.lead { font-size: 1.1rem; color: #d3ddd4; max-width: 640px; margin-bottom: 32px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-note { margin-top: 18px; font-size: 13.5px; color: #9db8a9; }
+
+/* ─── CONFIDENTIAL STRIP ─── */
+.confidential {
+  background: var(--forest-2);
+  border-top: 1px solid rgba(169,214,190,0.2);
+  color: #cfe6d8;
+  text-align: center;
+  padding: 14px 24px;
+  font-size: 14.5px;
+}
+.confidential strong { color: var(--mint); }
+
+/* ─── VIDEO SLOT ─── */
+.video-band { background: var(--cream); padding: 72px 0 0; }
+.video-frame {
+  max-width: 760px; margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #0c261d, #1a4632);
+  border: 1px solid var(--sage);
+  border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  color: #9db8a9; text-align: center; padding: 24px;
+}
+.play-dot { width: 64px; height: 64px; border-radius: 50%; background: var(--amber); display: flex; align-items: center; justify-content: center; }
+.play-dot::after { content: ''; border-left: 19px solid var(--forest); border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+.video-frame strong { color: var(--cream); font-size: 1.02rem; }
+
+/* ─── SECTIONS ─── */
+section { padding: 84px 0; }
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sage); margin-bottom: 14px; }
+.section-title { font-size: clamp(1.65rem, 3.2vw, 2.3rem); margin-bottom: 16px; }
+.section-sub { color: var(--muted); max-width: 660px; margin-bottom: 46px; }
+
+/* ─── TIMELINE WARNING ─── */
+.clock-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+.clock-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.clock-item .when { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--forest); font-weight: 700; margin-bottom: 6px; }
+.clock-item p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+.clock-item.hot { border-color: var(--amber); background: #fdf6e7; }
+.copy-narrow { max-width: 680px; }
+.copy-narrow p { margin-bottom: 18px; color: #41504a; }
+.copy-narrow strong { color: var(--forest); }
+
+/* ─── OPTIONS ─── */
+.options { background: var(--forest); color: var(--cream); }
+.options .section-title { color: var(--cream); }
+.options .section-sub { color: #b7cdbf; }
+.option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.option {
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(169,214,190,0.28);
+  border-radius: 8px;
+  padding: 30px 28px;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.option:hover { transform: translateY(-3px); border-color: var(--mint); }
+.option h3 { font-size: 1.15rem; color: var(--mint); margin-bottom: 10px; }
+.option p { font-size: 0.93rem; color: #cfdfd4; }
+.option .fit { display: inline-block; margin-top: 14px; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; color: var(--amber); font-weight: 700; }
+
+/* ─── WHY LOGAN ─── */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.why {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--sage);
+  border-radius: 6px;
+  padding: 28px 24px;
+}
+.why h3 { font-size: 1.08rem; margin-bottom: 8px; }
+.why p { font-size: 0.92rem; color: var(--muted); }
+
+/* ─── REVIEW INCLUDES ─── */
+.review-list { max-width: 760px; }
+.review-item {
+  display: flex; gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.review-item:last-child { border-bottom: none; }
+.review-item .n {
+  flex: none;
+  font-family: 'Lora', serif;
+  font-size: 1.35rem; font-weight: 700;
+  color: var(--amber);
+  width: 36px;
+}
+.review-item strong { display: block; font-size: 1.05rem; color: var(--forest); margin-bottom: 4px; }
+.review-item p { font-size: 0.93rem; color: var(--muted); }
+
+/* ─── FORM ─── */
+.form-section { background: var(--forest-2); color: var(--cream); }
+.form-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+.form-side h2 { color: var(--cream); font-size: clamp(1.55rem, 3vw, 2.1rem); margin-bottom: 18px; }
+.form-side p { color: #b7cdbf; margin-bottom: 22px; }
+.assurance { list-style: none; }
+.assurance li { padding: 9px 0 9px 30px; position: relative; color: #d3ddd4; font-size: 0.95rem; }
+.assurance li::before { content: '\2713'; position: absolute; left: 0; color: var(--amber); font-weight: 800; }
+.lead-form {
+  background: #fff; color: var(--ink);
+  border-radius: 12px;
+  padding: 38px 34px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.lead-form h3 { font-size: 1.28rem; margin-bottom: 6px; }
+.lead-form .form-note { font-size: 0.88rem; color: var(--muted); margin-bottom: 24px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--forest); }
+.field input, .field select {
+  width: 100%; padding: 13px 14px;
+  border: 1px solid #d5d2c2;
+  border-radius: 6px;
+  font-family: inherit; font-size: 0.95rem;
+  background: var(--cream); color: var(--ink);
+}
+.field input:focus, .field select:focus { outline: 2px solid var(--sage); border-color: var(--sage); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.lead-form .btn { width: 100%; margin-top: 8px; }
+.privacy { font-size: 0.78rem; color: var(--muted); margin-top: 14px; text-align: center; }
+
+.thanks { display: none; text-align: center; padding: 30px 6px; }
+.thanks.show { display: block; }
+.thanks .tick-big { width: 62px; height: 62px; border-radius: 50%; background: var(--amber); color: var(--forest); font-size: 30px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+.thanks h3 { margin-bottom: 12px; }
+.thanks p { font-size: 0.95rem; color: var(--muted); margin-bottom: 10px; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--forest);
+  color: #86a191;
+  padding: 44px 24px;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.9;
+}
+footer .brand { color: var(--cream); margin-bottom: 10px; }
+footer .demo-note { color: #52705f; margin-top: 16px; font-size: 0.74rem; }
+
+.fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .clock-grid { grid-template-columns: 1fr 1fr; }
+  .option-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .form-wrap { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 620px) {
+  section { padding: 64px 0; }
+  .clock-grid { grid-template-columns: 1fr; }
+  .hero-inner { padding: 68px 0 60px; }
+  .topbar .brand small { display: none; }
+  .field-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="brand">Logan <span>Nelson</span>
+      <small>Foreclosure &amp; Short Sale Specialist &middot; DFW</small>
+    </div>
+    <a href="#review" class="btn">Free Confidential Review</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1800&q=80" alt="" onerror="this.remove()">
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow">100% Confidential &middot; Dallas&ndash;Fort Worth, Texas</span>
+      <h1>Behind on Your Mortgage?<br>
+      You Have More Options Than the Bank Is Telling You.<br>
+      <em>Protect Your Equity. Protect Your Credit. Keep Control.</em></h1>
+      <p class="lead">Foreclosure is a process, not an event, and until the final day there are still moves you can make. Start with a free, confidential options review. No judgment, no pressure, no cost.</p>
+      <div class="hero-ctas">
+        <a href="#review" class="btn">Get My Free Confidential Review</a>
+        <a href="#options" class="btn btn-ghost">See My Options First</a>
+      </div>
+      <p class="hero-note">You talk to Logan directly. Nothing is shared with your lender, your neighbors, or anyone else.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIDENTIAL STRIP -->
+<div class="confidential"><strong>Every week matters.</strong> The earlier you act in the foreclosure timeline, the more options you keep and the more equity you protect.</div>
+
+<!-- VIDEO -->
+<div class="video-band">
+  <div class="container">
+    <div class="video-frame">
+      <div class="play-dot"></div>
+      <strong>Watch: The 4 Ways to Get Out From Under a Mortgage You Can't Keep Paying</strong>
+      <span style="font-size:13px;">[ Agent intro video embeds here: 60 to 90 seconds ]</span>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Why Timing Matters</div>
+      <h2 class="section-title">The Foreclosure Clock Is Already Running</h2>
+      <p class="section-sub">In Texas, foreclosure can move faster than almost anywhere in the country. Here's the timeline most homeowners don't see until it's too late.</p>
+    </div>
+    <div class="clock-grid fade-in">
+      <div class="clock-item">
+        <div class="when">Missed Payments</div>
+        <p>Late fees stack up. Your lender starts calling. Every option is still on the table.</p>
+      </div>
+      <div class="clock-item">
+        <div class="when">Notice of Default</div>
+        <p>The formal process begins. You still have strong options, but the window starts closing.</p>
+      </div>
+      <div class="clock-item hot">
+        <div class="when">Notice of Sale</div>
+        <p>In Texas, the auction can be as little as 21 days out. Acting here takes speed and experience.</p>
+      </div>
+      <div class="clock-item">
+        <div class="when">Auction Day</div>
+        <p>The home sells on the courthouse steps, often below market value, and the foreclosure hits your credit for years.</p>
+      </div>
+    </div>
+    <div class="copy-narrow fade-in">
+      <p>Here's what the bank won't say out loud: <strong>foreclosure is expensive for them too.</strong> Lenders would rather work out a sale than take your house to auction. That's leverage, but only if someone who has done this before is negotiating on your side.</p>
+      <p>A home sold before auction typically brings <strong>market value instead of auction value</strong>, which can mean the difference between walking away with your equity and walking away with nothing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIONS -->
+<section class="options" id="options">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Know Every Option</div>
+      <h2 class="section-title">Four Ways Out. We'll Find Yours.</h2>
+      <p class="section-sub">There is no one-size-fits-all answer. In your review, we walk through every path with real numbers so you can choose with clear eyes.</p>
+    </div>
+    <div class="option-grid fade-in">
+      <div class="option">
+        <h3>Sell Before the Auction</h3>
+        <p>List and sell at market value before the sale date. You pay off the loan, protect your credit from a completed foreclosure, and keep the equity you've built.</p>
+        <span class="fit">Best when: you have equity in the home</span>
+      </div>
+      <div class="option">
+        <h3>Short Sale Negotiation</h3>
+        <p>If you owe more than the home is worth, we negotiate directly with your lender to accept the sale payoff, and to release you from the remaining balance where possible.</p>
+        <span class="fit">Best when: the loan is underwater</span>
+      </div>
+      <div class="option">
+        <h3>Fast Cash Sale</h3>
+        <p>When the auction is weeks away, a vetted cash buyer can close in days, not months. Slower money is better money, but only if the clock allows it.</p>
+        <span class="fit">Best when: time is nearly out</span>
+      </div>
+      <div class="option">
+        <h3>Keep the Home</h3>
+        <p>Sometimes selling isn't the answer. We'll tell you when a loan modification, forbearance, or reinstatement is realistic, and point you to the right people to pursue it.</p>
+        <span class="fit">Best when: income has recovered</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY LOGAN -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Why Homeowners Call Logan</div>
+      <h2 class="section-title">A Specialist, Not a Generalist</h2>
+      <p class="section-sub">Most agents list homes. Pre-foreclosure and short sales are a different job: lender negotiation, hard deadlines, and paperwork where one mistake costs you the deal.</p>
+    </div>
+    <div class="why-grid fade-in">
+      <div class="why">
+        <h3>Short Sale &amp; Foreclosure Trained</h3>
+        <p>Focused specifically on distressed sales in DFW, including lender negotiation and pre-auction timelines.</p>
+      </div>
+      <div class="why">
+        <h3>Direct Lender Negotiation</h3>
+        <p>We deal with the bank so you don't have to. Payoff negotiations, postponement requests, and short sale packages, handled.</p>
+      </div>
+      <div class="why">
+        <h3>100% Confidential</h3>
+        <p>No sign in the yard until you say so. No letters, no door knockers, no one in your business.</p>
+      </div>
+      <div class="why">
+        <h3>No Upfront Cost</h3>
+        <p>You pay nothing out of pocket. In a standard sale the commission comes from closing. In a short sale, the lender pays it.</p>
+      </div>
+      <div class="why">
+        <h3>Honest Answers First</h3>
+        <p>If keeping your home is realistic, we'll say so and point you in that direction, even though it means we don't get hired.</p>
+      </div>
+      <div class="why">
+        <h3>Local DFW Knowledge</h3>
+        <p>Pricing a home to sell fast without giving it away takes street-level knowledge of your neighborhood, not a formula.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW INCLUDES -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">What You Get</div>
+      <h2 class="section-title">Your Free Options Review Includes</h2>
+      <p class="section-sub">One confidential conversation. You leave knowing exactly where you stand and what each path means for your money and your credit.</p>
+    </div>
+    <div class="review-list fade-in">
+      <div class="review-item"><div class="n">01</div><div><strong>Current Home Value Analysis</strong><p>What your home would realistically sell for today, based on live DFW comparables, not an online estimate.</p></div></div>
+      <div class="review-item"><div class="n">02</div><div><strong>Net Proceeds Worksheet</strong><p>Loan payoff, fees, and costs mapped out so you see the actual number you'd walk away with in each scenario.</p></div></div>
+      <div class="review-item"><div class="n">03</div><div><strong>Your Foreclosure Timeline, Mapped</strong><p>Exactly where you are in the Texas process, what deadline is next, and how many days you realistically have.</p></div></div>
+      <div class="review-item"><div class="n">04</div><div><strong>Credit Impact Comparison</strong><p>How a sale, short sale, and completed foreclosure each affect your credit and your ability to buy again.</p></div></div>
+      <div class="review-item"><div class="n">05</div><div><strong>A Written Action Plan</strong><p>Your options ranked for your situation, with next steps for each, whether or not you ever hire us.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="review">
+  <div class="container">
+    <div class="form-wrap">
+      <div class="form-side fade-in">
+        <div class="section-label">Confidential &middot; Free &middot; No Obligation</div>
+        <h2>Talk to Someone Who Does This Every Week. Before the Bank Decides for You.</h2>
+        <p>The consultation is free and private. Worst case, you'll know exactly where you stand. Best case, you keep your equity, your credit, and your options.</p>
+        <ul class="assurance">
+          <li>100% confidential. No yard sign, no public record of our conversation</li>
+          <li>No cost and no obligation to list your home</li>
+          <li>Straight answers, including when selling is not your best move</li>
+          <li>You speak with Logan directly, not an assistant</li>
+        </ul>
+      </div>
+      <div class="lead-form fade-in">
+        <form id="leadForm" autocomplete="on">
+          <h3>Request Your Free Options Review</h3>
+          <p class="form-note">Confidential. Logan personally responds to every request, usually within the hour.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" required placeholder="First name">
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" required placeholder="Last name">
+            </div>
+          </div>
+          <div class="field">
+            <label for="phone">Mobile Phone</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(214) 555-0000">
+          </div>
+          <div class="field">
+            <label for="zip">Property ZIP Code</label>
+            <input type="text" id="zip" name="zip" required placeholder="e.g. 75201" inputmode="numeric" maxlength="10">
+          </div>
+          <div class="field">
+            <label for="situation">Which best describes your situation?</label>
+            <select id="situation" name="situation" required>
+              <option value="">Select one</option>
+              <option>Behind on payments, no notice yet</option>
+              <option>Received a Notice of Default</option>
+              <option>Auction date is scheduled</option>
+              <option>Owe more than the home is worth</option>
+              <option>Just exploring my options</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="timeline">How soon do you need to act?</label>
+            <select id="timeline" name="timeline" required>
+              <option value="">Select one</option>
+              <option>Immediately, within 30 days</option>
+              <option>Within 1 to 3 months</option>
+              <option>Within 3 to 6 months</option>
+              <option>Not sure, that's why I'm here</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Get My Confidential Review</button>
+          <p class="privacy">Your information is private, never sold, and never shared with your lender. Opt out anytime.</p>
+        </form>
+        <div class="thanks" id="thanks">
+          <div class="tick-big">&#10003;</div>
+          <h3>Received. Here's What Happens Next.</h3>
+          <p><strong>1.</strong> Logan reviews your situation personally, today.</p>
+          <p><strong>2.</strong> You'll get a private call or text to set a time that works for you.</p>
+          <p><strong>3.</strong> You leave the review with a written plan and real numbers.</p>
+          <p style="margin-top:16px; font-size:0.85rem;">[ Thank-you page video embeds here ]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">Logan <span style="color:var(--mint)">Nelson</span></div>
+  <p>Logan Nelson Group &middot; Brokered by [Brokerage Name] &middot; Dallas&ndash;Fort Worth, TX &middot; (214) 555-0147</p>
+  <p>Licensed Texas Real Estate Agent. This page provides general information only and is not legal, tax, or credit advice. For legal questions about foreclosure, consult a licensed attorney. Short sales are subject to lender approval. Equal Housing Opportunity.</p>
+  <p class="demo-note">Sample demonstration page. Scenarios and contact details shown are illustrative placeholders.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+  // Safety net: never leave content hidden if the observer doesn't fire
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) { el.classList.add('visible'); });
+  }, 1500);
+
+  var form = document.getElementById('leadForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Demo only: production version posts to the GHL inbound webhook + fires Meta Pixel Lead event
+    form.style.display = 'none';
+    document.getElementById('thanks').classList.add('show');
+  });
+});
+</script>
+
+</body>
+</html>

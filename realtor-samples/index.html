@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Client Funnels | Elevated AI Solutions</title>
+<meta name="description" content="Examples of the done-for-you buyer and seller funnels Elevated AI Solutions builds for realtor partners. Every campaign gets a custom funnel like these.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #05080f;
+  --card-bg: #0b0f1a;
+  --border: #1a2236;
+  --border-bright: #2a3a5c;
+  --yellow: #FFD700;
+  --yellow2: #FFA500;
+  --white: #ffffff;
+  --muted: #8a94a8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, #050d1e 0%, #07090f 40%, #050608 100%);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+header {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+header .container { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 15px; font-weight: 900; letter-spacing: 0.5px; }
+.logo span { color: #00d4ff; }
+.badge {
+  font-size: 11.5px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+}
+
+/* ─── HERO ─── */
+.hero { padding: 72px 0 56px; text-align: center; }
+.eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--yellow);
+  border: 1px solid rgba(255,215,0,0.35);
+  border-radius: 20px;
+  padding: 7px 18px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900;
+  line-height: 1.25;
+  max-width: 760px;
+  margin: 0 auto 18px;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--yellow), var(--yellow2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p { color: var(--muted); max-width: 620px; margin: 0 auto; font-size: 17px; }
+
+/* ─── FLOW ─── */
+.flow {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 10px;
+  margin: 44px auto 0;
+}
+.flow-step {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cdd5e4;
+}
+.flow-arrow { color: var(--yellow); font-weight: 800; }
+
+/* ─── SAMPLE CARDS ─── */
+.samples { padding: 56px 0 32px; }
+.sample-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.sample-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(145deg, #0b0f1a, #080c15);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.sample-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-bright);
+  box-shadow: 0 18px 44px rgba(255,215,0,0.08);
+}
+.sample-preview {
+  height: 190px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 28px 30px;
+  position: relative;
+}
+.sample-preview.buyer { background: linear-gradient(160deg, #0e1c2f, #1f3450); }
+.sample-preview.seller { background: linear-gradient(160deg, #0f2e24, #1d5038); }
+.sample-preview .mini-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.sample-preview.buyer .mini-eyebrow { color: #c8a45c; }
+.sample-preview.seller .mini-eyebrow { color: #a9d6be; }
+.sample-preview .mini-h1 { font-family: Georgia, serif; font-size: 19px; line-height: 1.35; font-weight: 600; }
+.sample-preview .mini-cta {
+  position: absolute; bottom: 22px; left: 30px;
+  font-size: 11px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 4px;
+}
+.sample-preview.buyer .mini-cta { background: #c8a45c; color: #0e1c2f; }
+.sample-preview.seller .mini-cta { background: #d9a441; color: #0f2e24; }
+.sample-body { padding: 26px 30px 30px; }
+.sample-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 10px;
+}
+.sample-body h2 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+.sample-body p { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+.sample-body .open {
+  font-size: 14px; font-weight: 700;
+  color: var(--yellow);
+}
+
+/* ─── INCLUDED ─── */
+.included { padding: 40px 0 72px; }
+.included-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 40px 38px;
+}
+.included-box h2 { font-size: clamp(20px, 2.6vw, 26px); font-weight: 800; margin-bottom: 8px; }
+.included-box .sub { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+.included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; }
+.included-item { display: flex; gap: 12px; font-size: 14.5px; color: #cdd5e4; padding: 7px 0; }
+.included-item::before { content: '\2713'; color: var(--yellow); font-weight: 800; }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 36px 24px;
+  text-align: center;
+  color: #555;
+  font-size: 12.5px;
+  line-height: 1.9;
+}
+
+@media (max-width: 760px) {
+  .sample-grid { grid-template-columns: 1fr; }
+  .included-grid { grid-template-columns: 1fr; }
+  .flow-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">ELEVATED <span>AI</span></div>
+    <div class="badge">Sample Client Funnels</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Done-For-You Campaign Buildout</span>
+    <h1>Every Agent We Work With Gets a Custom Funnel. <em>Built For Their Market. Built For Their Niche.</em></h1>
+    <p>These are working examples of the buyer and seller landing pages we build as part of the Market Fit Appointment System. Your funnel is built around your market, your niche, and your face, in week one.</p>
+    <div class="flow">
+      <span class="flow-step">Meta Ad</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-step">Custom Landing Page</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-step">Qualification Form</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-step">AI Follow-Up in 60s</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-step">Appointment On Your Calendar</span>
+    </div>
+  </div>
+</section>
+
+<section class="samples">
+  <div class="container">
+    <div class="sample-grid">
+
+      <a class="sample-card" href="buyer.html">
+        <div class="sample-preview buyer">
+          <div class="mini-eyebrow">Prosper &middot; Dallas&ndash;Fort Worth, TX</div>
+          <div class="mini-h1">New Construction Homes in DFW's Fastest-Growing Corridor. Only 7 Homes Remain in Phase One.</div>
+          <span class="mini-cta">Book Free Consultation</span>
+        </div>
+        <div class="sample-body">
+          <span class="sample-tag">Buyer Funnel Example</span>
+          <h2>New Development, Few Homes Remaining</h2>
+          <p>For agents working buyers: a location-specific page with urgency, a one-on-one consultation offer, and a form that filters out tire-kickers before they ever reach your calendar.</p>
+          <span class="open">View the buyer sample &rarr;</span>
+        </div>
+      </a>
+
+      <a class="sample-card" href="seller.html">
+        <div class="sample-preview seller">
+          <div class="mini-eyebrow">100% Confidential &middot; DFW, Texas</div>
+          <div class="mini-h1">Behind on Your Mortgage? You Have More Options Than the Bank Is Telling You.</div>
+          <span class="mini-cta">Free Confidential Review</span>
+        </div>
+        <div class="sample-body">
+          <span class="sample-tag">Seller Funnel Example</span>
+          <h2>Foreclosure &amp; Short Sale Specialist</h2>
+          <p>For agents working sellers: a niche-driven page that leads with empathy and urgency, positions the agent as the specialist, and qualifies motivation and timeline on the form.</p>
+          <span class="open">View the seller sample &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="included">
+  <div class="container">
+    <div class="included-box">
+      <h2>What Comes With Every Funnel We Build</h2>
+      <p class="sub">The landing page is one piece. Each campaign ships as a complete system, live in 3 to 4 weeks.</p>
+      <div class="included-grid">
+        <div class="included-item">Niche &amp; USP development for your market</div>
+        <div class="included-item">Ad copy and creative direction, written for you</div>
+        <div class="included-item">Custom buyer or seller landing page like these</div>
+        <div class="included-item">Qualification form tuned to filter serious prospects</div>
+        <div class="included-item">Thank-you page video that pre-frames the appointment</div>
+        <div class="included-item">AI speed-to-lead follow-up within 60 seconds</div>
+        <div class="included-item">SMS qualification and no-show rebooking</div>
+        <div class="included-item">Calendar integration, tracking, and weekly reporting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Elevated AI Solutions. All rights reserved.</p>
+  <p>Sample pages are for demonstration. Names, communities, inventory, and scenarios shown are illustrative placeholders, not client results.</p>
+</footer>
+
+</body>
+</html>
