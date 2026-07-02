@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Generation Blueprint — From Word of Mouth to Predictable Pipeline</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 19px;
+  line-height: 2.0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.hero .subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 12px;
+}
+.hero .sub-desc {
+  font-size: 1rem;
+  color: #888;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 32px;
+}
+section .container {
+  width: 100%;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+/* ─── STAT BLOCK ─── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+.stat-item {
+  text-align: center;
+  padding: 32px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.stat-item:hover {
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+.stat-number {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ─── COPY BLOCKS ─── */
+.copy-block {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.copy-block p {
+  color: #555;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+.copy-block p strong { color: #1a1a1a; }
+
+/* ─── CARDS GRID ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 48px;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+.card p {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ─── PULL QUOTE ─── */
+.pull-quote {
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.8;
+}
+.pull-quote .highlight {
+  background: #ffeb3b44;
+  padding: 2px 6px;
+}
+
+/* ─── BUYER JOURNEY ─── */
+.journey-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+.journey-step {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 14px 22px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: center;
+  color: #1a1a1a;
+}
+.journey-arrow {
+  color: #ccc;
+  font-size: 1.2rem;
+}
+.big-stat {
+  text-align: center;
+  margin: 48px 0;
+}
+.big-stat-number {
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1;
+}
+.big-stat-label {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 12px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── SOLUTION ─── */
+.solution-block {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 40px 36px;
+  margin-bottom: 24px;
+  transition: border-color 0.3s;
+}
+.solution-block:hover {
+  border-color: #bbb;
+}
+.solution-part-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.solution-block h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.solution-block ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.solution-block li {
+  color: #555;
+  font-size: 0.95rem;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.7;
+}
+.solution-block li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 14px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.solution-result {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* ─── TIMELINE ─── */
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: #e0e0e0;
+}
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -33px; top: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e0e0e0;
+}
+.timeline-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1a1a1a;
+}
+.timeline-desc {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ─── BEFORE / AFTER ─── */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.ba-col {
+  padding: 36px 32px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+.ba-col h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #999;
+}
+.ba-col ul { list-style: none; }
+.ba-col li {
+  color: #555;
+  font-size: 0.95rem;
+  padding: 8px 0 8px 24px;
+  position: relative;
+  line-height: 1.6;
+}
+.ba-before li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: #ccc;
+  font-weight: 500;
+}
+.ba-after li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* ─── PRICING ─── */
+.pricing-note {
+  text-align: center;
+  padding: 20px 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+  color: #555;
+}
+.pricing-note strong {
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.pricing-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 36px 28px 32px;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.pricing-card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.pricing-card.recommended {
+  border: 2px solid #1a1a1a;
+}
+.pricing-badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.pricing-tier {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+.pricing-price {
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+.pricing-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #999;
+}
+.pricing-features {
+  list-style: none;
+  margin: 20px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+.pricing-features li {
+  font-size: 0.85rem;
+  color: #555;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.6;
+}
+.pricing-features li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.pricing-fine {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.82rem;
+}
+
+/* ─── WHY THIS WORKS ─── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.why-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.why-card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.why-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+.why-card p {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ─── NEXT STEPS ─── */
+.next-steps {
+  text-align: center;
+}
+.next-steps .steps-list {
+  list-style: none;
+  margin: 40px 0;
+}
+.next-steps .steps-list li {
+  font-size: 1rem;
+  color: #555;
+  padding: 8px 0;
+  line-height: 1.8;
+}
+.next-steps .steps-list li span {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+.next-steps .ready {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-top: 32px;
+  font-weight: 400;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
+  .stat-row { grid-template-columns: 1fr; gap: 16px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; gap: 16px; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+  .why-grid { grid-template-columns: 1fr; }
+  .journey-arrow { display: none; }
+  .journey-flow { flex-direction: column; gap: 10px; }
+  .journey-step { width: 100%; }
+  .solution-block { padding: 28px 24px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 2rem; }
+  .pull-quote { font-size: 1.05rem; }
+  .big-stat-number { font-size: 3.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-in">
+      <h1>Lead Generation Blueprint</h1>
+    </div>
+    <div class="fade-in d1">
+      <p class="subtitle">From Word of Mouth to Predictable Pipeline</p>
+    </div>
+    <div class="fade-in d2">
+      <p class="sub-desc">How to fill your calendar with CMO calls in 30 days</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE YOU ARE NOW -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Where You Are Now</div>
+    </div>
+
+    <div class="stat-row fade-in d1">
+      <div class="stat-item">
+        <div class="stat-number">25</div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Word of Mouth</div>
+        <div class="stat-label">Primary Lead Source</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2026</div>
+        <div class="stat-label">Different Market Now</div>
+      </div>
+    </div>
+
+    <div class="copy-block fade-in d2">
+      <p>You built a recruiting company the right way. <strong>25 years.</strong> PR, marketing, communications recruiting. Word of mouth kept you alive.</p>
+
+      <p>But the market changed. 3-year downturn instead of the usual 1-year dip. New president. Tariffs. AI disruption.</p>
+
+      <p><strong>The old playbook doesn't work anymore.</strong> You tried Dripify. It didn't work. Everyone's inbox is flooded with the same automated messages.</p>
+
+      <p>You need something different.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE CHALLENGE -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Challenge</div>
+      <div class="section-title">What Happens If Nothing Changes</div>
+    </div>
+    <div class="fade-in d1">
+      <div class="section-subtitle">Right now you're waiting for the phone to ring. You have 6 podcast episodes sitting there. You have enough content to write a book. But none of it is working for you.</div>
+    </div>
+
+    <div class="cards-grid fade-in d2">
+      <div class="card">
+        <h3>No Consistent Pipeline</h3>
+        <p>You can't predict when the next client will call. That's stressful when you have a team to pay.</p>
+      </div>
+      <div class="card">
+        <h3>Content Just Sitting There</h3>
+        <p>Hours of podcast content. Book material. All valuable. None of it reaching CMOs who need you.</p>
+      </div>
+      <div class="card">
+        <h3>Invisible Online</h3>
+        <p>When a CMO Googles you, they don't see fresh content. They don't see proof you're active. That loses deals.</p>
+      </div>
+      <div class="card">
+        <h3>Market is Moving Fast</h3>
+        <p>AI tools. New platforms. Competitors are adapting. You're falling behind without meaning to.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote fade-in d3">
+      <span class="highlight">"Word of mouth worked for 25 years. But it won't carry you through 2026."</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE REALITY -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Reality</div>
+      <div class="section-title">What CMOs Do Before They Hire You</div>
+    </div>
+
+    <div class="journey-flow fade-in d1">
+      <div class="journey-step">CMO gets your name</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">They Google you</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">They check LinkedIn</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">They look for proof</div>
+    </div>
+
+    <div class="big-stat fade-in d2">
+      <div class="big-stat-number">87%</div>
+      <div class="big-stat-label">of buyers research online before taking a call</div>
+    </div>
+
+    <div class="copy-block fade-in d3">
+      <p>If they don't see fresh content? If your last post was 3 months ago? If there's no proof you understand 2026?</p>
+
+      <p><strong>They move on to someone else.</strong></p>
+
+      <p>You're losing deals before the conversation even starts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE SOLUTION -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Solution</div>
+      <div class="section-title">What We Build For You</div>
+      <div class="section-subtitle">This isn't more LinkedIn spam. This is building the systems that get CMOs to call you.</div>
+    </div>
+
+    <div class="solution-block fade-in d1">
+      <div class="solution-part-label">Part 1</div>
+      <h3>Email Campaigns That Actually Work</h3>
+      <ul>
+        <li>We target CMOs, VPs of Marketing, Chief People Officers</li>
+        <li>Not random people. The exact decision makers you want</li>
+        <li>Emails that reference their company. Their industry. Their actual needs</li>
+        <li>Personalized at scale using AI</li>
+      </ul>
+      <div class="solution-result">Result: Calls with qualified buyers, not tire kickers</div>
+    </div>
+
+    <div class="solution-block fade-in d2">
+      <div class="solution-part-label">Part 2</div>
+      <h3>Your Content Gets Published Automatically</h3>
+      <ul>
+        <li>Those 6 podcast episodes? We turn them into 60+ social posts</li>
+        <li>LinkedIn. Instagram. Facebook</li>
+        <li>Videos. Quotes. Articles. All automated. You just approve</li>
+      </ul>
+      <div class="solution-result">Result: CMOs see you everywhere when they Google you</div>
+    </div>
+
+    <div class="solution-block fade-in d3">
+      <div class="solution-part-label">Part 3</div>
+      <h3>LinkedIn Outreach (Better Than Dripify)</h3>
+      <ul>
+        <li>Multi-channel: LinkedIn + SMS + voice</li>
+        <li>Not just connection requests</li>
+        <li>Personalized. Human-feeling. Way more effective than basic Dripify</li>
+      </ul>
+      <div class="solution-result">Result: Higher response rates, actual conversations</div>
+    </div>
+
+    <div class="solution-block fade-in d4">
+      <div class="solution-part-label">Part 4</div>
+      <h3>AI Video Content</h3>
+      <ul>
+        <li>Short video clips using AI. Recruiting tips. Industry insights. Thought leadership</li>
+        <li>Posted automatically to your channels</li>
+        <li>You look active without doing the work</li>
+      </ul>
+      <div class="solution-result">Result: You stand out from recruiters who post nothing</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Timeline</div>
+      <div class="section-title">What Happens When</div>
+    </div>
+
+    <div class="timeline fade-in d1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 1</div>
+        <div class="timeline-title">Setup</div>
+        <div class="timeline-desc">Build target list (CMOs, VPs, CPOs). Set up email campaigns. Connect podcast content to automation tools.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 2</div>
+        <div class="timeline-title">Launch</div>
+        <div class="timeline-desc">Email campaigns go live. Content starts auto-posting. LinkedIn outreach begins. You start seeing engagement.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Weeks 3-4</div>
+        <div class="timeline-title">Results</div>
+        <div class="timeline-desc">Calls start coming in. Calendar fills up. CMOs seeing your content everywhere. Pipeline building.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Weeks 5-8</div>
+        <div class="timeline-title">Optimize</div>
+        <div class="timeline-desc">See what's working. Double down on winners. Content library grows automatically.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">After 60 Days</div>
+        <div class="timeline-title">Autopilot</div>
+        <div class="timeline-desc">Systems run themselves. Content publishes automatically. Leads flow consistently. You focus on closing deals.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS: BEFORE / AFTER -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Results</div>
+      <div class="section-title">What Changes After 60 Days</div>
+    </div>
+
+    <div class="ba-grid fade-in d1">
+      <div class="ba-col ba-before">
+        <h3>Before</h3>
+        <ul>
+          <li>Waiting for referrals</li>
+          <li>No consistent pipeline</li>
+          <li>Content sitting unused</li>
+          <li>Invisible online</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-after">
+        <h3>After 60 Days</h3>
+        <ul>
+          <li>Calendar full of CMO calls</li>
+          <li>Predictable lead flow</li>
+          <li>Content publishing daily</li>
+          <li>Visible everywhere they look</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Investment</div>
+      <div class="section-title">Start Where It Hurts Most</div>
+    </div>
+
+    <div class="pricing-note fade-in d1">
+      <strong>One-time setup fee: $2,500 (all plans)</strong>
+      <span>3-month minimum commitment.</span>
+    </div>
+
+    <div class="pricing-grid fade-in d2">
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">$1,497<span>/mo</span></div>
+        <ul class="pricing-features">
+          <li>Email campaigns to CMOs, VPs, CPOs</li>
+          <li>Personalized using AI</li>
+          <li>500 decision makers targeted per month</li>
+          <li>Weekly performance reports</li>
+          <li>Dedicated account manager</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card recommended">
+        <div class="pricing-badge">Recommended</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-price">$2,497<span>/mo</span></div>
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>Podcast to social post automation</li>
+          <li>LinkedIn, Instagram, Facebook content</li>
+          <li>3-5 posts per week, auto-scheduled</li>
+          <li>Content calendar + approval workflow</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Scale</div>
+        <div class="pricing-price">$3,497<span>/mo</span></div>
+        <ul class="pricing-features">
+          <li>Everything in Growth</li>
+          <li>LinkedIn outreach + SMS + voice</li>
+          <li>Multi-channel follow-up sequences</li>
+          <li>AI video content (weekly)</li>
+          <li>Recruiting tips &amp; thought leadership clips</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="pricing-fine fade-in d3">Setup fee due at signing. Monthly billing begins Week 1. 3-month minimum. Cancel anytime after.</p>
+
+    <!-- HORMOZI OFFER -->
+    <div class="fade-in d4" style="margin-top: 80px; max-width: 700px; margin-left: auto; margin-right: auto; padding: 48px 40px; border: 1px solid #e0e0e0; border-radius: 8px; text-align: center;">
+      <div style="font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: #999; margin-bottom: 16px;">Can't Decide?</div>
+      <h3 style="font-size: 28px; font-weight: 300; margin-bottom: 24px; line-height: 1.4;">One Placement Covers It</h3>
+      <p style="font-size: 18px; line-height: 2.0; color: #444; margin-bottom: 24px;">Your average placement fee — $15K? $20K? $25K?</p>
+      <p style="font-size: 18px; line-height: 2.0; color: #444; margin-bottom: 24px;">One CMO call that converts pays for 6–12 months of this entire system.</p>
+      <p style="font-size: 18px; line-height: 2.0; color: #444; margin-bottom: 32px;">Right now you're spending $0 on business development and getting $0 in predictable pipeline.</p>
+      <div style="padding: 32px; background: #fafafa; border-radius: 8px; margin-bottom: 24px;">
+        <p style="font-size: 20px; font-weight: 500; color: #1a1a1a; margin-bottom: 8px;">One-time setup fee: $2,500.</p>
+        <p style="font-size: 16px; color: #999;">Covers full system build, integrations, and onboarding.</p>
+      </div>
+      <p style="font-size: 16px; color: #666; line-height: 1.8;">Same system. Same results. Built to pay for itself fast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY THIS WORKS -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Why This Works</div>
+      <div class="section-title">What Makes This Different</div>
+    </div>
+
+    <div class="why-grid fade-in d1">
+      <div class="why-card">
+        <h3>Multi-Channel</h3>
+        <p>Email, LinkedIn, SMS, content. We hit them everywhere, not just one saturated channel.</p>
+      </div>
+      <div class="why-card">
+        <h3>Actually Personalized</h3>
+        <p>AI writes emails specific to their company and industry. Not templates everyone ignores.</p>
+      </div>
+      <div class="why-card">
+        <h3>Your Content Finally Works</h3>
+        <p>That podcast and book content becomes your lead gen engine instead of sitting there.</p>
+      </div>
+      <div class="why-card">
+        <h3>Built for Recruiting</h3>
+        <p>We understand your business. We're not generic marketers. We know what CMOs need to hear.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section>
+  <div class="container">
+    <div class="next-steps fade-in">
+      <div class="section-title">Stop Waiting for Referrals</div>
+      <p class="section-subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">Same quality clients. Just predictable instead of hoping.</p>
+
+      <ul class="steps-list">
+        <li><span>1.</span> Pick which option fits you</li>
+        <li><span>2.</span> We'll map out your exact target list</li>
+        <li><span>3.</span> Launch Week 1</li>
+      </ul>
+
+      <p class="ready">Ready? Let's talk.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+});
+</script>
+
+</body>
+</html>
