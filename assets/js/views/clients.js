@@ -284,7 +284,7 @@
     card.appendChild(el('p', {
       class: 'muted small',
       style: { marginBottom: '14px' },
-      text: 'Everything lives in this browser. Export regularly to back up, or move your workspace to another device via import.'
+      text: 'Everything lives in this browser. Export regularly to back up, or move your workspace to another device via import. Exports do not include your API key — re-enter it after importing on a new device.'
     }));
 
     var fileInput = el('input', {

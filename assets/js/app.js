@@ -174,9 +174,10 @@
   CE.readClientForm = readClientForm;
 
   /* ── coach drawer ────────────────────────────────────────────────── */
-  var drawerEl = null, drawerBackdrop = null;
+  var drawerEl = null, drawerBackdrop = null, drawerCloseTimer = null;
 
   CE.openCoach = function (prefill) {
+    if (drawerCloseTimer) { clearTimeout(drawerCloseTimer); drawerCloseTimer = null; }
     if (!drawerEl) {
       drawerBackdrop = UI.el('div', { class: 'drawer-backdrop', onclick: closeCoach });
       drawerEl = UI.el('div', { class: 'drawer' });
@@ -199,7 +200,8 @@
     if (!drawerEl) return;
     drawerBackdrop.classList.remove('open');
     drawerEl.classList.remove('open');
-    setTimeout(function () {
+    drawerCloseTimer = setTimeout(function () {
+      drawerCloseTimer = null;
       if (drawerBackdrop) drawerBackdrop.remove();
       if (drawerEl) drawerEl.remove();
       drawerBackdrop = drawerEl = null;

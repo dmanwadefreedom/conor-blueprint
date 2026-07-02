@@ -15,6 +15,9 @@
   var THREAD_CAP = 60;
   var MAX_TOOL_ROUNDS = 6;
   var GEAR = '⚙';
+  /* shared in-flight guard: the coach view and the drawer can both host a
+   * panel on the same thread, so a per-panel flag is not enough. */
+  var busy = false;
 
   var SUGGESTED_PROMPTS = [
     'Plan my next week of content',
@@ -71,9 +74,9 @@
     return CE.const.FORMATS.indexOf(f) >= 0 ? f : 'short-video';
   }
 
-  function pushToThread(msg) {
+  function pushToThread(msg, clientId) {
     CE.store.set(function () {
-      var t = CE.store.data().coachThread;
+      var t = CE.store.data(clientId).coachThread;
       t.push(msg);
       while (t.length > THREAD_CAP) t.shift();
     }, { rerender: false });
@@ -297,9 +300,8 @@
 
   /* ── CONNECTED mode: system prompt, tools, API loop ───────────────── */
 
-  function buildSystem() {
-    var c = CE.store.client();
-    var d = CE.store.data();
+  function buildSystem(c) {
+    var d = CE.store.data(c.id);
     var L = [];
     L.push('You are Coach, the strategy engine inside Content Engine — the multi-client content marketing command center for the agency of Dylan Ewing (thedylanewing.com). You help plan, research, write and schedule social content for the active client.');
     L.push('Today is ' + new Date().toDateString() + '.');
@@ -441,9 +443,10 @@
     return (h < 10 ? '0' + h : '' + h) + ':' + m[2];
   }
 
-  /* Execute one tool call locally. `note(text)` appends a ⚙ tool-note. */
-  function execTool(name, input, note) {
-    var client = CE.store.client();
+  /* Execute one tool call locally. `note(text)` appends a ⚙ tool-note.
+   * `client` is the client the exchange was started for — not necessarily
+   * the currently active one. */
+  function execTool(name, input, note, client) {
     if (!client) return 'Error: no active client selected.';
     input = input || {};
     try {
@@ -451,7 +454,7 @@
         var iid = CE.uid();
         var ititle = String(input.title || 'Untitled idea').trim();
         CE.store.set(function () {
-          CE.store.data().ideas.push({
+          CE.store.data(client.id).ideas.push({
             id: iid, title: ititle, angle: String(input.angle || ''),
             hook: String(input.hook || ''), format: validFormat(input.format),
             platform: validPlatform(input.platform, client), status: 'idea',
@@ -465,30 +468,42 @@
       if (name === 'save_brief') {
         var bid = CE.uid();
         var btopic = String(input.topic || 'Untitled brief').trim();
+        var linkId = String(input.ideaId || '');
         CE.store.set(function () {
-          var d = CE.store.data();
+          var d = CE.store.data(client.id);
+          var found = null;
+          d.ideas.forEach(function (i) { if (i.id === linkId) found = i; });
+          if (!found) {
+            // missing or dangling ideaId → create a linked idea so the brief
+            // is reachable in Research (mirrors schedule_post's fallback)
+            linkId = CE.uid();
+            d.ideas.push({
+              id: linkId, title: btopic, angle: '', hook: '', format: 'short-video',
+              platform: validPlatform(null, client), status: 'researched',
+              trendRef: null, notes: '', createdAt: Date.now(), updatedAt: Date.now()
+            });
+          } else if (found.status === 'idea') {
+            found.status = 'researched'; found.updatedAt = Date.now();
+          }
+          // one brief per idea: replace any existing brief for this idea
+          d.briefs = d.briefs.filter(function (b) { return b.ideaId !== linkId; });
           d.briefs.push({
-            id: bid, ideaId: input.ideaId || null, topic: btopic,
+            id: bid, ideaId: linkId, topic: btopic,
             summary: String(input.summary || ''),
             keyPoints: strArr(input.keyPoints), hooks: strArr(input.hooks),
             keywords: strArr(input.keywords, 20), sources: [], competitors: [],
             createdAt: Date.now()
           });
-          d.ideas.forEach(function (i) {
-            if (i.id === input.ideaId && i.status === 'idea') {
-              i.status = 'researched'; i.updatedAt = Date.now();
-            }
-          });
         }, { rerender: false });
         note(GEAR + ' Saved research brief "' + btopic + '"');
-        return JSON.stringify({ ok: true, briefId: bid });
+        return JSON.stringify({ ok: true, briefId: bid, ideaId: linkId });
       }
 
       if (name === 'save_draft') {
         var did = CE.uid();
         var dplat = validPlatform(input.platform, client);
         CE.store.set(function () {
-          var d = CE.store.data();
+          var d = CE.store.data(client.id);
           d.drafts.push({
             id: did, ideaId: input.ideaId || null, platform: dplat,
             format: validFormat(input.format), hook: String(input.hook || ''),
@@ -517,16 +532,25 @@
         var sid = CE.uid();
         var refType = 'idea', refId = String(input.refId || '');
         CE.store.set(function () {
-          var d = CE.store.data();
+          var d = CE.store.data(client.id);
           var draft = null, idea = null, k;
           for (k = 0; k < d.drafts.length; k++) if (d.drafts[k].id === refId) draft = d.drafts[k];
           for (k = 0; k < d.ideas.length; k++) if (d.ideas[k].id === refId) idea = d.ideas[k];
           if (draft) {
             refType = 'draft';
-            draft.status = 'scheduled';
+            if (draft.status !== 'published') draft.status = 'scheduled';
+            if (draft.ideaId) {
+              for (k = 0; k < d.ideas.length; k++) {
+                if (d.ideas[k].id === draft.ideaId && d.ideas[k].status !== 'published') {
+                  d.ideas[k].status = 'scheduled'; d.ideas[k].updatedAt = Date.now();
+                }
+              }
+            }
           } else if (idea) {
             refType = 'idea';
-            idea.status = 'scheduled'; idea.updatedAt = Date.now();
+            if (idea.status !== 'published') {
+              idea.status = 'scheduled'; idea.updatedAt = Date.now();
+            }
           } else {
             // unmatched or missing refId → create a fresh idea to reference
             refType = 'idea';
@@ -556,7 +580,7 @@
       }
 
       if (name === 'get_pipeline') {
-        var d = CE.store.data();
+        var d = CE.store.data(client.id);
         return JSON.stringify({
           ideas: d.ideas.map(function (i) {
             return { id: i.id, title: i.title, status: i.status, platform: i.platform, format: i.format };
@@ -576,8 +600,8 @@
     }
   }
 
-  function apiMessagesFromThread() {
-    var thread = CE.store.data().coachThread;
+  function apiMessagesFromThread(clientId) {
+    var thread = CE.store.data(clientId).coachThread;
     var msgs = [];
     thread.forEach(function (m) {
       if (!m || !m.content || isToolNote(m.content)) return;
@@ -641,17 +665,19 @@
     return 'Could not reach api.anthropic.com. Check your connection — and note the browser must be allowed to call api.anthropic.com directly (ad blockers and strict privacy extensions sometimes block it).';
   }
 
-  /* Run the full connected exchange: POST, execute tool loop, resolve text. */
-  function runConnected(note) {
+  /* Run the full connected exchange: POST, execute tool loop, resolve text.
+   * `exClient` is the client the exchange was started for. */
+  function runConnected(note, exClient) {
     var settings = CE.store.get().settings;
     var key = String(settings.apiKey || '').trim();
     var base = {
       model: settings.model || 'claude-sonnet-5',
-      max_tokens: 2048,
-      system: buildSystem(),
+      max_tokens: 8192,
+      system: buildSystem(exClient),
       tools: buildTools()
     };
-    var msgs = apiMessagesFromThread();
+    var msgs = apiMessagesFromThread(exClient.id);
+    var didWork = false;
 
     function turn(round) {
       var body = {
@@ -663,7 +689,8 @@
           var results = [];
           ((resp.content) || []).forEach(function (block) {
             if (block.type === 'tool_use') {
-              var out = execTool(block.name, block.input || {}, note);
+              var out = execTool(block.name, block.input || {}, note, exClient);
+              didWork = true;
               results.push({ type: 'tool_result', tool_use_id: block.id, content: out });
             }
           });
@@ -672,7 +699,16 @@
           return turn(round + 1);
         }
         var text = extractText(resp);
-        return text || 'Done — check your pipeline for what I added.';
+        if (resp && resp.stop_reason === 'max_tokens') {
+          return (text ? text + '\n\n' : '') + '…(reply was cut off — try asking again)';
+        }
+        if (resp && resp.stop_reason === 'refusal') {
+          return 'I can’t help with that request.';
+        }
+        if (text) return text;
+        return didWork
+          ? 'Done — check your pipeline for what I added.'
+          : 'I didn’t produce a reply — try rephrasing.';
       });
     }
     return turn(0);
@@ -699,8 +735,7 @@
       return;
     }
 
-    var busy = false;
-    var thread = CE.store.data().coachThread;
+    var thread = CE.store.data(client.id).coachThread;
 
     var wrap = el('div', {
       style: { display: 'flex', flexDirection: 'column', flex: '1', minHeight: '0', height: '100%' }
@@ -729,11 +764,12 @@
       class: 'btn btn-ghost btn-sm', text: 'Clear',
       title: 'Clear this conversation',
       onclick: function () {
+        if (busy) return;
         CE.ui.confirm('Clear this coach conversation? The messages can’t be recovered.', 'Clear it')
           .then(function (ok) {
             if (!ok) return;
             CE.store.set(function () {
-              var d = CE.store.data();
+              var d = CE.store.data(client.id);
               d.coachThread = [];
             }, { rerender: false });
             renderPanel(container, {});
@@ -809,13 +845,23 @@
       if (!text || busy) return;
       if (chipsEl) { chipsEl.remove(); chipsEl = null; }
 
+      // the exchange belongs to this panel's client, even if the user
+      // switches the active client while the request is in flight
+      var exId = client.id;
+
+      function sameClientActive() {
+        var active = CE.store.client();
+        return !active || active.id === exId;
+      }
+
       var userMsg = { role: 'user', content: text, ts: Date.now() };
-      pushToThread(userMsg);
+      pushToThread(userMsg, exId);
       appendMsg(userMsg);
       ta.value = '';
 
       busy = true;
       sendBtn.disabled = true;
+      clearBtn.disabled = true;
       var typing = typingNode();
       scroll.appendChild(typing);
       autoscroll();
@@ -823,21 +869,24 @@
       function finish(replyText) {
         typing.remove();
         var msg = { role: 'assistant', content: replyText, ts: Date.now() };
-        pushToThread(msg);
-        appendMsg(msg);
+        pushToThread(msg, exId);
+        if (sameClientActive()) appendMsg(msg);
         busy = false;
         sendBtn.disabled = false;
+        clearBtn.disabled = false;
         ta.focus();
       }
 
       if (connected()) {
         var note = function (txt) {
           var nmsg = { role: 'assistant', content: txt, ts: Date.now() };
-          pushToThread(nmsg);
-          scroll.insertBefore(msgNode(nmsg), typing);
-          autoscroll();
+          pushToThread(nmsg, exId);
+          if (sameClientActive()) {
+            scroll.insertBefore(msgNode(nmsg), typing);
+            autoscroll();
+          }
         };
-        runConnected(note)
+        runConnected(note, client)
           .then(function (text) { finish(text); })
           .catch(function (e) {
             console.warn('CE coach API error', e);
@@ -845,9 +894,7 @@
           });
       } else {
         setTimeout(function () {
-          var c = CE.store.client();
-          var d = CE.store.data();
-          finish(offlineReply(text, c, d));
+          finish(offlineReply(text, client, CE.store.data(exId)));
         }, 480 + Math.floor(Math.random() * 420));
       }
     }
@@ -887,9 +934,7 @@
       return;
     }
 
-    var grid = el('div', {
-      style: { display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', alignItems: 'start' }
-    });
+    var grid = el('div', { class: 'grid split' });
     container.appendChild(grid);
 
     /* left: the chat panel */

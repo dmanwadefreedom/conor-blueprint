@@ -25,7 +25,9 @@
 
   function updatedISO(ts) {
     if (!ts) return '';
-    try { return new Date(ts).toISOString().slice(0, 10); } catch (e) { return ''; }
+    var d = new Date(ts);
+    function p(n) { return (n < 10 ? '0' : '') + n; }
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
   }
 
   function fmtUpdated(ts) {

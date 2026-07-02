@@ -141,6 +141,7 @@ button { font-family: inherit; }
 .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.grid.split { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: start; }
 
 /* ── stat tiles (dataviz spec: quiet chrome, plain figures) ─────── */
 .stat-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
@@ -331,6 +332,7 @@ button { font-family: inherit; }
   .sidebar-foot { flex-direction: row; border-top: none; padding-top: 0; }
   .main { padding: 20px 16px 70px; }
   .cal-day { min-height: 64px; }
+  .grid.split { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }

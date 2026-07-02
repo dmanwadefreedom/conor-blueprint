@@ -175,12 +175,19 @@
       });
     },
 
-    exportJSON: function () { return JSON.stringify(CE.store.get(), null, 2); },
+    exportJSON: function () {
+      var s = JSON.parse(JSON.stringify(CE.store.get()));
+      if (s.settings) delete s.settings.apiKey;
+      return JSON.stringify(s, null, 2);
+    },
 
     importJSON: function (text) {
       var s = JSON.parse(text);
       if (!s || s.version !== 1 || !Array.isArray(s.clients)) throw new Error('Not a valid Content Engine export');
-      s.clients.forEach(function (c) { s.data = s.data || {}; s.data[c.id] = ensureDataShape(s.data[c.id]); });
+      s.data = s.data || {};
+      s.clients.forEach(function (c) { s.data[c.id] = ensureDataShape(s.data[c.id]); });
+      s.settings = s.settings || { apiKey: '', model: 'claude-sonnet-5', theme: 'dark' };
+      if (!s.clients.some(function (c) { return c.id === s.activeClientId; })) s.activeClientId = s.clients.length ? s.clients[0].id : null;
       state = s;
       persist();
       subs.forEach(function (cb) { try { cb(state, true); } catch (e) { console.error(e); } });

@@ -47,8 +47,14 @@
       return ka < kb ? -1 : ka > kb ? 1 : 0;
     });
 
+    var pubRef = {};
+    data.schedule.forEach(function (e) { if (e.status === 'published') pubRef[e.refId] = true; });
+    var ideaCovered = {};
+    data.drafts.forEach(function (d) { if (d.ideaId && pubRef[d.id]) ideaCovered[d.ideaId] = true; });
     var publishedPosts = data.schedule.filter(function (e) { return e.status === 'published'; }).length;
-    var publishedIdeas = data.ideas.filter(function (i) { return i.status === 'published'; }).length;
+    var publishedIdeas = data.ideas.filter(function (i) {
+      return i.status === 'published' && !pubRef[i.id] && !ideaCovered[i.id];
+    }).length;
 
     return {
       pipeline: pipeline,
@@ -81,15 +87,6 @@
     }).slice(0, 5);
   }
 
-  function hookForTrend(trend) {
-    var pats = CE.trends && CE.trends.hookPatterns;
-    if (pats && pats.length) {
-      var hp = pats[Math.floor(Math.random() * pats.length)];
-      if (hp && (hp.example || hp.pattern)) return hp.example || hp.pattern;
-    }
-    return trend.examplePrompt || '';
-  }
-
   function saveTrendAsIdea(trend, client) {
     var cid = client.id;
     CE.store.data(cid); // ensure arrays exist for this client
@@ -98,7 +95,7 @@
       id: CE.uid(),
       title: trend.name,
       angle: trend.desc || '',
-      hook: hookForTrend(trend),
+      hook: trend.examplePrompt || '',
       format: (trend.formats && trend.formats[0]) || 'short-video',
       platform: trend.platform,
       status: 'idea',
@@ -162,7 +159,7 @@
         stats.draftsReady > 0 ? 'ready to schedule' : null, 'flat'),
       statTile(stats.upNext.length, 'Scheduled · next 7 days',
         stats.upNext.length > 0 ? 'on track' : null, 'flat'),
-      statTile(stats.published, 'Published · ideas + posts',
+      statTile(stats.published, 'Published',
         stats.published > 0 ? 'shipping' : null, 'up')));
   }
 

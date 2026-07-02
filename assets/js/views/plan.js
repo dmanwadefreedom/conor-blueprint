@@ -60,7 +60,7 @@
   function readyItems(data) {
     var refd = refMap(data), drafted = ideaHasDraft(data), out = [];
     data.drafts.forEach(function (dr) {
-      if (!refd[dr.id] && (dr.status === 'drafted' || dr.status === 'approved')) {
+      if (!refd[dr.id] && !(dr.ideaId && refd[dr.ideaId]) && (dr.status === 'drafted' || dr.status === 'approved')) {
         out.push({ kind: 'draft', id: dr.id, title: draftLabel(data, dr), platform: dr.platform, status: dr.status });
       }
     });
@@ -76,7 +76,7 @@
   function schedulableItems(data) {
     var refd = refMap(data), drafted = ideaHasDraft(data), out = [];
     data.drafts.forEach(function (dr) {
-      if (!refd[dr.id] && dr.status !== 'published') {
+      if (!refd[dr.id] && !(dr.ideaId && refd[dr.ideaId]) && dr.status !== 'published') {
         out.push({ kind: 'draft', id: dr.id, title: draftLabel(data, dr), platform: dr.platform, status: dr.status });
       }
     });
@@ -154,7 +154,7 @@
       if (e.refType === 'draft') {
         var dr = findById(d.drafts, e.refId);
         if (dr) {
-          if (dr.status === 'scheduled' || dr.status === 'published') dr.status = 'approved';
+          if (dr.status === 'scheduled' || dr.status === 'published') dr.status = 'drafted';
           if (dr.ideaId) {
             var li = findById(d.ideas, dr.ideaId);
             if (li && (li.status === 'scheduled' || li.status === 'published')) li.status = 'drafted';
@@ -662,14 +662,7 @@
     }
 
     /* layout: calendar (2fr) + queue (1fr) */
-    var grid = el('div', {
-      style: {
-        display: 'grid',
-        gridTemplateColumns: 'minmax(300px, 2fr) minmax(240px, 1fr)',
-        gap: '16px',
-        alignItems: 'start'
-      }
-    });
+    var grid = el('div', { class: 'grid split' });
     grid.appendChild(buildCalendar(data, rerenderSelf));
     grid.appendChild(buildQueue(client, data));
     container.appendChild(grid);

@@ -44,6 +44,7 @@
   /* ── view-local composer state, keyed per client id ───────────────── */
   var stateByClient = {};
   var consumedParams = {}; // "clientId:kind:id" → true (apply URL params only once)
+  window.addEventListener('hashchange', function () { consumedParams = {}; });
 
   function blankComp(client) {
     return {
@@ -577,6 +578,15 @@
           if (!d) return;
           d.drafts = d.drafts.filter(function (x) { return x.id !== draft.id; });
           d.schedule = d.schedule.filter(function (e) { return !(e.refType === 'draft' && e.refId === draft.id); });
+          if (draft.ideaId) {
+            var idea = d.ideas.filter(function (i) { return i.id === draft.ideaId; })[0];
+            var stillCovered = d.drafts.some(function (x) { return x.ideaId === draft.ideaId; }) ||
+              d.schedule.some(function (e) { return e.refType === 'idea' && e.refId === draft.ideaId; });
+            if (idea && !stillCovered && (idea.status === 'scheduled' || idea.status === 'published')) {
+              idea.status = 'researched';
+              idea.updatedAt = Date.now();
+            }
+          }
         });
         CE.ui.toast('Draft deleted', '');
       });
@@ -797,6 +807,7 @@
       var created = draft.createdAt ? new Date(draft.createdAt) : null;
       var createdTxt = created ? created.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : '—';
       var editing = comp.editingId === draft.id;
+      var onCal = data.schedule.some(function (e) { return e.refType === 'draft' && e.refId === draft.id; });
 
       var actions = el('div', { class: 'row', style: { justifyContent: 'flex-end', flexWrap: 'wrap' } },
         el('button', {
@@ -811,7 +822,14 @@
           }
         }),
         el('button', { class: 'btn btn-ghost btn-sm', text: 'Duplicate', onclick: function () { duplicateDraft(draft, client); } }),
-        el('button', { class: 'btn btn-ghost btn-sm', text: 'Schedule', onclick: function () { openScheduleModal(draft, client); } }),
+        el('button', {
+          class: 'btn btn-ghost btn-sm', text: onCal ? 'Scheduled' : 'Schedule',
+          disabled: onCal ? 'disabled' : null,
+          onclick: function () {
+            if (onCal) { CE.navigate('plan'); return; }
+            openScheduleModal(draft, client);
+          }
+        }),
         el('button', { class: 'btn btn-ghost btn-sm btn-danger', html: CE.icon('trash'), 'aria-label': 'Delete draft', onclick: function () { deleteDraft(draft, client, comp); } }));
 
       var tr = el('tr', {},
