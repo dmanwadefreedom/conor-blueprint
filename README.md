@@ -35,14 +35,10 @@ All data lives in `localStorage` under `ce.v1`, saved on every change — nothin
 sessions on the same browser/device. Use **Clients & Settings → Export data** for JSON backups
 or to move between devices/browsers, and **Import data** to restore.
 
-## Deploying to content.thedylanewing.com
+## Deploying
 
-The repo root is the site. For GitHub Pages:
-
-1. Deploy the repo root to any static host (Vercel, Netlify, GitHub Pages) — no build step needed.
-2. Point whatever subdomain you choose at it (note: content.thedylanewing.com currently serves the Glowup app).
-   `content` → `<github-username>.github.io`
-
-Any static host (Netlify, Vercel, Cloudflare Pages) works the same — point it at the repo root.
+The repo root is the site — no build step. Deploy it to any static host (Vercel, Netlify,
+Cloudflare Pages, GitHub Pages) and point a subdomain at it. Note: content.thedylanewing.com
+currently serves a different app (Glowup); pick the domain deliberately.
 
 The original Conor lead-gen blueprint page is preserved at `/conor/`.
