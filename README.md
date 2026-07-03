@@ -39,11 +39,9 @@ or to move between devices/browsers, and **Import data** to restore.
 
 The repo root is the site. For GitHub Pages:
 
-1. Repo Settings → Pages → deploy from the branch you merge this to (root folder).
-2. The `CNAME` file already sets the custom domain `content.thedylanewing.com`.
-3. At the DNS provider for `thedylanewing.com`, add a CNAME record:
+1. Deploy the repo root to any static host (Vercel, Netlify, GitHub Pages) — no build step needed.
+2. Point whatever subdomain you choose at it (note: content.thedylanewing.com currently serves the Glowup app).
    `content` → `<github-username>.github.io`
-4. In Pages settings, confirm the custom domain and enable **Enforce HTTPS**.
 
 Any static host (Netlify, Vercel, Cloudflare Pages) works the same — point it at the repo root.
 
