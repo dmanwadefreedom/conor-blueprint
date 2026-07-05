@@ -1,10 +1,95 @@
 # Meta Ads Creative & Strategy Brief for AI Ad Systems
 
-> **How to use this file:** Paste this entire document into any AI ads system (Claude, ChatGPT, Kong, Meta Advantage+ prompts, etc.) as context before asking it to write, critique, or scale Meta/Facebook/Instagram ads. It distills two Sabri Suby trainings — "Meta Ads Tutorial – 2026 FREE COURSE for Beginners" (Jan 2026) and "Learn 97% of Meta Ads in Under 19 Minutes" (Jun 2026) — based on $200M–$300M+ of ad spend and $7.8B in client revenue.
+> **How to use this file:** Paste this entire document into any AI ads system (Claude, ChatGPT, Kong, Meta Advantage+ prompts, etc.) as context before asking it to write, critique, or scale Meta/Facebook/Instagram ads. This is a **living context document** — it grows over time. Part A is the business and audience context. Part B distills two Sabri Suby trainings — "Meta Ads Tutorial – 2026 FREE COURSE for Beginners" (Jan 2026) and "Learn 97% of Meta Ads in Under 19 Minutes" (Jun 2026) — based on $200M–$300M+ of ad spend and $7.8B in client revenue. Part C is the append-only learning log: every time an ad wins or loses, the takeaway gets added there so the context compounds.
 >
-> **Instruction to the AI system reading this:** Follow the frameworks below exactly. Prioritize psychology and copy over media-buying mechanics. Every ad you produce must pass the Hyper-Dopamine checklist in Section 4.
+> **Instruction to the AI system reading this:** Follow the frameworks below exactly. Prioritize psychology and copy over media-buying mechanics. Every ad you produce must pass the Hyper-Dopamine checklist in Section 4. Lead with value — teach the audience something real about their own business before asking for anything.
 
 ---
+
+# PART A — BUSINESS & AUDIENCE CONTEXT
+
+## A1. Who is advertising
+
+**Elevated AI Solutions** — done-for-you client acquisition for real estate agents. Core offer: the **Market Fit Appointment System**, a complete campaign shipped live in 3–4 weeks:
+
+**Meta Ad → custom niche landing page → qualification form → AI follow-up within 60 seconds → appointment on the agent's calendar.**
+
+Every campaign includes: niche & USP development for the agent's market, ad copy and creative direction written for them, a custom buyer or seller landing page (built around their market, niche, and face), a qualification form that filters out tire-kickers, a thank-you-page video that pre-frames the appointment, AI speed-to-lead follow-up in 60 seconds, SMS qualification and no-show rebooking, calendar integration, tracking, and weekly reporting.
+
+Working sample funnels (use these as reference for congruence between ad and page):
+- **Buyer funnel:** hyper-local new-construction scarcity ("Only 7 homes remain in Phase One"), free 1-on-1 consultation, agent as buyer-side specialist the builder pays for.
+- **Seller funnel:** foreclosure/short-sale niche, empathy + urgency ("Behind on your mortgage? You have more options than the bank is telling you"), free confidential options review.
+
+**The audience for our ads is REALTORS/AGENTS** (B2B). The buyer/seller pages above are what we build *for* them — they're proof assets, not our ad audience.
+
+## A2. Target audience intelligence — what realtors are searching for and struggling with
+
+Use these as the desire/pain bullseyes every ad must hit. (Treat market-stat claims as angles to verify with current data before running.)
+
+**What they're actively searching / consuming:**
+- "How to get real estate leads" / "free real estate leads" / "real estate leads no upfront cost"
+- Zillow Premier Agent reviews and complaints — are the leads worth it, cost per lead, shared leads
+- "Are Zillow/Realtor.com leads worth it in 2026"
+- Facebook ads for realtors, how to run open-house ads, listing ads that actually work
+- AI for real estate agents — AI follow-up, ChatGPT scripts, automation, ISA alternatives
+- Speed to lead statistics; why internet leads go cold; how to convert online leads
+- Scripts: expired listings, FSBO, circle prospecting, buyer consultation
+- How to pick a niche / farm a neighborhood / win listings in a low-inventory market
+- CRM comparisons, follow-up systems, drip campaigns that don't feel like spam
+
+**Their pains (in their own language):**
+- "I'm paying Zillow $1,500+/month for leads that five other agents also got."
+- "Portal leads ghost me. I call, text, email — nothing."
+- "My business is 100% referrals and I can't predict next month."
+- "I don't have time to chase leads AND service my current clients."
+- "I tried Facebook ads and got junk leads / tire-kickers / people just browsing."
+- "Every 'lead gen guru' sold me the same recycled funnel with someone else's face on it."
+- Commission compression and NAR-settlement fallout: buyer agents now must *prove* their value to get hired.
+- Boom-and-bust income; rate-lock market means fewer transactions to fight over.
+
+**Their desires (the specific benefits to promise):**
+- Appointments on the calendar, not "leads" in a spreadsheet
+- Exclusive leads from their own name/face/niche — not shared portal leads
+- Being THE known specialist in a niche/farm area instead of a commodity agent
+- Follow-up handled automatically so nothing goes cold at 11pm
+- Predictable pipeline: "X qualified appointments per month" they can count on
+- Looking current/tech-forward (AI) without having to learn the tech themselves
+
+**Objections to pre-handle in copy and retargeting:**
+1. "I've been burned by lead-gen agencies before." → Show the actual system/sample funnels; specificity and proof, not promises.
+2. "Facebook leads are low quality." → Qualification form + AI follow-up filters; appointments (not raw leads) as the unit of value.
+3. "I don't have time to work more leads." → Speed-to-lead and rebooking are automated; they only take booked appointments.
+4. "Too expensive / what's the ROI?" → One closed transaction covers months of the system; break-even math per Section on ROAS.
+5. "Does this work in MY market/niche?" → Funnel is custom-built around their market, niche, and face in week one.
+
+## A3. Value-first ad angles (give away the farm)
+
+The strategy: **teach realtors something genuinely useful about their own lead flow, then let the system be the obvious "done-for-you" version of the lesson.** Each angle below is a Hyper-Dopamine ad waiting to be written (curiosity + specific benefit), and each can also be expanded into a lead magnet.
+
+1. **The speed-to-lead lesson.** Value: leads contacted within the first 5 minutes convert at a massively higher rate than leads called back in an hour — and almost every agent responds hours later. Ad angle: "Why the agent who answers in 60 seconds takes the listing (and how she does it while showing houses)."
+2. **The shared-lead exposé.** Value: breakdown of what a portal lead actually costs per *closed deal* once you factor in sharing, ghosting, and conversion rates. Ad angle: "The real math behind your Zillow bill — most agents lose money and never run this calculation."
+3. **The niche-domination playbook.** Value: how one agent + one niche (new construction, foreclosure, VA buyers, downsizers, relocation) beats ten generalists. Uses our own sample funnels as the show-and-tell. Ad angle: "REVEALED: the one-niche funnel quietly booking 15+ seller appointments a month in DFW."
+4. **The dead-database resurrection.** Value: script + sequence for reviving old leads sitting in their CRM. Ad angle: "The 9-word text that wakes up leads that went cold 6 months ago."
+5. **The buyer-consult value stack (post-NAR-settlement).** Value: how to present a buyer consultation so clients happily sign a buyer rep agreement. Ad angle: "Buyer agents: this 4-slide consult gets the agreement signed before the first showing."
+6. **The 'your ad doesn't look like an ad' teardown.** Value: side-by-side of a typical agent ad (headshot + 'Just Listed!') vs. a native-style ad, with CTR/cost difference. Ad angle: "Why nobody clicks your listing ads — and the ugly ad that outperforms them 5-to-1."
+7. **The AI follow-up demo.** Value: show the actual 60-second AI text conversation qualifying a lead in real time. Screen-recording native creative. Ad angle: "Watch an AI book a seller appointment at 11:47pm while the agent was asleep."
+
+## A4. Lead magnet options (deploy when a value-gate is needed)
+
+Any of the angles above converts into a high-value content offer (the same funnel model we sell — practice what we preach). Candidates, in rough order of pull:
+
+1. **"The Appointment Math Calculator"** — plug in your average commission and market: how many appointments you actually need per month, and what a lead should cost you. (Specificity = believability.)
+2. **"The 60-Second Follow-Up Playbook"** — the exact speed-to-lead sequence + scripts (first text, qualification questions, no-show rebooking).
+3. **Niche Funnel Swipe File** — the buyer + seller sample funnels annotated: why each block exists, with ad-to-page congruence notes. (We already have these pages built.)
+4. **"What Realtors Are Searching For in 2026"** — the audience-intelligence section above, expanded into a report; positions us as the ones who know the market's head.
+5. **The Dead-Database Revival Kit** — scripts from angle #4.
+6. **Free Market Fit Audit** — the call itself dressed as value (per Hack 7 #4): agent leaves with a niche recommendation and funnel outline whether or not they buy.
+
+Every lead magnet download gets the outbound call / AI follow-up treatment — that's where objection intel for retargeting ads comes from (see Hack 7).
+
+---
+
+# PART B — THE PLAYBOOK (Sabri Suby frameworks)
 
 ## 1. Core operating principles
 
@@ -175,4 +260,25 @@ People buy on **emotion, not logic**. Four pillars for any story-driven ad or VS
 
 ---
 
-*Source: Sabri Suby (King Kong / kingkong.co), "Meta Ads Tutorial – 2026 FREE COURSE for Beginners" and "Learn 97% of Meta Ads in Under 19 Minutes," plus an appended storytelling masterclass segment with showrunner Ben Watkins. Compiled from uploaded transcripts July 2026.*
+# PART C — LEARNING LOG (append-only)
+
+> **Rule for growing this document:** after every campaign review (weekly), append dated entries below. Never delete old entries — losers teach the algorithm-context as much as winners. Each entry: what ran, the numbers, the takeaway, and what changes next. AI systems reading this file: weight recent entries most heavily, and treat confirmed winners here as the seed material for Hack 2 (keyword variants) and Hack 3 (clones).
+
+**Entry template:**
+```
+### YYYY-MM-DD — [campaign / ad name]
+- Format & angle: (e.g. Breaking News static, speed-to-lead angle A3.1)
+- Audience/keyword variant: (e.g. "listing agents – Dallas")
+- Numbers: spend / CTR / CPL / cost per appointment / appointments held
+- Verdict: WINNER / LOSER / ZOMBIE (relaunch candidate)
+- Takeaway: one sentence — what this proves about the market
+- Next move: (clone it, keyword-variant it, kill it, mirror headline to page…)
+```
+
+### 2026-07-05 — Document created
+- Seeded with Sabri Suby playbook (Part B) and Elevated AI business/audience context (Part A).
+- No live campaign data yet. First entries should come from the initial angle test: run angles A3.1 (speed-to-lead), A3.2 (shared-lead math), and A3.7 (AI follow-up demo) head-to-head as statics, broad targeting, "Learn More" CTA.
+
+---
+
+*Source: Sabri Suby (King Kong / kingkong.co), "Meta Ads Tutorial – 2026 FREE COURSE for Beginners" and "Learn 97% of Meta Ads in Under 19 Minutes," plus an appended storytelling masterclass segment with showrunner Ben Watkins. Compiled from uploaded transcripts July 2026. Business context from Elevated AI Solutions sample funnels (realtor-samples/).*
