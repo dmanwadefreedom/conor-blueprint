@@ -9,7 +9,7 @@ Status: build spec, July 2026. The admin mock at `content-engine/admin/index.htm
 1. **Vercel cannot run video jobs.** Serverless functions cap out long before a single ffmpeg/Remotion render finishes, and there is no GPU. All rendering, voice cloning, and lip-sync runs on a dedicated worker VPS. Vercel serves the dashboard, API routes, and webhooks only.
 2. **Vercel Blob is not the media store.** The current account is a Hobby-style personal account and Blob is a fixed free allotment (~1 GB storage / ~10 GB transfer per month) with no overage path — when maxed, uploads block until cycle reset. See `docs/research/vercel-status.md`. Media goes to **Cloudflare R2** (10 GB free, zero egress, S3-compatible), which matters because every rendered reel gets downloaded/posted multiple times.
 3. **Agents must survive laptop shutdown.** Hermes (the Telegram approval/ops agent) and the render worker run on the VPS under systemd, not on anyone's machine. Tailscale connects dashboard, worker, and any operator device on a private mesh.
-4. **Video volume is the product.** 50 videos/day at Full Stack. The pipeline must be a queue with retries, not a request/response call. Open-source handles orchestration, analysis, assembly, captions, and export; paid APIs are reserved for the two quality cliffs — voice and face. Full component research: `docs/research/open-source-video-stack.md`.
+4. **Video volume is the product.** 50 videos/day at the Influencer tier. The pipeline must be a queue with retries, not a request/response call. Open-source handles orchestration, analysis, assembly, captions, and export; paid APIs are reserved for the two quality cliffs — voice and face. Full component research: `docs/research/open-source-video-stack.md`.
 
 ---
 
@@ -71,32 +71,34 @@ Rendering split: **Remotion** composition (1080×1920) for captions/branding/ass
 
 ### 4.1 Products and Prices (canonical — create with lookup keys)
 
-| Lookup key | Product | Price | Type |
-|---|---|---|---|
-| `ce_setup` | Content Engine — Setup | $1,500 | one-time |
-| `ce_tier1_engine` | The Content Engine — Engine | $997/mo | recurring |
-| `ce_tier2_influencer` | The Content Engine — Engine + Influencer | $1,997/mo | recurring |
-| `ce_tier3_fullstack` | The Content Engine — Full Stack | $2,997/mo | recurring |
-| `ce_upsell_dfy` | Done-For-You Launch + Clone Build | $4,997 | one-time |
-| `ads_install` | The AI Ads Department — Install | $19,997 | one-time |
-| `ads_ops` | The AI Ads Department — Operations | $1,997/mo | recurring |
-| `ads_whitelabel` | AI Ads Department — Agency White-Label | $4,997/mo | recurring |
-| `ads_ce_bundle` | Content Engine Full Stack (ads-buyer bundle) | $2,497/mo | recurring |
+| Lookup key | Env var | Product | Price | Type |
+|---|---|---|---|---|
+| `ce_starter` | `STRIPE_PRICE_STARTER` | The Content Engine — Starter | $49/mo | recurring |
+| `ce_creator` | `STRIPE_PRICE_CREATOR` | The Content Engine — Creator | $297/mo | recurring |
+| `ce_influencer` | `STRIPE_PRICE_INFLUENCER` | The Content Engine — Influencer | $997/mo | recurring |
+| `ce_upsell_dfy` | `STRIPE_PRICE_DFY` | Done-For-You Launch + Clone Build | $4,997 | one-time |
+| `ads_install` | — | The AI Ads Department — Install | $19,997 | one-time |
+| `ads_ops` | — | The AI Ads Department — Operations | $1,997/mo | recurring |
+| `ads_whitelabel` | — | AI Ads Department — Agency White-Label | $4,997/mo | recurring |
+| `ads_ce_bundle` | — | Content Engine Influencer (ads-buyer bundle) | $747/mo | recurring |
 
 Rules:
+- **No setup fees on any Content Engine tier.** There is no `ce_setup` product anymore; if one exists in Stripe from an earlier iteration, archive it (prices are immutable — archive, don't delete).
+- The 14-day money-back guarantee is a refund policy, not a Stripe trial. No `trial_period_days`; refunds processed manually or via the Customer Portal within the window.
 - Prices are immutable in Stripe; never edit — create a new price and repoint the lookup key.
-- The sales pages currently link `https://buy.stripe.com/REPLACE_<PRODUCT_KEY>` placeholders. Replace with **server-created Checkout Sessions** (below), not Payment Links, because the setup fee and the one-click upsell need session control. If Payment Links are kept for speed, one link per tier bundling the tier price + `ce_setup`.
+- The sales pages link `https://buy.stripe.com/REPLACE_*` placeholders with these keys: `REPLACE_CE_STARTER`, `REPLACE_CE_CREATOR`, `REPLACE_CE_INFLUENCER`, `REPLACE_CE_DFY`, `REPLACE_ADS_INSTALL`, `REPLACE_ADS_BUNDLE`. Replace with **server-created Checkout Sessions** (below). With no setup fee, plain Payment Links are now viable for the three tiers if speed matters, but the post-purchase one-click upsell still needs a Checkout Session (saved payment method), so prefer the server route everywhere.
 
 ### 4.2 Checkout flow (tier purchase)
 
-`POST /api/checkout` with `{ tier }`:
+The checkout → one-click upsell → thank-you flow is **unchanged** from the previous pricing iteration. The only difference in the session: a single recurring line item — there is no setup-fee line item anymore.
+
+`POST /api/checkout` with `{ tier }` (`starter | creator | influencer`):
 
 ```ts
 const session = await stripe.checkout.sessions.create({
   mode: "subscription",
   line_items: [
-    { price: prices[tier], quantity: 1 },       // recurring tier
-    { price: prices.ce_setup, quantity: 1 },    // $1,500 one-time on first invoice
+    { price: prices[tier], quantity: 1 },       // ce_starter $49 | ce_creator $297 | ce_influencer $997
   ],
   payment_method_collection: "always",
   subscription_data: { metadata: { tier } },
@@ -108,7 +110,7 @@ const session = await stripe.checkout.sessions.create({
 });
 ```
 
-Success redirects to `upsell.html` (post-purchase one-click), which then continues to `thank-you.html` whether or not the upsell converts.
+Success redirects to `upsell.html` (post-purchase one-click, $4,997 DFY), which then continues to `thank-you.html` whether or not the upsell converts.
 
 ### 4.3 One-click upsell ($4,997 DFY)
 
@@ -143,7 +145,19 @@ Verify signature, insert raw event into `webhook_events` (idempotency on `event.
 
 ### 4.5 Customer portal
 
-Enable Stripe Customer Portal (update card, view invoices, cancel). Configure: cancellations take effect at period end; tier switches allowed between the three CE tiers with proration. Link from the client dashboard header.
+Enable Stripe Customer Portal (update card, view invoices, cancel). Configure: cancellations take effect at period end; tier switches allowed between the three CE tiers (Starter ↔ Creator ↔ Influencer) with proration. Link from the client dashboard header.
+
+### 4.6 Scaffold in the product repo
+
+The billing endpoints described above already exist as a scaffold in the product repo at `backend/billing_service.py` — don't write them from scratch. Mapping:
+
+| This spec | Scaffold |
+|---|---|
+| `POST /api/checkout` (4.2) | checkout-session handler in `billing_service.py` — takes `{ tier }`, resolves the price via `STRIPE_PRICE_STARTER` / `STRIPE_PRICE_CREATOR` / `STRIPE_PRICE_INFLUENCER` |
+| `POST /api/upsell` (4.3) | off-session upsell charge handler — resolves the amount via `STRIPE_PRICE_DFY` |
+| `POST /api/stripe/webhook` (4.4) | webhook handler — verify signature, insert into `webhook_events`, dispatch on event type |
+
+The scaffold reads the four `STRIPE_PRICE_*` env vars (section 10) instead of hardcoded price ids, so repointing a lookup key in Stripe requires no code change — just update the env var if you rotate the underlying price. Wiring the scaffold to Supabase and Hermes notifications is the remaining Week 1 work; the Stripe surface itself is done.
 
 ---
 
@@ -174,10 +188,9 @@ create table subscriptions (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references users(id),
   stripe_subscription_id text unique not null,
-  tier text not null,                          -- engine | influencer | fullstack | ads_ops | ads_whitelabel | ads_ce_bundle
+  tier text not null,                          -- starter | creator | influencer | ads_ops | ads_whitelabel | ads_ce_bundle
   status text not null,                        -- active | past_due | canceled | trialing
   current_period_end timestamptz,
-  setup_fee_paid boolean not null default false,
   dfy_purchased boolean not null default false,
   created_at timestamptz not null default now()
 );
@@ -349,7 +362,7 @@ Supporting recurring jobs:
 - `push_to_gizmo` (on winner confirm): re-exports an ads-safe master (no platform watermarks), writes `winners.ads_ready_key`, posts the creative + hook data to the AI Ads Department intake.
 - `blog` (daily, botmo): keyword gap scan → draft → `in_review` → publish → index check → AI-citation check; updates `blog_posts.stage`.
 
-Worker sizing: one RTX 4090 sustains roughly 40–60 finished reels/day with face-sync as the bottleneck (~2–4 min per 15s reel). Full Stack's 100-video matrix is mostly hook-swaps on a shared base render — voice + captions + first 2s re-render, not 100 full face-syncs — which is what makes 100 variants/sprint affordable. Second GPU box is the scale-out unit; the queue makes that a config change, not a rewrite.
+Worker sizing: one RTX 4090 sustains roughly 40–60 finished reels/day with face-sync as the bottleneck (~2–4 min per 15s reel). The Influencer tier's 100-video matrix is mostly hook-swaps on a shared base render — voice + captions + first 2s re-render, not 100 full face-syncs — which is what makes 100 variants/sprint affordable. Second GPU box is the scale-out unit; the queue makes that a config change, not a rewrite.
 
 ---
 
@@ -444,6 +457,10 @@ STRIPE_SECRET_KEY=
 STRIPE_PUBLISHABLE_KEY=
 STRIPE_WEBHOOK_SECRET=
 STRIPE_PORTAL_CONFIG_ID=
+STRIPE_PRICE_STARTER=           # price id for ce_starter ($49/mo)
+STRIPE_PRICE_CREATOR=           # price id for ce_creator ($297/mo)
+STRIPE_PRICE_INFLUENCER=        # price id for ce_influencer ($997/mo)
+STRIPE_PRICE_DFY=               # price id for ce_upsell_dfy ($4,997 one-time)
 
 # Storage — Cloudflare R2
 R2_ACCOUNT_ID=

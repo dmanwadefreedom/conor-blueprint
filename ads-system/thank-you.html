@@ -5,16 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <meta name="description" content="Install confirmed. Here's your 30-day build schedule, the access checklist we need from you today, and where to book your kickoff call.">
-<title>Install Confirmed — The AI Ads Department</title>
+<title>Install Confirmed | The AI Ads Department</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #020617;
+  color: #f8fafc;
   font-size: 19px;
   line-height: 2.0;
   -webkit-font-smoothing: antialiased;
@@ -27,6 +30,8 @@ h1, h2, h3, h4 { line-height: 1.3; }
   margin: 0 auto;
   padding: 0 32px;
 }
+
+.accent { color: #4ADE80; }
 
 /* Fade-in animation */
 .fade-in {
@@ -43,72 +48,130 @@ h1, h2, h3, h4 { line-height: 1.3; }
 .fade-in.d3 { transition-delay: 0.3s; }
 .fade-in.d4 { transition-delay: 0.4s; }
 
-/* ─── BUTTONS ─── */
+/* NAV */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-brand svg { display: block; }
+.nav-wordmark {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #f8fafc;
+  line-height: 1;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-links .nav-cta {
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.4;
+  background: #22C55E;
+  color: #052e16;
+  padding: 9px 20px;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.3s;
+}
+.nav-links .nav-cta:hover {
+  background: #4ADE80;
+  color: #052e16;
+  transform: translateY(-1px);
+}
+
+/* BUTTONS */
 .btn {
   display: inline-block;
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #22C55E;
+  color: #052e16;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.3px;
   padding: 16px 36px;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   line-height: 1.5;
-  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+  transition: transform 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .btn:hover {
   transform: translateY(-2px);
-  opacity: 0.85;
+  background: #4ADE80;
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.25);
 }
 .btn-ghost {
-  background: #ffffff;
-  color: #1a1a1a;
-  border: 1px solid #e0e0e0;
+  background: transparent;
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.3);
 }
 .btn-ghost:hover {
-  opacity: 1;
-  border-color: #bbb;
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: none;
 }
 
-/* ─── HERO ─── */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 32px;
+  padding: 120px 32px 80px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(34, 197, 94, 0.08), transparent 60%);
 }
 .hero .brand-label {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 20px;
 }
 .hero h1 {
   font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: -0.5px;
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .hero .subtitle {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 400;
-  color: #555;
+  color: #cbd5e1;
   margin-bottom: 12px;
 }
 .hero .sub-desc {
   font-size: 1rem;
-  color: #888;
-  max-width: 480px;
+  color: #94a3b8;
+  max-width: 520px;
   margin: 0 auto;
 }
 
-/* ─── SECTIONS ─── */
+/* SECTIONS */
 section {
   min-height: 100vh;
   display: flex;
@@ -124,24 +187,24 @@ section .container {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 16px;
 }
 .section-title {
   font-size: clamp(2rem, 4vw, 2.6rem);
-  font-weight: 300;
+  font-weight: 700;
   margin-bottom: 16px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .section-subtitle {
   font-size: 1.05rem;
-  color: #666;
+  color: #94a3b8;
   max-width: 640px;
   margin-bottom: 48px;
   line-height: 1.8;
 }
 
-/* ─── STAT BLOCK ─── */
+/* STAT BLOCK */
 .stat-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -151,39 +214,43 @@ section .container {
 .stat-item {
   text-align: center;
   padding: 32px 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  transition: border-color 0.3s, transform 0.3s;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .stat-item:hover {
-  border-color: #bbb;
-  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .stat-number {
   font-size: 2.4rem;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #4ADE80;
   margin-bottom: 4px;
 }
 .stat-label {
   font-size: 0.85rem;
-  color: #888;
+  color: #94a3b8;
   font-weight: 500;
 }
 
-/* ─── COPY BLOCKS ─── */
+/* COPY BLOCKS */
 .copy-block {
   max-width: 640px;
   margin: 0 auto;
 }
 .copy-block p {
-  color: #555;
+  color: #94a3b8;
   margin-bottom: 24px;
   font-size: 1rem;
 }
-.copy-block p strong { color: #1a1a1a; }
+.copy-block p strong { color: #f8fafc; }
 
-/* ─── TIMELINE ─── */
+/* TIMELINE */
 .timeline {
   max-width: 600px;
   margin: 0 auto;
@@ -195,7 +262,7 @@ section .container {
   position: absolute;
   left: 11px; top: 8px; bottom: 8px;
   width: 1px;
-  background: #e0e0e0;
+  background: rgba(148, 163, 184, 0.25);
 }
 .timeline-item {
   margin-bottom: 40px;
@@ -207,50 +274,53 @@ section .container {
   left: -33px; top: 8px;
   width: 10px; height: 10px;
   border-radius: 50%;
-  background: #1a1a1a;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1px #e0e0e0;
+  background: #22C55E;
+  border: 2px solid #020617;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.4);
 }
 .timeline-label {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #4ADE80;
   margin-bottom: 4px;
 }
 .timeline-title {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 6px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .timeline-desc {
-  color: #666;
+  color: #94a3b8;
   font-size: 0.92rem;
   line-height: 1.7;
 }
 .timeline-desc a {
-  color: #1a1a1a;
+  color: #4ADE80;
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.4);
   padding-bottom: 1px;
 }
-.timeline-desc a:hover { opacity: 0.6; }
+.timeline-desc a:hover { opacity: 0.7; }
 
-/* ─── GUARANTEE CHIP ─── */
+/* GUARANTEE CHIP */
 .guarantee-chip {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1a1a1a;
-  padding: 10px 16px;
-  background: #ffeb3b22;
-  border-radius: 6px;
+  color: #f8fafc;
+  padding: 12px 18px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 10px;
   display: inline-block;
+  max-width: 640px;
+  line-height: 1.7;
 }
 
-/* ─── CHECKLIST CARDS ─── */
+/* CHECKLIST CARDS */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -258,41 +328,44 @@ section .container {
   margin-top: 40px;
 }
 .card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
   padding: 32px 28px;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .card:hover {
   transform: translateY(-3px);
-  border-color: #bbb;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .card h3 {
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 10px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .card p {
-  color: #666;
+  color: #94a3b8;
   font-size: 0.92rem;
   line-height: 1.7;
 }
 .card a {
-  color: #1a1a1a;
+  color: #4ADE80;
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.4);
   padding-bottom: 1px;
 }
-.card a:hover { opacity: 0.6; }
+.card a:hover { opacity: 0.7; }
 .card ul {
   list-style: none;
   margin-top: 10px;
 }
 .card li {
-  color: #666;
+  color: #94a3b8;
   font-size: 0.92rem;
   padding: 4px 0 4px 22px;
   position: relative;
@@ -302,46 +375,47 @@ section .container {
   content: '\2713';
   position: absolute;
   left: 0;
-  color: #1a1a1a;
+  color: #4ADE80;
   font-weight: 600;
   font-size: 0.85rem;
 }
 
-/* ─── CALENDAR EMBED PLACEHOLDER ─── */
+/* CALENDAR EMBED PLACEHOLDER */
 .embed-placeholder {
   max-width: 640px;
   margin: 0 auto;
-  border: 1px dashed #ccc;
-  border-radius: 8px;
-  background: #fafafa;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.6);
   padding: 96px 32px;
   text-align: center;
-  color: #999;
+  color: #64748b;
   font-size: 0.95rem;
   line-height: 1.8;
 }
 .embed-placeholder strong {
   display: block;
-  color: #555;
+  color: #94a3b8;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-/* ─── FOOTER ─── */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 48px 32px;
-  border-top: 1px solid #e0e0e0;
-  color: #ccc;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  color: #64748b;
   font-size: 0.82rem;
 }
 footer a {
-  color: #999;
+  color: #94a3b8;
   text-decoration: none;
+  transition: color 0.3s;
 }
-footer a:hover { color: #1a1a1a; }
+footer a:hover { color: #4ADE80; }
 
-/* ─── RESPONSIVE ─── */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
   .stat-row { grid-template-columns: 1fr; gap: 16px; }
@@ -351,19 +425,36 @@ footer a:hover { color: #1a1a1a; }
 
 @media (max-width: 480px) {
   body { font-size: 17px; }
-  .hero { padding: 60px 20px; }
+  .hero { padding: 110px 20px 60px; }
   .hero h1 { font-size: 2rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="Elevated AI home">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2 2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 12l10 5 10-5"></path>
+        <path d="M2 17l10 5 10-5"></path>
+      </svg>
+      <span class="nav-wordmark">Elevated AI</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://cal.com/REPLACE_ELEVATED_AI/kickoff-call" class="nav-cta">Book Your Kickoff Call</a>
+    </div>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="container">
     <div class="fade-in">
       <div class="brand-label">Elevated AI &middot; The AI Ads Department</div>
-      <h1>Install Confirmed.</h1>
+      <h1>Install <span class="accent">Confirmed</span>.</h1>
     </div>
     <div class="fade-in d1">
       <p class="subtitle">Your department build starts now. Live in 30 days.</p>
@@ -375,7 +466,7 @@ footer a:hover { color: #1a1a1a; }
     <div class="stat-row fade-in d3">
       <div class="stat-item">
         <div class="stat-number">20 min</div>
-        <div class="stat-label">Access checklist &mdash; today</div>
+        <div class="stat-label">Access checklist: today</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">Week 3</div>
@@ -383,7 +474,7 @@ footer a:hover { color: #1a1a1a; }
       </div>
       <div class="stat-item">
         <div class="stat-number">Day 30</div>
-        <div class="stat-label">Department handed over &mdash; yours</div>
+        <div class="stat-label">Department handed over. Yours.</div>
       </div>
     </div>
   </div>
@@ -394,8 +485,8 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Build</div>
-      <div class="section-title">From Checkout to Live Campaigns</div>
-      <div class="section-subtitle">No mystery, no waiting around. A senior operator leads your install &mdash; here's what each of the four weeks does.</div>
+      <div class="section-title">From Checkout to <span class="accent">Live Campaigns</span></div>
+      <div class="section-subtitle">No mystery, no waiting around. A senior operator leads your install. Here's what each of the four weeks does.</div>
     </div>
 
     <div class="timeline fade-in d1">
@@ -403,30 +494,30 @@ footer a:hover { color: #1a1a1a; }
         <div class="timeline-dot"></div>
         <div class="timeline-label">Week 1</div>
         <div class="timeline-title">Access &amp; Audit</div>
-        <div class="timeline-desc">You complete the access checklist &mdash; ad accounts, brand assets, offer docs. We run the full account, funnel, and offer audit, set your baseline CPA in writing, and open your private Slack channel. Your guarantee clock is anchored to that baseline document.</div>
+        <div class="timeline-desc">You complete the access checklist: ad accounts, brand assets, offer docs. We run the full account, funnel, and offer audit, document your baseline CPA in writing, and open your private Slack channel. From Week 3 on, every daily report is measured against that written baseline.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-label">Week 2</div>
         <div class="timeline-title">Your Private Deployment</div>
-        <div class="timeline-desc">Your installation stands up on its own Tailscale-isolated network &mdash; your ad accounts, customer data, and API keys never touch a shared system. Tracking architecture gets built in your accounts. GIZMO trains on your brand and numbers, and the Content Engine feed is wired in. If you added the Full Stack bundle, your clone build starts here.</div>
+        <div class="timeline-desc">Your installation stands up on its own Tailscale-isolated network. Your ad accounts, customer data, and API keys never touch a shared system. Tracking architecture gets built in your accounts. GIZMO trains on your brand and numbers, and the Content Engine feed is wired in. If you added the Influencer bundle, your custom clone build starts here.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-label">Week 3</div>
         <div class="timeline-title">First Campaigns Live</div>
-        <div class="timeline-desc">Campaigns launch at controlled budgets. The first 100-variant testing matrix starts filling. Daily numbers land in your Slack the same day &mdash; spend, CPA, hook rates, what got killed and why. Losers die at 48 hours.</div>
+        <div class="timeline-desc">Campaigns launch at controlled budgets. The first 100-variant testing matrix starts filling. Daily numbers land in your Slack the same day: spend, CPA, hook rates, what got killed and why. Losers die at 48 hours.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-label">Week 4</div>
         <div class="timeline-title">Handover &amp; Scale</div>
-        <div class="timeline-desc">Winners get budgets raised 20&ndash;30% every 3&ndash;4 days. SOPs, documentation, and team training are delivered &mdash; the department is installed and it's yours. Operations mode begins at $1,997/mo, billed only once campaigns are live.</div>
+        <div class="timeline-desc">Winners get budgets raised 20&ndash;30% every 3&ndash;4 days. SOPs, documentation, and team training are delivered. The department is installed and it's yours. Operations mode begins at $1,997/mo, billed only once campaigns are live.</div>
       </div>
     </div>
 
     <div class="fade-in d2" style="text-align: center; margin-top: 48px;">
-      <div class="guarantee-chip">The guarantee stands: beat your written baseline within 90 days of operations &mdash; or the $19,997 install fee is credited back against operations.</div>
+      <div class="guarantee-chip">The guarantee, in writing: every part of the install delivered as scoped, or we keep working at no extra charge until it is. And once you launch, you have a 30-day money-back window on the install fee. Operations stays month to month, and the system stays yours either way.</div>
     </div>
   </div>
 </section>
@@ -436,8 +527,8 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">What We Need From You</div>
-      <div class="section-title">Four Things. About 20 Minutes.</div>
-      <div class="section-subtitle">This is the only part of the build that can slow us down. Nothing here needs a designer or a developer &mdash; if you can invite a user and forward a folder, you're done today.</div>
+      <div class="section-title">Four Things. About <span class="accent">20 Minutes</span>.</div>
+      <div class="section-subtitle">This is the only part of the build that can slow us down. Nothing here needs a designer or a developer. If you can invite a user and forward a folder, you're done today.</div>
     </div>
 
     <div class="cards-grid fade-in d1">
@@ -484,7 +575,7 @@ footer a:hover { color: #1a1a1a; }
     </div>
 
     <div class="copy-block fade-in d2" style="margin-top: 48px;">
-      <p style="text-align: center;">The onboarding form in your inbox walks through every item. <strong>Do it today &mdash; your Week 1 audit starts the moment access lands.</strong></p>
+      <p style="text-align: center;">The onboarding form in your inbox walks through every item. <strong>Do it today. Your Week 1 audit starts the moment access lands.</strong></p>
       <!-- PLACEHOLDER: replace # with live access checklist / onboarding form URL -->
       <p style="text-align: center;"><a class="btn btn-ghost" href="#">Open the Access Checklist</a></p>
     </div>
@@ -496,8 +587,8 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">One More Thing</div>
-      <div class="section-title">Book Your Kickoff Call</div>
-      <div class="section-subtitle">Thirty minutes with the senior operator leading your install. We confirm access, walk your offer and numbers, lock your baseline CPA, and set your Week 3 launch date. Bring nothing; we drive.</div>
+      <div class="section-title">Book Your <span class="accent">Kickoff Call</span></div>
+      <div class="section-subtitle">Thirty minutes with the senior operator leading your install. We confirm access, walk your offer and numbers, document your baseline CPA, and set your Week 3 launch date. Bring nothing; we drive.</div>
     </div>
 
     <div class="fade-in d1">
@@ -520,25 +611,25 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">Questions</div>
-      <div class="section-title">A Human Reads Everything</div>
-      <div class="section-subtitle">Something unclear? Something broken? Don't sit on it &mdash; your launch date depends on fast answers, and we answer fast.</div>
+      <div class="section-title">A Human Reads <span class="accent">Everything</span></div>
+      <div class="section-subtitle">Something unclear? Something broken? Don't sit on it. Your launch date depends on fast answers, and we answer fast.</div>
     </div>
 
     <div class="cards-grid fade-in d1">
       <div class="card">
         <h3>Email Support</h3>
         <!-- PLACEHOLDER: replace with live support address before launch -->
-        <p>Write to <a href="mailto:support@elevatedaisolutions.com">support@elevatedaisolutions.com</a>. Replies within one business day &mdash; usually much faster during your install month.</p>
+        <p>Write to <a href="mailto:support@elevatedaisolutions.com">support@elevatedaisolutions.com</a>. Replies within one business day, usually much faster during your install month.</p>
       </div>
       <div class="card">
         <h3>Your Slack Channel</h3>
-        <p>From Week 1, your reports, questions, and approvals live in a private channel with your install team. Once you're in, that's the fastest line &mdash; ask GIZMO's operators anything, any day.</p>
+        <p>From Week 1, your reports, questions, and approvals live in a private channel with your install team. Once you're in, that's the fastest line. Ask GIZMO's operators anything, any day.</p>
       </div>
     </div>
 
     <div class="copy-block fade-in d2" style="margin-top: 48px;">
       <p style="text-align: center;"><strong>That's it. Checklist today, kickoff this week, campaigns live in Week 3.</strong></p>
-      <p style="text-align: center;">Welcome to the department.</p>
+      <p style="text-align: center;">Welcome to the department. The entire ads agency, run from your phone.</p>
     </div>
   </div>
 </section>

@@ -1,14 +1,14 @@
 # Go-To-Market: $0 → $100k in 30 Days
 
 **Owner:** Founder (you). Nobody else closes money this month.
-**Products:** The AI Ads Department ($19,997 install + $1,997/mo) and The Content Engine ($1,500 setup + $997–$2,997/mo).
+**Products:** The AI Ads Department ($19,997 install + $1,997/mo) and The Content Engine (self-serve SaaS: Starter $49/mo, Creator $297/mo, Influencer $997/mo, no setup fees, $4,997 Done-For-You Launch upsell).
 **Date:** July 2026. Clock starts the day Week 0 is done, not the day you feel ready.
 
 ---
 
 ## The One-Paragraph Truth
 
-Installs carry the $100k. Not SaaS. One Ads Department install is $21,994 cash in month one. You need roughly four of them plus a handful of Content Engine signups. The Content Engine's job this month is not revenue — it's pipeline, proof, and the creative ammunition that makes the installs sellable. If you spend this month "growing MRR," you miss. If you spend it closing installs while the engine posts for you, you hit.
+Installs carry the $100k. Not SaaS. One Ads Department install is $21,994 cash in month one. You need roughly four of them plus a couple of $4,997 Done-For-You upsells. The Content Engine is now a $49–$997/mo volume SaaS — its job this month is not revenue, it's pipeline, proof, and the creative ammunition that makes the installs sellable; the meaningful month-one cash it produces comes from the Done-For-You upsell, not subscriptions. If you spend this month "growing MRR," you miss. If you spend it closing installs while the engine posts for you, you hit.
 
 ---
 
@@ -18,8 +18,8 @@ Everything below must be checked before Day 1. Target: 3–5 working days.
 
 ### Money can move
 - [ ] Stripe account live, payouts verified.
-- [ ] Products created: Ads Department Install ($19,997), Ads Ops ($1,997/mo), Agency License ($4,997/mo), Content Engine setup ($1,500), Engine ($997/mo), Engine + Influencer ($1,997/mo), Full Stack ($2,997/mo), Done-For-You Launch + Clone Build ($4,997 one-time), Content Engine Full Stack bundled for ads buyers ($2,497/mo).
-- [ ] Replace every `https://buy.stripe.com/REPLACE_*` placeholder in `content-engine/index.html`, `content-engine/upsell.html`, and the ads pages with live links.
+- [ ] Products created: Ads Department Install ($19,997), Ads Ops ($1,997/mo), Agency License ($4,997/mo), Content Engine Starter ($49/mo), Creator ($297/mo), Influencer ($997/mo), Done-For-You Launch + Clone Build ($4,997 one-time), Content Engine Influencer bundled for ads buyers ($747/mo). No setup fees anywhere.
+- [ ] Replace every `https://buy.stripe.com/REPLACE_*` placeholder (`REPLACE_CE_STARTER`, `REPLACE_CE_CREATOR`, `REPLACE_CE_INFLUENCER`, `REPLACE_CE_DFY`, `REPLACE_ADS_INSTALL`, `REPLACE_ADS_BUNDLE`) in `content-engine/index.html`, `content-engine/upsell.html`, and the ads pages with live links.
 - [ ] Post-purchase one-click upsell flow tested end to end: buy → `content-engine/upsell.html` → `content-engine/thank-you.html`.
 - [ ] One $1 live test transaction, then refund it.
 
@@ -40,7 +40,7 @@ Everything below must be checked before Day 1. Target: 3–5 working days.
 - [ ] Speed-to-lead automation: booking link SMS within 5 minutes of any opt-in. 78% of buyers go with the first vendor to respond.
 
 ### Infrastructure
-- [ ] Hermes moved off the laptop onto the VPS (`docs/ops-runbook.md` §1). An agent that dies when your laptop sleeps cannot be in a sales demo.
+- [ ] Hermes moved off the laptop onto the already-provisioned Hostinger VPS (`docs/ops-runbook.md` §1 — the deploy is ready on `jarvis-telegram` `claude/vps-deploy`; this is an afternoon, not a project). An agent that dies when your laptop sleeps cannot be in a sales demo.
 - [ ] Vercel Blob unblocked, media on R2 (`docs/ops-runbook.md` §2). The engine outputs video daily; storage cannot be the bottleneck.
 - [ ] TikTok/IG/YT accounts warmed up or warming (TikTok needs ~14 days of normal behavior before posting cadence ramps — start this the first day of Week 0).
 
@@ -68,16 +68,18 @@ Founder-led outbound + the VSL. This is where the month is won or lost.
 | Base | 3 | $65,982 |
 | Stretch | 4 | $87,976 |
 
-### Path C — Content Engine self-serve (Days 8–30)
-Fed by the 50-videos/day organic output plus retargeting everyone who touched either page. Month-one cash per client = $1,500 setup + first month.
+### Path C — Content Engine self-serve + Done-For-You upsells (Days 8–30)
+Fed by the engine's daily organic output plus retargeting everyone who touched either page. No setup fees, so month-one cash per subscriber = first month's subscription. The cash in this path is the $4,997 Done-For-You Launch upsell; the subscriptions are the MRR base and the proof engine.
 
-| Client mix (base case) | Cash |
+| Client mix (base case: 10 signups) | Cash |
 |---|---|
-| 1 × Engine ($1,500 + $997) | $2,497 |
-| 2 × Engine + Influencer ($1,500 + $1,997 each) | $6,994 |
-| 1 × Full Stack ($1,500 + $2,997) | $4,497 |
-| 1 of 4 takes the $4,997 launch upsell | $4,997 |
-| **Path C total** | **$18,985** |
+| 5 × Starter ($49/mo) | $245 |
+| 3 × Creator ($297/mo) | $891 |
+| 2 × Influencer ($997/mo) | $1,994 |
+| 2 of 10 take the $4,997 Done-For-You Launch upsell | $9,994 |
+| **Path C total** | **$13,124** |
+
+Conservative = 4 signups + 1 upsell ≈ $6,400. Stretch = 20 signups + 3 upsells ≈ $21,300.
 
 ### The stack
 
@@ -85,10 +87,10 @@ Fed by the 50-videos/day organic output plus retargeting everyone who touched ei
 |---|---|---|---|
 | A — Warm buyer | $21,994 | $21,994 | $21,994 |
 | B — Outbound installs | $43,988 | $65,982 | $87,976 |
-| C — Content Engine | $6,994 | $18,985 | $27,479 |
-| **Total** | **$72,976** | **$106,961** | **$137,449** |
+| C — Content Engine + DFY | $6,389 | $13,124 | $21,251 |
+| **Total** | **$72,371** | **$101,100** | **$131,221** |
 
-**Honesty check:** installs are 82–86% of the number in every scenario. Path C's $19k is nice, but its real value is the MRR you exit with: roughly $16k/mo recurring (4 × $1,997 ads ops + ~$8k Content Engine) walking into month two. The conservative case misses $100k — the gap-closer is the agency white-label license ($4,997/mo): two agency licenses add $9,994 and agencies already resell white-label at 65–80% margins, so it's a real lever, not a fantasy line item.
+**Honesty check:** installs are 84–91% of the number in every scenario, and inside Path C roughly three-quarters of the cash is the $4,997 upsell, not subscriptions. That's by design: at $49–$997 the Content Engine is a volume SaaS, and ten signups in month one is pipeline and proof, not the payday. Its real value is what you exit with: ~$12k/mo recurring (4 × $1,997 ads ops + ~$3k Content Engine subscriptions + any $747/mo ads-buyer bundles) walking into month two. The conservative case misses $100k — the gap-closers are the agency white-label license ($4,997/mo; two licenses add $9,994, and agencies already resell white-label at 65–80% margins) and a harder Done-For-You upsell sweep. Both are real levers, not fantasy line items.
 
 ---
 
@@ -139,9 +141,10 @@ This buyer is warm. Do not run them through the cold funnel. Founder-to-founder,
 ## Path C — Content Engine Self-Serve (Days 8–30)
 
 - Traffic: the dogfood content (below) + retargeting pools from both product pages + VSL viewers who didn't book.
-- Funnel: organic clip → `content-engine/index.html` → `#pricing` → Stripe → `upsell.html` ($4,997 Done-For-You Launch) → `thank-you.html`.
-- Push Tier 2 (Engine + Influencer, $1,997/mo) as the default recommendation everywhere. It's the tier the demo sells — viewers are literally watching the UGC clone product work.
-- Every install buyer from Paths A/B gets offered the bundled Full Stack at $2,497/mo (saves $500/mo) at onboarding. GIZMO feeds on the engine's output; the bundle is the natural state of the system.
+- Funnel: organic clip → `content-engine/index.html` → `#pricing` → Stripe → `upsell.html` ($4,997 Done-For-You Launch) → `thank-you.html`. Fully self-serve by design: Hermes onboarding does the setup in a couple of clicks, so zero founder-hours per signup.
+- Push Influencer ($997/mo, the recommended tier) as the default everywhere. It's the tier the demo sells — viewers are literally watching a custom AI clone work, and the clone is the Influencer feature. Starter ($49/mo, no setup fee) is the volume door; upgrades come later.
+- The $4,997 Done-For-You upsell is where Path C's month-one cash lives. Every buyer sees it once, post-purchase, one click.
+- Every install buyer from Paths A/B gets offered the bundled Influencer plan at $747/mo (saves $250/mo) at onboarding. GIZMO feeds on the engine's output; the bundle is the natural state of the system.
 
 ---
 
@@ -166,7 +169,7 @@ The engine sells itself by existing in public. You are client zero. If you won't
 
 **Content rules (from `docs/research/short-form-best-practices-2026.md`):** spoken hooks 10–14 words; kill any variant under 25% hook rate at 48h; run the three lanes simultaneously — storytelling pitch, product-in-use loops, show-and-tell demo; single CTA per asset; AI-content labels on where required (EU labeling becomes mandatory Aug 2, 2026 — be early, not scrambling).
 
-**Quota is a floor, not a goal:** ~12 short-form posts/day across platforms by Week 2. That's the "50 videos a day" claim being demonstrated in public at a quarter of its capacity.
+**Quota is a floor, not a goal:** ~12 short-form posts/day across platforms by Week 2. The engine's at-scale capacity is 50–100 videos/day; the founder feed only needs to prove the machine is real in public. The full firehose — the 100-video testing matrix — is what Influencer subscribers and install clients buy, and week one of the warm buyer's install should be running at that volume where it can be screenshotted.
 
 ---
 
@@ -188,7 +191,7 @@ The engine sells itself by existing in public. You are client zero. If you won't
 | 8 | Waves 3–4 begin: 20 touches/day, every day this week. Content Engine ads live against retargeting pools. | 2 calls booked. |
 | 9–10 | First Path B calls. Same script as Path A: discovery, two invoices, price on the call. | 1 invoice out. |
 | 11 | Warm buyer install in progress — screenshot everything for the case study. | Proof bank started. |
-| 12 | Calls + follow-ups. Offer warm buyer the $2,497/mo bundled Full Stack at onboarding. | Bundle decision logged. |
+| 12 | Calls + follow-ups. Offer warm buyer the bundled Influencer plan ($747/mo) at onboarding. | Bundle decision logged. |
 | 13–14 | Weekend: review hook rates, kill losers, double the winning hook family next week. | Creative review done. |
 
 ### Week 3 — Close installs #2 and #3.
@@ -203,7 +206,7 @@ The engine sells itself by existing in public. You are client zero. If you won't
 | Day | Focus | Done means |
 |---|---|---|
 | 22–24 | Install #3 close. Agency license conversations with any agency owners in the pipeline. | ~$66–76k cumulative. |
-| 25–26 | Install #4 call or 2 agency licenses. Content Engine upsell sweep: every setup buyer gets one $4,997 Done-For-You offer. | Gap to $100k < $15k. |
+| 25–26 | Install #4 call or 2 agency licenses. Content Engine upsell sweep: every subscriber who skipped the one-click gets one $4,997 Done-For-You offer by email. | Gap to $100k < $15k. |
 | 27–28 | Invoice chase day. Phone, not email. Every verbal yes becomes a paid invoice or a dead deal. | Nothing "pending." |
 | 29 | Month-2 pipeline: book next month's calls now while you're hot. | 10 calls scheduled. |
 | 30 | Tally. Write the real numbers into next month's content. | **$100k+ collected.** |
@@ -224,7 +227,7 @@ The engine sells itself by existing in public. You are client zero. If you won't
 | Hook rate (any organic variant, 48h) | ≥25% | Below → kill variant, next hook in the matrix |
 | 3-sec hold on shipped content | ≥60% | Below → hooks too slow; product on screen frame 1 |
 | Daily content shipped | 12 posts/day by W2 | Missed day → the engine is the product; treat as a P1 outage |
-| Content Engine signups | 4 by Day 30 | <2 by Day 22 → push $997 tier as entry, upsell later |
+| Content Engine signups | 10 by Day 30 | <5 by Day 22 → push the $49 Starter as the entry, upgrade later |
 
 ---
 
@@ -234,7 +237,7 @@ The engine sells itself by existing in public. You are client zero. If you won't
 Don't discount the install — the price is the positioning. Move the terms instead: 50% to schedule the install, 50% at day 30 go-live. Add a deadline tied to a real constraint (install slots). If they go quiet twice, they're Path B prospect #101, and you tell them so kindly.
 
 **Fewer than 10 calls booked by Day 14.**
-Volume first: 30 touches/day. Then channel: switch from email-first to DM/phone-first — warm networks answer phones. Then offer: lead with the Content Engine ($1,500 + monthly) as the foot in the door and upgrade to the Department after they've seen 30 days of output. A smaller yes now beats a bigger no.
+Volume first: 30 touches/day. Then channel: switch from email-first to DM/phone-first — warm networks answer phones. Then offer: lead with the Content Engine (Creator $297/mo or Influencer $997/mo, no setup fee, cancel anytime) as the foot in the door and upgrade to the Department after they've seen 30 days of output. A smaller yes now beats a bigger no.
 
 **Calls happening, nothing closing.**
 You're pitching too early. Force 60–70% discovery. Get their agency invoice number spoken out loud before you say a price. State the price on the call, every call. And check the anchor order: in-house department first ($300k+), agency all-in second ($67–100k), then yours ($44k year one).
@@ -255,7 +258,7 @@ Raise nothing yet. Bank the case studies, screenshot everything, pre-book month 
 
 ## What Month Two Inherits
 
-- ~$16k MRR (ads ops + Content Engine subscriptions) before any new sales.
+- ~$12k MRR (4 × $1,997 ads ops + ~$3k Content Engine subscriptions + any $747/mo ads-buyer bundles) before any new sales.
 - A documented install case study with real numbers ("pilot results" framing).
 - 300+ published clips, warmed accounts, seasoned pixels, retargeting pools.
 - A repeatable install motion with a known close rate — which is the moment $19,997 stops being a price you defend and starts being a price you raise.

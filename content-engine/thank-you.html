@@ -4,17 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<meta name="description" content="Order confirmed. Here's exactly what happens next: your onboarding form, your clone capture kit, and your first 50 posts hitting the approval queue.">
-<title>Order Confirmed — Welcome to The Content Engine</title>
+<meta name="description" content="Order confirmed. Here's exactly what happens next: log in, let Hermes fill in your brand voice, strategy, and content plan, and watch your first posts hit the approval queue this week.">
+<title>Order Confirmed | Welcome to The Content Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #020617;
+  color: #f8fafc;
   font-size: 19px;
   line-height: 2.0;
   -webkit-font-smoothing: antialiased;
@@ -27,6 +30,8 @@ h1, h2, h3, h4 { line-height: 1.3; }
   margin: 0 auto;
   padding: 0 32px;
 }
+
+.accent { color: #4ADE80; }
 
 /* Fade-in animation */
 .fade-in {
@@ -43,72 +48,116 @@ h1, h2, h3, h4 { line-height: 1.3; }
 .fade-in.d3 { transition-delay: 0.3s; }
 .fade-in.d4 { transition-delay: 0.4s; }
 
-/* ─── BUTTONS ─── */
+/* NAV */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-brand svg { display: block; }
+.nav-wordmark {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #f8fafc;
+  line-height: 1;
+}
+.nav-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #4ADE80;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 100px;
+  padding: 6px 14px;
+  line-height: 1.4;
+}
+
+/* BUTTONS */
 .btn {
   display: inline-block;
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #22C55E;
+  color: #052e16;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.3px;
   padding: 16px 36px;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   line-height: 1.5;
-  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
 }
 .btn:hover {
   transform: translateY(-2px);
-  opacity: 0.85;
+  background: #4ADE80;
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.25);
 }
-.btn-ghost {
-  background: #ffffff;
-  color: #1a1a1a;
-  border: 1px solid #e0e0e0;
-}
-.btn-ghost:hover {
-  opacity: 1;
-  border-color: #bbb;
+.cta-microcopy {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-top: 12px;
+  line-height: 1.7;
 }
 
-/* ─── HERO ─── */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 32px;
+  padding: 120px 32px 80px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(34, 197, 94, 0.08), transparent 60%);
 }
 .hero .brand-label {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 20px;
 }
 .hero h1 {
   font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: -0.5px;
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .hero .subtitle {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 400;
-  color: #555;
+  color: #cbd5e1;
   margin-bottom: 12px;
 }
 .hero .sub-desc {
   font-size: 1rem;
-  color: #888;
+  color: #94a3b8;
   max-width: 480px;
   margin: 0 auto;
 }
 
-/* ─── SECTIONS ─── */
+/* SECTIONS */
 section {
   min-height: 100vh;
   display: flex;
@@ -124,24 +173,24 @@ section .container {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 16px;
 }
 .section-title {
   font-size: clamp(2rem, 4vw, 2.6rem);
-  font-weight: 300;
+  font-weight: 700;
   margin-bottom: 16px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .section-subtitle {
   font-size: 1.05rem;
-  color: #666;
+  color: #94a3b8;
   max-width: 640px;
   margin-bottom: 48px;
   line-height: 1.8;
 }
 
-/* ─── STAT BLOCK ─── */
+/* STAT BLOCK */
 .stat-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -151,39 +200,43 @@ section .container {
 .stat-item {
   text-align: center;
   padding: 32px 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  transition: border-color 0.3s, transform 0.3s;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .stat-item:hover {
-  border-color: #bbb;
-  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .stat-number {
   font-size: 2.4rem;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #4ADE80;
   margin-bottom: 4px;
 }
 .stat-label {
   font-size: 0.85rem;
-  color: #888;
+  color: #94a3b8;
   font-weight: 500;
 }
 
-/* ─── COPY BLOCKS ─── */
+/* COPY BLOCKS */
 .copy-block {
   max-width: 640px;
   margin: 0 auto;
 }
 .copy-block p {
-  color: #555;
+  color: #94a3b8;
   margin-bottom: 24px;
   font-size: 1rem;
 }
-.copy-block p strong { color: #1a1a1a; }
+.copy-block p strong { color: #f8fafc; }
 
-/* ─── TIMELINE ─── */
+/* TIMELINE */
 .timeline {
   max-width: 600px;
   margin: 0 auto;
@@ -195,7 +248,7 @@ section .container {
   position: absolute;
   left: 11px; top: 8px; bottom: 8px;
   width: 1px;
-  background: #e0e0e0;
+  background: rgba(148, 163, 184, 0.25);
 }
 .timeline-item {
   margin-bottom: 40px;
@@ -207,70 +260,52 @@ section .container {
   left: -33px; top: 8px;
   width: 10px; height: 10px;
   border-radius: 50%;
-  background: #1a1a1a;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1px #e0e0e0;
+  background: #22C55E;
+  border: 2px solid #020617;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.5);
 }
 .timeline-label {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #64748b;
   margin-bottom: 4px;
 }
 .timeline-title {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .timeline-desc {
-  color: #666;
+  color: #94a3b8;
   font-size: 0.92rem;
   line-height: 1.7;
 }
 .timeline-desc a {
-  color: #1a1a1a;
+  color: #4ADE80;
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid rgba(74, 222, 128, 0.5);
   padding-bottom: 1px;
 }
-.timeline-desc a:hover { opacity: 0.6; }
+.timeline-desc a:hover { opacity: 0.7; }
 
-/* ─── GUARANTEE CHIP ─── */
+/* GUARANTEE CHIP */
 .guarantee-chip {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #f8fafc;
   padding: 10px 16px;
-  background: #ffeb3b22;
-  border-radius: 6px;
-  display: inline-block;
-}
-
-/* ─── CALENDAR EMBED PLACEHOLDER ─── */
-.embed-placeholder {
-  max-width: 640px;
-  margin: 0 auto;
-  border: 1px dashed #ccc;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
   border-radius: 8px;
-  background: #fafafa;
-  padding: 96px 32px;
-  text-align: center;
-  color: #999;
-  font-size: 0.95rem;
-  line-height: 1.8;
-}
-.embed-placeholder strong {
-  display: block;
-  color: #555;
-  font-weight: 600;
-  margin-bottom: 4px;
+  display: inline-block;
+  line-height: 1.7;
 }
 
-/* ─── SUPPORT CARDS ─── */
+/* SUPPORT CARDS */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -278,93 +313,111 @@ section .container {
   margin-top: 40px;
 }
 .card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 32px 28px;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .card:hover {
   transform: translateY(-3px);
-  border-color: #bbb;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .card h3 {
   font-size: 1.05rem;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .card p {
-  color: #666;
+  color: #94a3b8;
   font-size: 0.92rem;
   line-height: 1.7;
 }
 .card a {
-  color: #1a1a1a;
+  color: #4ADE80;
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid rgba(74, 222, 128, 0.5);
   padding-bottom: 1px;
 }
-.card a:hover { opacity: 0.6; }
+.card a:hover { opacity: 0.7; }
 
-/* ─── FOOTER ─── */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 48px 32px;
-  border-top: 1px solid #e0e0e0;
-  color: #ccc;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  color: #64748b;
   font-size: 0.82rem;
 }
 footer a {
-  color: #999;
+  color: #94a3b8;
   text-decoration: none;
 }
-footer a:hover { color: #1a1a1a; }
+footer a:hover { color: #4ADE80; }
 
-/* ─── RESPONSIVE ─── */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
   .stat-row { grid-template-columns: 1fr; gap: 16px; }
   .cards-grid { grid-template-columns: 1fr; }
-  .embed-placeholder { padding: 64px 24px; }
+  .nav-badge { display: none; }
 }
 
 @media (max-width: 480px) {
   body { font-size: 17px; }
-  .hero { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
   .hero h1 { font-size: 2rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="Elevated AI home">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2 2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 12l10 5 10-5"></path>
+        <path d="M2 17l10 5 10-5"></path>
+      </svg>
+      <span class="nav-wordmark">Elevated AI</span>
+    </a>
+    <span class="nav-badge">Order Confirmed</span>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="container">
     <div class="fade-in">
       <div class="brand-label">Elevated AI &middot; The Content Engine</div>
-      <h1>You're In.</h1>
+      <h1>You're <span class="accent">In</span>.</h1>
     </div>
     <div class="fade-in d1">
-      <p class="subtitle">Order confirmed. Your Engine build starts now.</p>
+      <p class="subtitle">Order confirmed. Your Engine switches on today.</p>
     </div>
     <div class="fade-in d2">
-      <p class="sub-desc">A receipt is on its way to your inbox, along with your onboarding form. Everything below tells you exactly what happens next &mdash; and the one thing we need from you today.</p>
+      <p class="sub-desc">A receipt and your login link are on the way to your inbox. Everything below tells you exactly what happens next, and the one thing to do today: log in and let Hermes onboard you.</p>
     </div>
 
     <div class="stat-row fade-in d3">
       <div class="stat-item">
-        <div class="stat-number">10 min</div>
-        <div class="stat-label">Onboarding form &mdash; today</div>
+        <div class="stat-number">2 min</div>
+        <div class="stat-label">Log in and meet Hermes, today</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">~20 min</div>
-        <div class="stat-label">Footage for your clone &mdash; this week</div>
+        <div class="stat-number">A few clicks</div>
+        <div class="stat-label">Brand voice, strategy, and plan filled in for you</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">21 days</div>
-        <div class="stat-label">To your first clone reel</div>
+        <div class="stat-number">This week</div>
+        <div class="stat-label">First posts hit your approval queue</div>
       </div>
     </div>
   </div>
@@ -375,69 +428,62 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">What Happens Next</div>
-      <div class="section-title">From Checkout to First Reel</div>
-      <div class="section-subtitle">No mystery, no waiting around. Here's the build schedule &mdash; and where you're in it.</div>
+      <div class="section-title">From Checkout to <span class="accent">Autopilot</span></div>
+      <div class="section-subtitle">No onboarding calls, no workshops, no blank pages. Hermes does the heavy lifting. Here's the schedule, and where you're in it.</div>
     </div>
 
     <div class="timeline fade-in d1">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-label">Right Now</div>
-        <div class="timeline-title">Fill the Onboarding Form</div>
-        <div class="timeline-desc">Check your inbox for the confirmation email &mdash; it links to your onboarding form. Ten minutes: your offer, your voice notes, your account access. This is the one thing that can hold up your build, so do it today. <!-- PLACEHOLDER: replace # with live onboarding form URL --><a href="#">Open the onboarding form &rarr;</a></div>
+        <div class="timeline-title">Log In and Meet Hermes</div>
+        <div class="timeline-desc">Check your inbox for the confirmation email with your login link. Hermes asks a few questions about your business, your offer, and how you talk. Ten minutes, tops. This is the only thing that can hold up your Engine, so do it today. <!-- PLACEHOLDER: replace # with live dashboard/login URL --><a href="#">Open your dashboard &rarr;</a></div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-label">Within 24 Hours</div>
-        <div class="timeline-title">Your Clone Capture Kit Arrives</div>
-        <div class="timeline-desc">A short guide with exactly what to film &mdash; about 20 minutes of footage, three simple clips, phone camera is fine. If you added the Done-For-You Launch, skip this: we direct your capture session live on your build call.</div>
+        <div class="timeline-label">The Next 15 Minutes</div>
+        <div class="timeline-title">Connect Accounts, Approve Your Plan</div>
+        <div class="timeline-desc">Connect your social accounts in a couple of clicks. Hermes reads your answers and your accounts, then fills in your entire brand voice, content strategy, and a ready-to-run content plan. Review it, adjust anything, approve. That's onboarding, at every tier from $49 to $997.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-label">Days 2&ndash;7</div>
-        <div class="timeline-title">The Build</div>
-        <div class="timeline-desc">We build your clone, ingest your brand and voice, connect your accounts, and switch on your approval workflow. You'll get a dashboard login as each piece goes live.</div>
+        <div class="timeline-label">This Week</div>
+        <div class="timeline-title">First Posts Hit Your Queue</div>
+        <div class="timeline-desc">Your first batch lands in the approval queue. Review in one sitting: kill what's off-brand, approve the rest. Auto-scheduling begins across every platform. On Creator and up, your first avatar reels are in the batch, with B-roll injected and 6.3-second loop and 14&ndash;16 second formats built in.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-label">Week 2</div>
-        <div class="timeline-title">First 50 Posts Hit Your Queue</div>
-        <div class="timeline-desc">Your first batch lands in the approval queue. Review in one sitting &mdash; kill what's off-brand, approve the rest. Auto-scheduling begins across every platform.</div>
+        <div class="timeline-label">Influencer Plans</div>
+        <div class="timeline-title">Your Clone Build Starts</div>
+        <div class="timeline-desc">The dashboard walks you through filming about 20 minutes of footage, phone camera is fine. We build and QA your clone, you review the drafts, and your first cloned reels ship in roughly 2 to 3 weeks. Then the 100-video testing matrix turns on. If you added the Done-For-You Launch, skip the filming: your launch team reaches out within one business day to schedule your directed capture session.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-label">Weeks 3&ndash;4</div>
-        <div class="timeline-title">Your Clone Goes Live</div>
-        <div class="timeline-desc">First reels ship &mdash; 6.3-second loops and 14&ndash;16 second formats. By day 30 you're posting daily on every platform without touching a camera.</div>
+        <div class="timeline-label">Day 30</div>
+        <div class="timeline-title">Autopilot</div>
+        <div class="timeline-desc">Daily presence on every platform in about 20 minutes of your week. The Engine measures every post, retires weak variants at 48 hours, and keeps your queue full while you run the business.</div>
       </div>
     </div>
 
     <div class="fade-in d2" style="text-align: center; margin-top: 48px;">
-      <div class="guarantee-chip">The guarantee stands: 50 posts live in your first 30 days &mdash; or we keep working free until they are.</div>
+      <div class="guarantee-chip">Every plan is month to month with no setup fees. If the Engine isn't for you, request a full refund of your first payment within 14 days of purchase.</div>
     </div>
   </div>
 </section>
 
-<!-- BOOK YOUR BUILD CALL -->
+<!-- START ONBOARDING -->
 <section>
   <div class="container">
     <div class="fade-in">
-      <div class="section-label">One More Thing</div>
-      <div class="section-title">Book Your Build Call</div>
-      <div class="section-subtitle">Thirty minutes with your launch strategist. We walk through your footage, brand assets, and account access &mdash; and lock your Week 2 launch date. Bring nothing; we drive.</div>
+      <div class="section-label">One Thing To Do Today</div>
+      <div class="section-title">Log In and Let Hermes <span class="accent">Drive</span></div>
+      <div class="section-subtitle">Onboarding is a couple of clicks, not a project. Answer a few questions, connect your accounts, and watch your brand voice, strategy, and content plan fill themselves in. The sooner you log in, the sooner your first posts hit the queue.</div>
     </div>
 
-    <div class="fade-in d1">
-      <!-- PLACEHOLDER: replace this block with your live scheduler embed (Calendly / Cal.com / SavvyCal) -->
-      <div class="embed-placeholder">
-        <strong>[ Calendar embed goes here ]</strong>
-        30-minute build call &middot; replace this block with your scheduling embed code
-      </div>
-    </div>
-
-    <div class="fade-in d2" style="text-align: center; margin-top: 32px;">
-      <!-- PLACEHOLDER: replace # with live scheduling URL -->
-      <a class="btn" href="#">Book My Build Call</a>
+    <div class="fade-in d1" style="text-align: center; margin-top: 8px;">
+      <!-- PLACEHOLDER: replace # with live dashboard/login URL -->
+      <a class="btn" href="#">Open My Dashboard</a>
+      <p class="cta-microcopy">Your login link is also in your confirmation email.</p>
     </div>
   </div>
 </section>
@@ -447,24 +493,24 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">Questions</div>
-      <div class="section-title">A Human Reads Everything</div>
-      <div class="section-subtitle">Something unclear? Something broken? Don't sit on it &mdash; your launch date depends on fast answers, and we answer fast.</div>
+      <div class="section-title">A Human Reads <span class="accent">Everything</span></div>
+      <div class="section-subtitle">Something unclear? Something broken? Don't sit on it. Your first week sets the pace, and we answer fast.</div>
     </div>
 
     <div class="cards-grid fade-in d1">
       <div class="card">
         <h3>Email Support</h3>
         <!-- PLACEHOLDER: replace with live support address before launch -->
-        <p>Write to <a href="mailto:support@elevatedaisolutions.com">support@elevatedaisolutions.com</a>. Replies within one business day &mdash; usually much faster during your build week.</p>
+        <p>Write to <a href="mailto:support@elevatedaisolutions.com">support@elevatedaisolutions.com</a>. Replies within one business day, usually much faster during your first week.</p>
       </div>
       <div class="card">
         <h3>Or Just Reply</h3>
-        <p>Every email we send you comes from a monitored inbox. Reply to any of them &mdash; your onboarding emails, your capture kit, your receipts. It all reaches your launch team.</p>
+        <p>Every email we send you comes from a monitored inbox. Reply to any of them: your welcome email, your receipts, your queue notifications. It all reaches a human.</p>
       </div>
     </div>
 
     <div class="copy-block fade-in d2" style="margin-top: 48px;">
-      <p style="text-align: center;"><strong>That's it. Form today, footage this week, first 50 posts by Week 2.</strong></p>
+      <p style="text-align: center;"><strong>That's it. Log in today, approve your plan, first posts this week.</strong></p>
       <p style="text-align: center;">Welcome to the Engine.</p>
     </div>
   </div>

@@ -10,7 +10,7 @@
 
 | # | Problem | Status | Fix |
 |---|---|---|---|
-| 1 | Hermes dies when the laptop sleeps | Open | §1 — move to VPS today |
+| 1 | Hermes dies when the laptop sleeps | Open (VPS provisioned, deploy ready) | §1 — run the prepared deploy today |
 | 2 | Vercel Blob maxed out (Hobby cap), uploads blocked | Open | §2 — cleanup + R2 migration |
 | 3 | Meta API usage block on the ad account (from an earlier integration attempt) | Open | `docs/conor-funnel-fixes.md` §5c |
 | 4 | Repos scattered across personal accounts, agents holding broad tokens | Open | §4 — GitHub consolidation |
@@ -22,7 +22,12 @@
 
 **Symptom:** Hermes (the Telegram agent) runs on a laptop. Laptop sleeps, agent dies, messages go unanswered, scheduled jobs silently skip. Unacceptable for anything client-facing.
 
-**Target:** Hermes runs on a small VPS with auto-restart, boots on reboot, survives crashes. The Hostinger KVM 2 plan (~$8–10/mo) already used in client setups is fine. Any 2 vCPU / 8 GB box works.
+**Target:** Hermes runs on a small VPS with auto-restart, boots on reboot, survives crashes.
+
+**Current state (July 10, 2026) — the hard parts are already done:**
+- A **Hostinger KVM 2 VPS (~$8–10/mo) is already provisioned** as the Hermes/jarvis-telegram deploy target. Admin account: `tyler@`. No box to buy, no plan to pick.
+- The **`jarvis-telegram` repo, branch `claude/vps-deploy`, contains the ready deploy** — systemd unit and Docker variants, documented in its `DEPLOY.md`. The unit/compose files below are the reference pattern; when they diverge from `DEPLOY.md`, the branch wins.
+- Remaining work is execution: run the VPS prep below, follow `DEPLOY.md` on the provisioned box, join it to the existing tailnet (§3), and run the kill/reboot tests.
 
 ### One-time VPS prep
 ```bash
@@ -123,23 +128,23 @@ Full recon in `docs/research/vercel-status.md`. Summary: the account is a Hobby-
 
 ---
 
-## 3) Tailscale: Private Network + Agent Isolation
+## 3) Tailscale: Add Nodes + Lock ACLs
 
-Goal: agents talk to each other over a private tailnet, admin access goes over Tailscale SSH, and **GIZMO is reachable by Hermes on exactly one port — nothing else.** No agent API is ever exposed to the public internet.
+**The tailnet already exists: `tail69fd2a.ts.net`.** GIZMO is already live on it at **`gizmo.tail69fd2a.ts.net:9120`** — it runs as a Slack-resident agent in the Elevated AI **"tesla"** Slack channel. So this section is not "create a tailnet"; it's two jobs: **(a) add the remaining nodes** (the Hermes VPS from §1, engine workers when they exist), and **(b) lock the ACLs down** so GIZMO is reachable by Hermes on exactly one port — nothing else. No agent API is ever exposed to the public internet.
 
 ### Tailnet layout
 
-| Node | Tag | MagicDNS name | Runs |
-|---|---|---|---|
-| Hermes VPS | `tag:hermes` | `hermes.<tailnet>.ts.net` | Hermes agent, its API on :8686 |
-| GIZMO sandbox host | `tag:gizmo` | `gizmo.<tailnet>.ts.net` | GIZMO in one container/VM, agent API on :8787 |
-| Content Engine worker | `tag:engine` | `engine.<tailnet>.ts.net` | render/caption/publish workers |
-| Founder laptops | (user devices) | `dylan-laptop`, `conor-laptop` | admin only, run nothing |
+| Node | Tag | MagicDNS name | Status | Runs |
+|---|---|---|---|---|
+| GIZMO host | `tag:gizmo` | `gizmo.tail69fd2a.ts.net` | **Live** | GIZMO agent (Slack-resident, "tesla" channel), API on :9120 |
+| Hermes VPS (Hostinger, §1) | `tag:hermes` | `hermes.tail69fd2a.ts.net` | To add | Hermes/jarvis-telegram agent |
+| Content Engine worker | `tag:engine` | `engine.tail69fd2a.ts.net` | Future | render/caption/publish workers |
+| Founder laptops | (user devices) | `dylan-laptop`, `conor-laptop` | Live | admin only, run nothing |
 
-Enable **MagicDNS** so config says `http://gizmo:8787`, not an IP that changes. Servers: disable key expiry on the tagged nodes (Machines → node → Disable key expiry) so a forgotten 180-day expiry doesn't take production down.
+**Adding the Hermes VPS:** `curl -fsSL https://tailscale.com/install.sh | sh`, then `tailscale up --ssh --advertise-tags=tag:hermes` with a pre-authorized tag key. MagicDNS is per-tailnet and already on, so config says `http://gizmo.tail69fd2a.ts.net:9120` (or just `http://gizmo:9120`), never an IP that changes. Servers: disable key expiry on the tagged nodes (Machines → node → Disable key expiry) so a forgotten 180-day expiry doesn't take production down — check GIZMO's node for this **today**, it's live and presumably still on the default expiry.
 
 ### ACL (default-deny; only what's listed is allowed)
-Tailscale admin console → Access Controls:
+Tailscale admin console → Access Controls. The default Tailscale ACL is allow-all inside the tailnet — since GIZMO is already live, assume that's what's running now, which means locking this down is the actual task:
 ```jsonc
 {
   "tagOwners": {
@@ -151,14 +156,12 @@ Tailscale admin console → Access Controls:
     // Admin laptops can reach everything (ops/debug).
     { "action": "accept", "src": ["autogroup:admin"], "dst": ["*:*"] },
 
-    // Agent-to-agent: Hermes may call GIZMO's API, and only that port.
-    { "action": "accept", "src": ["tag:hermes"], "dst": ["tag:gizmo:8787"] },
+    // Agent-to-agent: Hermes may call GIZMO's API on :9120 — and that is the
+    // ONLY agent-to-agent path in the tailnet. Nothing else talks to anything.
+    { "action": "accept", "src": ["tag:hermes"], "dst": ["tag:gizmo:9120"] }
 
-    // GIZMO may call back to Hermes' API, and only that port.
-    { "action": "accept", "src": ["tag:gizmo"], "dst": ["tag:hermes:8686"] },
-
-    // Engine workers may receive jobs from Hermes.
-    { "action": "accept", "src": ["tag:hermes"], "dst": ["tag:engine:8080"] }
+    // When engine workers join, add their single job port here explicitly.
+    // Do NOT pre-open it, and never widen a dst to "*".
   ],
   "ssh": [
     { "action": "check", "src": ["autogroup:admin"],
@@ -168,8 +171,8 @@ Tailscale admin console → Access Controls:
 }
 ```
 What this buys you:
-- GIZMO cannot reach the engine, the laptops, or anything else — if it's ever compromised or just misbehaves, the blast radius is one API on one box.
-- No public ports anywhere: bind every agent API to the Tailscale interface only (listen on the node's `100.x.y.z` address or `tailscale0`), keep UFW deny-all inbound, then remove the public SSH allow once Tailscale SSH (`check` mode = re-auth prompt) is confirmed.
+- GIZMO cannot reach Hermes, the engine, the laptops, or anything else — if it's ever compromised or just misbehaves, the blast radius is one API on one box. Hermes reaches exactly one port on it (:9120) and nothing more.
+- No public ports anywhere: bind every agent API to the Tailscale interface only (listen on the node's `100.x.y.z` address or `tailscale0`), keep UFW deny-all inbound, then remove the public SSH allow once Tailscale SSH (`check` mode = re-auth prompt) is confirmed. Verify GIZMO's :9120 is not also bound to a public interface while you're in there.
 - `tailscale serve` can front an internal dashboard with HTTPS inside the tailnet if you want the admin panel (`content-engine/admin/`) private instead of public.
 
 ---
@@ -194,7 +197,7 @@ What this buys you:
 5. **Branch protection** on `main` for anything that auto-deploys: PRs required for the funnel repos during sales weeks. A typo'd force-push to a live sales page during launch month is a real revenue event.
 
 ### GIZMO sandboxing (least privilege, one box)
-- GIZMO lives in **one container/VM on the `gizmo` host** (§3) — never on a laptop, never sharing a box with Hermes.
+- GIZMO lives in **one container/VM on the `gizmo` host** (`gizmo.tail69fd2a.ts.net`, §3) — never on a laptop, never sharing a box with Hermes. It's already live there as the Slack-resident agent in the "tesla" channel; the sandboxing below is about what credentials it holds, not where it runs.
 - GitHub access via a **machine user** (`elevated-ai-gizmo`) holding a **fine-grained PAT**: repository access = only the 1–2 repos it needs (e.g. `ads-system` creative output), permissions = Contents read/write on those repos, nothing org-level, no admin, 90-day expiry with a calendar reminder.
 - Same doctrine for every credential GIZMO holds: Meta token scoped to the client's own ad account (clients pay Meta directly on their own accounts — multi-tenant isolation rule), CRM key scoped to the sub-account. Remember the standing lesson: a prior over-eager API integration triggered a Meta usage block that is *still* being cleaned up (`docs/conor-funnel-fixes.md` §5c). Rate-limit GIZMO's Meta calls in code, not in hope.
 - Hermes gets its own machine user with its own scopes. One leaked token = one rotation, one system.
@@ -222,7 +225,7 @@ Nightly agent-state backup (cron on each VPS):
 ```
 `RESTIC_PASSWORD` and R2 keys live in `/root/.restic.env` (mode 600) — and in the password manager.
 
-**Recovery targets:** funnel page down → redeploy from git, < 15 min. Hermes VPS dead → new VPS + systemd unit + env file + restic restore, < 60 min. Laptop stolen → zero production impact (that's the whole point of this document), rotate its cached credentials same day.
+**Recovery targets:** funnel page down → redeploy from git, < 15 min. Hermes VPS dead → new VPS + the `jarvis-telegram` `claude/vps-deploy` deploy (`DEPLOY.md`) + env file + restic restore, < 60 min. Laptop stolen → zero production impact (that's the whole point of this document), rotate its cached credentials same day.
 
 ---
 

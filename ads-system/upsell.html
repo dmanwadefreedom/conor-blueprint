@@ -4,17 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<meta name="description" content="One decision before onboarding: bundle The Content Engine Full Stack at $2,497/mo — $500 under standalone — so your new Ads Department has 50 creatives a day from day one.">
-<title>Wait — One Decision Before Your Install | The AI Ads Department</title>
+<meta name="description" content="One decision before onboarding: bundle The Content Engine Influencer plan at $747/mo, $250 under the standalone price, so your new Ads Department has a full creative feed from day one.">
+<title>One Decision Before Your Install | The AI Ads Department</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #020617;
+  color: #f8fafc;
   font-size: 19px;
   line-height: 2.0;
   -webkit-font-smoothing: antialiased;
@@ -27,6 +30,8 @@ h1, h2, h3, h4 { line-height: 1.3; }
   margin: 0 auto;
   padding: 0 32px;
 }
+
+.accent { color: #4ADE80; }
 
 /* Fade-in animation */
 .fade-in {
@@ -43,23 +48,65 @@ h1, h2, h3, h4 { line-height: 1.3; }
 .fade-in.d3 { transition-delay: 0.3s; }
 .fade-in.d4 { transition-delay: 0.4s; }
 
-/* ─── BUTTONS ─── */
+/* NAV */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-brand svg { display: block; }
+.nav-wordmark {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #f8fafc;
+  line-height: 1;
+}
+.nav-note {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+/* BUTTONS */
 .btn {
   display: inline-block;
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #22C55E;
+  color: #052e16;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.3px;
   padding: 16px 36px;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   line-height: 1.5;
-  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
 }
 .btn:hover {
   transform: translateY(-2px);
-  opacity: 0.85;
+  background: #4ADE80;
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.25);
 }
 .btn-block {
   display: block;
@@ -72,57 +119,58 @@ h1, h2, h3, h4 { line-height: 1.3; }
   display: inline-block;
   margin-top: 20px;
   font-size: 0.88rem;
-  color: #999;
+  color: #64748b;
   text-decoration: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.3);
   padding-bottom: 1px;
   transition: color 0.3s, border-color 0.3s;
 }
 .decline-link:hover {
-  color: #1a1a1a;
-  border-color: #1a1a1a;
+  color: #f8fafc;
+  border-color: #4ADE80;
 }
 .cta-microcopy {
   font-size: 0.82rem;
-  color: #aaa;
+  color: #64748b;
   margin-top: 12px;
   line-height: 1.7;
 }
 
-/* ─── HERO ─── */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 32px;
+  padding: 120px 32px 80px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(34, 197, 94, 0.08), transparent 60%);
 }
 .hero .brand-label {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 20px;
 }
 .hero h1 {
   font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: -0.5px;
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .hero .subtitle {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 400;
-  color: #555;
+  color: #cbd5e1;
   margin-bottom: 12px;
 }
 .hero .sub-desc {
   font-size: 1rem;
-  color: #888;
-  max-width: 480px;
+  color: #94a3b8;
+  max-width: 520px;
   margin: 0 auto;
 }
 .hero .once-note {
@@ -130,13 +178,14 @@ h1, h2, h3, h4 { line-height: 1.3; }
   margin-top: 32px;
   font-size: 0.88rem;
   font-weight: 600;
-  color: #1a1a1a;
-  background: #ffeb3b22;
-  border-radius: 6px;
+  color: #f8fafc;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 10px;
   padding: 10px 18px;
 }
 
-/* ─── SECTIONS ─── */
+/* SECTIONS */
 section {
   min-height: 100vh;
   display: flex;
@@ -152,52 +201,61 @@ section .container {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 16px;
 }
 .section-title {
   font-size: clamp(2rem, 4vw, 2.6rem);
-  font-weight: 300;
+  font-weight: 700;
   margin-bottom: 16px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .section-subtitle {
   font-size: 1.05rem;
-  color: #666;
+  color: #94a3b8;
   max-width: 640px;
   margin-bottom: 48px;
   line-height: 1.8;
 }
 
-/* ─── COPY BLOCKS ─── */
+/* COPY BLOCKS */
 .copy-block {
   max-width: 640px;
   margin: 0 auto;
 }
 .copy-block p {
-  color: #555;
+  color: #94a3b8;
   margin-bottom: 24px;
   font-size: 1rem;
 }
-.copy-block p strong { color: #1a1a1a; }
+.copy-block p strong { color: #f8fafc; }
 
-/* ─── PULL QUOTE ─── */
+/* PULL QUOTE */
 .pull-quote {
   padding: 20px 0;
   margin: 0 auto;
   max-width: 600px;
   font-size: 1.2rem;
   font-weight: 400;
-  color: #1a1a1a;
+  color: #f8fafc;
   text-align: center;
   line-height: 1.8;
 }
 .pull-quote .highlight {
-  background: #ffeb3b44;
+  background: rgba(34, 197, 94, 0.15);
   padding: 2px 6px;
+  border-radius: 4px;
+}
+.proof-note {
+  max-width: 600px;
+  margin: 24px auto 0;
+  text-align: center;
+  font-size: 0.92rem;
+  color: #64748b;
+  line-height: 1.8;
 }
 
-/* ─── BEFORE / AFTER (Your Creative / The Engine's Creative) ─── */
+/* BEFORE / AFTER (Your Creative / The Engine's Creative) */
 .ba-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -207,8 +265,17 @@ section .container {
 }
 .ba-col {
   padding: 36px 32px;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.ba-col:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .ba-col h3 {
   font-size: 0.8rem;
@@ -216,47 +283,56 @@ section .container {
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 24px;
-  color: #999;
+  color: #94a3b8;
 }
 .ba-col ul { list-style: none; }
 .ba-col li {
-  color: #555;
+  color: #94a3b8;
   font-size: 0.95rem;
   padding: 8px 0 8px 24px;
   position: relative;
   line-height: 1.6;
 }
 .ba-before li::before {
-  content: '\2014';
+  content: '\00D7';
   position: absolute;
   left: 0;
-  color: #ccc;
-  font-weight: 500;
+  color: #EF4444;
+  font-weight: 600;
 }
 .ba-after li::before {
   content: '\2713';
   position: absolute;
   left: 0;
-  color: #1a1a1a;
+  color: #4ADE80;
   font-weight: 600;
 }
 
-/* ─── OFFER CARD ─── */
+/* OFFER CARD */
 .offer-card {
   max-width: 640px;
   margin: 40px auto 0;
-  border: 2px solid #1a1a1a;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
   padding: 48px 40px 40px;
   position: relative;
   text-align: center;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.offer-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 197, 94, 0.55);
+  box-shadow: 0 0 32px rgba(34, 197, 94, 0.15);
 }
 .offer-badge {
   position: absolute;
   top: -14px; left: 50%;
   transform: translateX(-50%);
-  background: #1a1a1a;
-  color: #fff;
+  background: #22C55E;
+  color: #052e16;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -267,19 +343,19 @@ section .container {
 }
 .offer-name {
   font-size: 1.4rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 4px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .offer-sub {
   font-size: 0.9rem;
-  color: #888;
+  color: #94a3b8;
   margin-bottom: 28px;
 }
 .stack-list {
   list-style: none;
   text-align: left;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
   margin-bottom: 4px;
 }
 .stack-list li {
@@ -288,21 +364,21 @@ section .container {
   align-items: baseline;
   gap: 16px;
   padding: 14px 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
 }
 .stack-item {
   font-size: 0.92rem;
-  color: #555;
+  color: #94a3b8;
   line-height: 1.6;
 }
 .stack-item strong {
   display: block;
-  color: #1a1a1a;
+  color: #f8fafc;
   font-weight: 600;
 }
 .stack-value {
   font-size: 0.88rem;
-  color: #999;
+  color: #64748b;
   white-space: nowrap;
   font-weight: 500;
 }
@@ -312,117 +388,125 @@ section .container {
   padding: 16px 0 0;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .offer-price {
   font-size: 2.6rem;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #4ADE80;
   margin-top: 24px;
 }
 .offer-price span {
   font-size: 0.95rem;
   font-weight: 400;
-  color: #999;
+  color: #94a3b8;
 }
 .offer-guarantee {
   font-size: 0.88rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #f8fafc;
   padding: 10px 16px;
-  background: #ffeb3b22;
-  border-radius: 6px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 10px;
   display: inline-block;
   margin: 16px 0 24px;
 }
 
-/* ─── ROI BOX ─── */
+/* ROI BOX */
 .roi-box {
   max-width: 700px;
   margin: 0 auto;
   padding: 48px 40px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
   text-align: center;
 }
 .roi-kicker {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #999;
+  color: #4ADE80;
   margin-bottom: 16px;
 }
 .roi-box h3 {
   font-size: 28px;
-  font-weight: 300;
+  font-weight: 700;
   margin-bottom: 24px;
   line-height: 1.4;
+  color: #f8fafc;
 }
 .roi-box p {
   font-size: 18px;
   line-height: 2.0;
-  color: #444;
+  color: #94a3b8;
   margin-bottom: 24px;
 }
+.roi-box p strong { color: #f8fafc; }
 .roi-inset {
   padding: 32px;
-  background: #fafafa;
-  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 12px;
   margin-bottom: 24px;
 }
 .roi-inset .roi-big {
   font-size: 20px;
-  font-weight: 500;
-  color: #1a1a1a;
+  font-weight: 600;
+  color: #4ADE80;
   margin-bottom: 8px;
 }
 .roi-inset .roi-small {
   font-size: 16px;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 0;
   line-height: 1.7;
 }
 .roi-close {
   font-size: 16px !important;
-  color: #666 !important;
+  color: #cbd5e1 !important;
   line-height: 1.8 !important;
   margin-bottom: 0 !important;
 }
 
-/* ─── DECISION ─── */
+/* DECISION */
 .decision {
   text-align: center;
   max-width: 560px;
   margin: 48px auto 0;
 }
 
-/* ─── FOOTER ─── */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 48px 32px;
-  border-top: 1px solid #e0e0e0;
-  color: #ccc;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  color: #64748b;
   font-size: 0.82rem;
 }
 footer a {
-  color: #999;
+  color: #94a3b8;
   text-decoration: none;
+  transition: color 0.3s;
 }
-footer a:hover { color: #1a1a1a; }
+footer a:hover { color: #4ADE80; }
 
-/* ─── RESPONSIVE ─── */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
   .ba-grid { grid-template-columns: 1fr; gap: 16px; }
   .offer-card { padding: 40px 24px 32px; }
   .roi-box { padding: 36px 24px; }
   .stack-list li { flex-direction: column; gap: 2px; }
-  .stack-value { color: #aaa; }
+  .nav-note { display: none; }
 }
 
 @media (max-width: 480px) {
   body { font-size: 17px; }
-  .hero { padding: 60px 20px; }
+  .hero { padding: 110px 20px 60px; }
   .hero h1 { font-size: 2rem; }
   .pull-quote { font-size: 1.05rem; }
   .btn-block { width: 100%; }
@@ -431,21 +515,36 @@ footer a:hover { color: #1a1a1a; }
 </head>
 <body>
 
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="Elevated AI home">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2 2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 12l10 5 10-5"></path>
+        <path d="M2 17l10 5 10-5"></path>
+      </svg>
+      <span class="nav-wordmark">Elevated AI</span>
+    </a>
+    <span class="nav-note">Install Reserved</span>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="container">
     <div class="fade-in">
       <div class="brand-label">Install Reserved &middot; The AI Ads Department</div>
-      <h1>Wait &mdash; Your Department Isn't Fueled Yet</h1>
+      <h1>Wait. Your Department Isn't <span class="accent">Fueled</span> Yet.</h1>
     </div>
     <div class="fade-in d1">
       <p class="subtitle">Your install slot is locked. GIZMO goes to work in 30 days.</p>
     </div>
     <div class="fade-in d2">
-      <p class="sub-desc">One thing decides how fast it finds winners: how much creative you feed it. You get to solve that here &mdash; once &mdash; at a price that doesn't exist anywhere else.</p>
+      <p class="sub-desc">One thing decides how fast it finds winners: how much creative you feed it. You get to solve that here, once, at a rate that only exists for Ads Department clients.</p>
     </div>
     <div class="fade-in d3">
-      <div class="once-note">This page appears once, right after your order. No countdown timer &mdash; but the bundled price only exists while your install is being scheduled.</div>
+      <div class="once-note">This page appears once, right after your order. No countdown timer. Just a client-only rate for wiring both systems in one build window.</div>
     </div>
   </div>
 </section>
@@ -455,7 +554,7 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Bottleneck</div>
-      <div class="section-title">A Testing Matrix Is Only as Good as Its Fuel</div>
+      <div class="section-title">A Testing Matrix Is Only as Good as Its <span class="accent">Fuel</span></div>
       <div class="section-subtitle">GIZMO tests 100 variants at a time, kills anything under a 25% hook rate at 48 hours, and refreshes creative every 10&ndash;14 days. That math has one dependency: volume. Here are your two ways to supply it.</div>
     </div>
 
@@ -464,7 +563,7 @@ footer a:hover { color: #1a1a1a; }
         <h3>You Supply the Creative</h3>
         <ul>
           <li>Human UGC runs $150&ndash;$250 per finished video</li>
-          <li>A creative team ships 1&ndash;2 videos a day &mdash; at ~$8k/mo payroll</li>
+          <li>A creative team ships 1&ndash;2 videos a day, at roughly $8k a month in payroll</li>
           <li>100-variant matrices take weeks to fill, not hours</li>
           <li>Refresh cycles slip past the 10&ndash;14 day fatigue window</li>
           <li>GIZMO waits on production. Testing slows to human speed</li>
@@ -473,10 +572,10 @@ footer a:hover { color: #1a1a1a; }
       <div class="ba-col ba-after">
         <h3>The Content Engine Feeds It</h3>
         <ul>
-          <li>Up to 50 finished creatives a day &mdash; your face, your voice, your offer</li>
+          <li>Your own custom AI clone presenting: your face, your voice, your offer</li>
           <li>Every matrix full on schedule. Losers die at 48 hours, on time</li>
           <li>Fresh creative rolls in before fatigue touches your CPA</li>
-          <li>Winning organic hooks become paid candidates automatically</li>
+          <li>Winner detection hands ads-ready creative straight to GIZMO</li>
           <li>Wired in during Week 2 of the install you just bought</li>
         </ul>
       </div>
@@ -485,6 +584,8 @@ footer a:hover { color: #1a1a1a; }
     <div class="pull-quote fade-in d2">
       <span class="highlight">"You just bought the engine that finds winners. This is the fuel line."</span>
     </div>
+
+    <p class="proof-note fade-in d3">This is not theoretical. A live install is running a real estate operation's ads right now, and its matrix never sits empty because the Engine feeds it. We don't name clients, and we won't name you either.</p>
   </div>
 </section>
 
@@ -493,48 +594,48 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Offer</div>
-      <div class="section-title">Content Engine Full Stack &mdash; Bundled</div>
-      <div class="section-subtitle">The full 50-creatives-a-day production line, built into your install window &mdash; at $500 a month under the standalone price, for as long as you run both systems.</div>
+      <div class="section-title">The Content Engine <span class="accent">Influencer</span> Plan, Bundled</div>
+      <div class="section-subtitle">The top Content Engine plan: your own custom AI clone, the 100-video testing matrix, and ads-ready creative on tap, wired in during your install window at $250 a month under the standalone price, for as long as you run both systems.</div>
     </div>
 
     <div class="offer-card fade-in d1">
       <div class="offer-badge">One-Click Bundle &middot; Ads Department Clients Only</div>
-      <div class="offer-name">The Content Engine &mdash; Full Stack</div>
-      <p class="offer-sub">Everything below ships alongside your department install. One team. One build window. One invoice.</p>
+      <div class="offer-name">The Content Engine: Influencer Plan</div>
+      <p class="offer-sub">Everything below ships alongside your department install. No setup fee. One team. One build window. One invoice.</p>
 
       <ul class="stack-list">
         <li>
-          <div class="stack-item"><strong>The repurposing engine + SEO autopilot</strong>50+ posts a month across every platform, auto-scheduled through your approval queue. AI-written SEO blogs wired to your site.</div>
-          <div class="stack-value">Engine tier &middot; $997/mo</div>
+          <div class="stack-item"><strong>Hermes onboarding + the core engine</strong>Answer a few questions, connect your accounts, and Hermes fills in your brand voice, strategy, and content plan. Content repurposing, blog and SEO autopilot, approval queue, auto-scheduling.</div>
+          <div class="stack-value">From Starter &middot; $49/mo</div>
         </li>
         <li>
-          <div class="stack-item"><strong>Your AI clone, shipping 30 reels a month</strong>Talking-head and full-body. Scripts written end to end, B-roll injected, cut in the 6.3-second loop and 14&ndash;16 second completion formats.</div>
-          <div class="stack-value">+ Influencer tier &middot; $1,997/mo</div>
+          <div class="stack-item"><strong>UGC avatar reels, scripted end to end</strong>Stock AI avatars, B-roll injection, and full scripts across three content paths: storytelling pitch to CTA, real-life use, show and tell. Cut in the 6.3-second loop and 14&ndash;16 second viral formats.</div>
+          <div class="stack-value">From Creator &middot; $297/mo</div>
         </li>
         <li>
-          <div class="stack-item"><strong>The 100-video testing matrix</strong>Winning-ad detection and ads-ready creatives, handed straight to GIZMO. This is the tier the department was designed to eat from.</div>
-          <div class="stack-value">Full Stack &middot; $2,997/mo</div>
+          <div class="stack-item"><strong>Your own custom AI clone</strong>Face and voice. Full cloned videos presenting your offer, so the creative feed looks like you, not a stock library.</div>
+          <div class="stack-value">Influencer &middot; $997/mo</div>
         </li>
         <li>
-          <div class="stack-item"><strong>Sample-reel analyzer + Hermes automation</strong>Feed it any reel you admire and it reverse-engineers the format. Hermes runs the busywork between the two systems.</div>
-          <div class="stack-value">Full Stack only</div>
+          <div class="stack-item"><strong>The 100-video testing matrix</strong>Winner detection and ads-ready creative output, handed straight to GIZMO. This is the plan the department was designed to eat from.</div>
+          <div class="stack-value">Influencer</div>
         </li>
         <li>
-          <div class="stack-item"><strong>Setup, folded into your install</strong>Standalone buyers pay $1,500 and schedule a separate build. Your install already wires the creative engine in Week 2.</div>
-          <div class="stack-value">$1,500 covered</div>
+          <div class="stack-item"><strong>Sample-reel analyzer</strong>Feed it any reel you admire and it reverse-engineers the format for your next batch.</div>
+          <div class="stack-value">Influencer</div>
         </li>
       </ul>
       <div class="stack-total">
         <span>Standalone price</span>
-        <span>$1,500 setup + $2,997/mo</span>
+        <span>$997/mo</span>
       </div>
 
-      <div class="offer-price">$2,497 <span>/mo bundled</span></div>
-      <div class="offer-guarantee">$500 off every month, for as long as you run both systems. That's $6,000 a year &mdash; every year.</div>
+      <div class="offer-price">$747 <span>/mo bundled</span></div>
+      <div class="offer-guarantee">Save $250 every month, for as long as you run both systems. That's $3,000 a year, every year.</div>
 
-      <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_ADS_CE_FULLSTACK_BUNDLE">Add Full Stack to My Install &mdash; $2,497/mo</a>
-      <p class="cta-microcopy">One click &mdash; uses the payment method from your order. Month to month, no annual contract. First charge when your creative feed goes live during the install.</p>
-      <a class="decline-link" href="thank-you.html">No thanks &mdash; I'll supply my own creative &rarr;</a>
+      <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_ADS_BUNDLE">Add the Influencer Plan to My Install: $747/mo</a>
+      <p class="cta-microcopy">One click, using the payment method from your order. Month to month, no annual contract, no setup fee. First charge when your creative feed goes live during the install. 14-day money-back guarantee: if the Engine isn't for you, email support within 14 days for a full refund.</p>
+      <a class="decline-link" href="thank-you.html">No thanks, I'll supply my own creative &rarr;</a>
     </div>
   </div>
 </section>
@@ -545,14 +646,14 @@ footer a:hover { color: #1a1a1a; }
     <div class="fade-in">
       <div class="roi-box">
         <div class="roi-kicker">Do the Math</div>
-        <h3>What 50 Creatives a Day Costs Everywhere Else</h3>
-        <p>Human UGC runs $150&ndash;$250 a video. GIZMO's matrix wants 100 variants per angle. Price that with humans: <strong>$15,000&ndash;$25,000 per testing cycle</strong> &mdash; before a dollar of media spend.</p>
-        <p>The bundle feeds GIZMO up to 50 creatives a day for $2,497 a month. Even at a tenth of that output, you're paying a couple of dollars per asset for what humans charge $200 to film once.</p>
+        <h3>What Filling the Matrix Costs Everywhere Else</h3>
+        <p>Human UGC runs $150&ndash;$250 a video. GIZMO's matrix wants 100 variants per angle. Price that with humans: <strong>$15,000&ndash;$25,000 per testing cycle</strong>, before a dollar of media spend.</p>
+        <p>The bundle fills the same matrix for $747 a month, with your own clone presenting. Call it a few dollars per asset, for the same format humans charge $200 to film once.</p>
         <div class="roi-inset">
-          <p class="roi-big">Department + creative engine: $73,925 in year one. The stack it replaces: $156,000.</p>
-          <p class="roi-small">Year two and beyond, the whole operation runs $53,928 while the agency + creative stack bills $156,000 again. You keep $102,072. Every year.</p>
+          <p class="roi-big">Department + creative engine: $52,925 all-in for year one. The stack it replaces: $156,000.</p>
+          <p class="roi-small">Year two and beyond, the whole operation runs $32,928 a year, while the agency and creative stack would bill $156,000 again. That's money you stop spending, every year.</p>
         </div>
-        <p class="roi-close">The $13,000-a-month stack, rebuilt for about $6,160 a month in year one. And this one you own.</p>
+        <p class="roi-close">The $13,000-a-month stack, rebuilt for about $4,400 a month in year one and about $2,750 a month after. The entire ads agency and its creative department, run from your phone.</p>
       </div>
     </div>
   </div>
@@ -563,21 +664,21 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">Why This Page Only Shows Once</div>
-      <div class="section-title">No Timer. One Build Window.</div>
+      <div class="section-title">No Timer. One <span class="accent">Build Window</span>.</div>
     </div>
 
     <div class="copy-block fade-in d1">
-      <p>The $2,497 price exists for one reason: both systems go in during the same install window. One team, one wiring pass, one calendar slot. <strong>Bundling now costs us almost nothing extra to build &mdash; so you get the discount.</strong></p>
+      <p>The $747 rate exists for one reason: both systems go in during the same install window. One team, one wiring pass, one calendar slot. <strong>Bundling now costs us almost nothing extra to build, so you get the discount.</strong></p>
 
-      <p>Skip it, and your install still ships with the creative-feed connection built in Week 2 &mdash; it just sits empty until you supply the volume. Adding the Engine later is a separate build at the standalone price: $1,500 setup plus $2,997 a month.</p>
+      <p>Skip it, and your install still ships with the creative-feed connection built in Week 2. It just sits empty until you supply the volume. You can subscribe to the Influencer plan any time later at the standalone $997 a month; the $250 monthly discount is a bundle-window rate.</p>
 
-      <p>That's the whole mechanism. No fake countdown. No "price doubles at midnight." <strong>Just how the build calendar works.</strong></p>
+      <p>That's the whole mechanism. No fake countdown. No price that doubles at midnight. <strong>Just how the build calendar works.</strong></p>
     </div>
 
     <div class="decision fade-in d2">
-      <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_ADS_CE_FULLSTACK_BUNDLE">Add Full Stack to My Install &mdash; $2,497/mo</a>
-      <p class="cta-microcopy">One click. Save $500/mo. Your department launches with a full tank.</p>
-      <a class="decline-link" href="thank-you.html">No thanks &mdash; take me to my confirmation page &rarr;</a>
+      <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_ADS_BUNDLE">Add the Influencer Plan to My Install: $747/mo</a>
+      <p class="cta-microcopy">One click. Save $250 a month. Your department launches with a full tank.</p>
+      <a class="decline-link" href="thank-you.html">No thanks, take me to my confirmation page &rarr;</a>
       <p class="cta-microcopy" style="margin-top: 24px;">Either way, your install slot is locked and onboarding starts today.</p>
     </div>
   </div>

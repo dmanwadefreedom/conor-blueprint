@@ -3,16 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Content Engine — Admin Console</title>
+<meta name="description" content="Admin console demo for The Content Engine by Elevated AI. Pipeline, approvals, UGC studio, testing matrix, SEO, and ads handoff.">
+<title>The Content Engine · Admin Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: dark; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #020617;
+  color: #f8fafc;
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -20,6 +24,9 @@ body {
 
 h1, h2, h3, h4 { line-height: 1.3; }
 button { font-family: inherit; }
+::selection { background: rgba(34,197,94,.3); }
+
+.accent { color: #4ADE80; }
 
 /* ─── FADE-IN ─── */
 .fade-in {
@@ -43,7 +50,8 @@ button { font-family: inherit; }
 .sidebar {
   width: 232px;
   flex-shrink: 0;
-  border-right: 1px solid #e0e0e0;
+  background: rgba(15,23,42,.6);
+  border-right: 1px solid rgba(148,163,184,.15);
   padding: 28px 16px 24px;
   display: flex;
   flex-direction: column;
@@ -56,11 +64,25 @@ button { font-family: inherit; }
 .brand {
   padding: 0 12px;
 }
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+.logo-row svg { flex-shrink: 0; display: block; }
+.wordmark {
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  color: #f8fafc;
+}
+.wordmark strong { font-weight: 700; color: #4ADE80; }
 .brand-name {
   font-size: 1.05rem;
   font-weight: 300;
   letter-spacing: -0.3px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .brand-name strong { font-weight: 600; }
 .brand-sub {
@@ -68,7 +90,7 @@ button { font-family: inherit; }
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #999;
+  color: #64748b;
   margin-top: 2px;
 }
 .nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
@@ -77,7 +99,7 @@ button { font-family: inherit; }
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #64748b;
   padding: 14px 12px 6px;
 }
 .nav-btn {
@@ -89,42 +111,43 @@ button { font-family: inherit; }
   text-align: left;
   background: none;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 9px 12px;
   font-size: 0.9rem;
-  color: #555;
+  color: #94a3b8;
   cursor: pointer;
   transition: border-color 0.25s, color 0.25s, background 0.25s;
 }
-.nav-btn:hover { border-color: #e0e0e0; color: #1a1a1a; }
+.nav-btn:hover { border-color: rgba(148,163,184,.25); color: #f8fafc; }
 .nav-btn.active {
-  border-color: #1a1a1a;
-  color: #1a1a1a;
+  border-color: rgba(34,197,94,.45);
+  background: rgba(34,197,94,.08);
+  color: #f8fafc;
   font-weight: 600;
 }
 .nav-count {
   font-size: 0.7rem;
   font-weight: 600;
-  background: #ffeb3b44;
+  background: rgba(34,197,94,.15);
   border-radius: 100px;
   padding: 1px 8px;
-  color: #1a1a1a;
+  color: #4ADE80;
 }
 .sidebar-foot {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(148,163,184,.15);
   padding: 16px 12px 0;
   font-size: 0.78rem;
-  color: #999;
+  color: #64748b;
   line-height: 1.9;
 }
-.sidebar-foot a { color: #555; text-decoration: none; border-bottom: 1px solid #e0e0e0; }
-.sidebar-foot a:hover { color: #1a1a1a; border-color: #1a1a1a; }
-.agent-line { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; color: #555; }
+.sidebar-foot a { color: #94a3b8; text-decoration: none; border-bottom: 1px solid rgba(148,163,184,.25); }
+.sidebar-foot a:hover { color: #4ADE80; border-color: #4ADE80; }
+.agent-line { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; color: #94a3b8; }
 .dot {
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: #1a1a1a;
-  box-shadow: 0 0 0 3px #ffeb3b44;
+  background: #22C55E;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.2);
   flex-shrink: 0;
 }
 
@@ -141,7 +164,7 @@ button { font-family: inherit; }
   gap: 16px;
   flex-wrap: wrap;
   padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(148,163,184,.15);
   margin-bottom: 32px;
 }
 .topbar h1 {
@@ -155,14 +178,14 @@ button { font-family: inherit; }
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  background: #ffeb3b44;
-  border: 1px solid #e0e0e0;
+  background: rgba(34,197,94,.12);
+  border: 1px solid rgba(34,197,94,.35);
   border-radius: 100px;
   padding: 5px 14px;
-  color: #1a1a1a;
+  color: #4ADE80;
   white-space: nowrap;
 }
-.topbar-date { font-size: 0.82rem; color: #999; }
+.topbar-date { font-size: 0.82rem; color: #64748b; }
 
 /* ─── PANELS ─── */
 .panel { display: none; }
@@ -173,18 +196,18 @@ button { font-family: inherit; }
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #64748b;
   margin-bottom: 12px;
 }
 .panel-title {
   font-size: 1.35rem;
   font-weight: 300;
   margin-bottom: 8px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .panel-sub {
   font-size: 0.92rem;
-  color: #666;
+  color: #94a3b8;
   max-width: 640px;
   margin-bottom: 28px;
   line-height: 1.7;
@@ -196,7 +219,7 @@ button { font-family: inherit; }
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #64748b;
   margin-bottom: 14px;
 }
 
@@ -208,29 +231,32 @@ button { font-family: inherit; }
   margin-bottom: 20px;
 }
 .kpi {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 22px 20px 18px;
-  transition: border-color 0.3s, transform 0.3s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
-.kpi:hover { border-color: #bbb; transform: translateY(-2px); }
+.kpi:hover { border-color: rgba(34,197,94,.4); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(34,197,94,.08); }
 .kpi-number {
   font-size: 1.9rem;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #f8fafc;
   line-height: 1.15;
 }
-.kpi-number span { font-size: 0.95rem; color: #999; font-weight: 400; }
+.kpi-number span { font-size: 0.95rem; color: #64748b; font-weight: 400; }
 .kpi-label {
   font-size: 0.78rem;
-  color: #888;
+  color: #94a3b8;
   font-weight: 500;
   margin-top: 4px;
 }
 .kpi-delta {
   font-size: 0.72rem;
-  color: #1a1a1a;
-  background: #ffeb3b22;
+  color: #4ADE80;
+  background: rgba(34,197,94,.1);
   border-radius: 4px;
   display: inline-block;
   padding: 2px 8px;
@@ -239,12 +265,12 @@ button { font-family: inherit; }
 }
 .meter {
   height: 4px;
-  background: #efefef;
+  background: rgba(148,163,184,.15);
   border-radius: 100px;
   margin-top: 12px;
   overflow: hidden;
 }
-.meter-fill { height: 100%; background: #1a1a1a; border-radius: 100px; }
+.meter-fill { height: 100%; background: #22C55E; border-radius: 100px; }
 
 /* ─── PIPELINE STRIP ─── */
 .pipe-flow {
@@ -254,21 +280,25 @@ button { font-family: inherit; }
   flex-wrap: wrap;
 }
 .pipe-step {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 10px;
   padding: 10px 16px;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: #f8fafc;
   text-align: center;
 }
-.pipe-step small { display: block; font-weight: 400; color: #999; font-size: 0.72rem; }
-.pipe-arrow { color: #ccc; font-size: 1rem; }
+.pipe-step small { display: block; font-weight: 400; color: #64748b; font-size: 0.72rem; }
+.pipe-arrow { color: #475569; font-size: 1rem; }
 
 /* ─── TABLES ─── */
 .table-wrap {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   overflow-x: auto;
 }
 table {
@@ -283,21 +313,21 @@ th {
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #999;
+  color: #64748b;
   padding: 12px 16px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(148,163,184,.15);
   white-space: nowrap;
 }
 td {
   padding: 12px 16px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #555;
+  border-bottom: 1px solid rgba(148,163,184,.08);
+  color: #94a3b8;
   vertical-align: top;
 }
 tr:last-child td { border-bottom: none; }
-td strong { color: #1a1a1a; font-weight: 600; }
+td strong { color: #f8fafc; font-weight: 600; }
 tbody tr { transition: background 0.2s; }
-tbody tr:hover { background: #fafafa; }
+tbody tr:hover { background: rgba(148,163,184,.05); }
 
 /* ─── CHIPS ─── */
 .chip {
@@ -307,54 +337,55 @@ tbody tr:hover { background: #fafafa; }
   border-radius: 100px;
   padding: 3px 12px;
   white-space: nowrap;
-  border: 1px solid #e0e0e0;
-  color: #555;
+  border: 1px solid rgba(148,163,184,.25);
+  color: #94a3b8;
 }
-.chip-live { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
-.chip-warn { background: #ffeb3b44; border-color: #e0e0e0; color: #1a1a1a; }
-.chip-muted { color: #999; }
-.chip-win { background: #ffeb3b44; border-color: #1a1a1a; color: #1a1a1a; }
+.chip-live { background: rgba(34,197,94,.12); border-color: rgba(34,197,94,.35); color: #4ADE80; }
+.chip-warn { background: rgba(251,191,36,.1); border-color: rgba(251,191,36,.3); color: #FCD34D; }
+.chip-muted { color: #64748b; border-color: rgba(148,163,184,.15); }
+.chip-win { background: #22C55E; border-color: #22C55E; color: #020617; }
+.chip-fail { background: rgba(239,68,68,.1); border-color: rgba(239,68,68,.3); color: #F87171; }
 
 /* ─── FILTERS ─── */
 .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .filter-btn {
   background: none;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(148,163,184,.2);
   border-radius: 100px;
   padding: 6px 16px;
   font-size: 0.78rem;
   font-weight: 500;
-  color: #555;
+  color: #94a3b8;
   cursor: pointer;
   transition: border-color 0.25s, color 0.25s;
 }
-.filter-btn:hover { border-color: #bbb; color: #1a1a1a; }
-.filter-btn.active { border-color: #1a1a1a; color: #1a1a1a; font-weight: 600; }
+.filter-btn:hover { border-color: rgba(148,163,184,.4); color: #f8fafc; }
+.filter-btn.active { border-color: #22C55E; color: #4ADE80; font-weight: 600; }
 
 /* ─── BUTTONS ─── */
 .btn {
   display: inline-block;
-  background: #1a1a1a;
-  color: #fff;
-  border: 1px solid #1a1a1a;
-  border-radius: 6px;
+  background: #22C55E;
+  color: #020617;
+  border: 1px solid #22C55E;
+  border-radius: 8px;
   padding: 11px 24px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
 }
-.btn:hover { transform: translateY(-2px); opacity: 0.9; }
+.btn:hover { transform: translateY(-2px); background: #4ADE80; border-color: #4ADE80; box-shadow: 0 8px 24px rgba(34,197,94,.25); }
 .btn-ghost {
   background: none;
-  color: #1a1a1a;
-  border: 1px solid #e0e0e0;
+  color: #f8fafc;
+  border: 1px solid rgba(148,163,184,.25);
 }
-.btn-ghost:hover { border-color: #1a1a1a; }
+.btn-ghost:hover { border-color: #22C55E; background: rgba(34,197,94,.08); box-shadow: none; }
 .btn-sm { padding: 6px 14px; font-size: 0.75rem; }
 .btn[disabled] { opacity: 0.4; cursor: not-allowed; }
-.btn[disabled]:hover { transform: none; }
+.btn[disabled]:hover { transform: none; box-shadow: none; }
 
 /* ─── CARDS ─── */
 .cards-2 {
@@ -368,34 +399,36 @@ tbody tr:hover { background: #fafafa; }
   gap: 16px;
 }
 .card {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 24px 22px;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
-.card:hover { transform: translateY(-3px); border-color: #bbb; }
-.card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; }
-.card p { color: #666; font-size: 0.85rem; line-height: 1.7; }
+.card:hover { transform: translateY(-3px); border-color: rgba(34,197,94,.45); box-shadow: 0 12px 32px rgba(34,197,94,.1); }
+.card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: #f8fafc; }
+.card p { color: #94a3b8; font-size: 0.85rem; line-height: 1.7; }
 
 /* ─── CLONE CARDS ─── */
 .clone-card { cursor: pointer; position: relative; }
-.clone-card.selected { border: 2px solid #1a1a1a; }
+.clone-card.selected { border-color: #22C55E; box-shadow: 0 0 0 1px #22C55E, 0 12px 32px rgba(34,197,94,.12); }
 .clone-card .chip { position: absolute; top: 16px; right: 16px; }
 .clone-avatar {
   width: 44px; height: 44px;
   border-radius: 50%;
-  border: 1px solid #e0e0e0;
-  background: #fafafa;
+  border: 1px solid rgba(148,163,184,.2);
+  background: #0f172a;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
-  font-weight: 300;
-  color: #1a1a1a;
+  font-weight: 400;
+  color: #4ADE80;
   margin-bottom: 14px;
 }
-.clone-meta { font-size: 0.75rem; color: #999; margin-top: 6px; line-height: 1.7; }
+.clone-meta { font-size: 0.75rem; color: #64748b; margin-top: 6px; line-height: 1.7; }
 
 /* ─── FORMS ─── */
 .form-grid {
@@ -410,42 +443,46 @@ tbody tr:hover { background: #fafafa; }
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #999;
+  color: #64748b;
 }
 .field input, .field select, .field textarea {
   font-family: inherit;
   font-size: 0.88rem;
-  color: #1a1a1a;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  color: #f8fafc;
+  border: 1px solid rgba(148,163,184,.2);
+  border-radius: 8px;
   padding: 11px 14px;
-  background: #fff;
+  background: rgba(2,6,23,.6);
   outline: none;
   transition: border-color 0.25s;
   width: 100%;
 }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: #1a1a1a; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: #22C55E; }
 .field textarea { resize: vertical; min-height: 74px; line-height: 1.6; }
-.field-hint { font-size: 0.72rem; color: #aaa; }
+.field-hint { font-size: 0.72rem; color: #64748b; }
 
 /* ─── PICKERS (radio cards) ─── */
 .picker-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .pick {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 12px;
   padding: 16px;
   cursor: pointer;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
-.pick:hover { border-color: #bbb; transform: translateY(-2px); }
-.pick.selected { border: 2px solid #1a1a1a; padding: 15px; }
-.pick h4 { font-size: 0.85rem; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
-.pick p { font-size: 0.74rem; color: #888; line-height: 1.6; }
+.pick:hover { border-color: rgba(34,197,94,.4); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(34,197,94,.08); }
+.pick.selected { border-color: #22C55E; box-shadow: 0 0 0 1px #22C55E; }
+.pick h4 { font-size: 0.85rem; font-weight: 600; color: #f8fafc; margin-bottom: 4px; }
+.pick p { font-size: 0.74rem; color: #94a3b8; line-height: 1.6; }
 
 /* ─── SCRIPT OUTPUT ─── */
 .script-out {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 28px;
   margin-top: 20px;
   display: none;
@@ -455,7 +492,7 @@ tbody tr:hover { background: #fafafa; }
   display: flex;
   gap: 16px;
   padding: 10px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(148,163,184,.08);
   font-size: 0.88rem;
 }
 .beat:last-of-type { border-bottom: none; }
@@ -466,99 +503,101 @@ tbody tr:hover { background: #fafafa; }
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #64748b;
   padding-top: 3px;
 }
-.beat-copy { color: #555; line-height: 1.7; }
-.beat-copy .hl { background: #ffeb3b44; padding: 1px 5px; }
+.beat-copy { color: #94a3b8; line-height: 1.7; }
+.beat-copy .hl { background: rgba(34,197,94,.2); color: #f8fafc; padding: 1px 5px; border-radius: 3px; }
 .script-meta {
   margin-top: 18px;
   padding-top: 18px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(148,163,184,.15);
   font-size: 0.78rem;
-  color: #888;
+  color: #94a3b8;
   line-height: 2.0;
 }
-.script-meta strong { color: #1a1a1a; font-weight: 600; }
+.script-meta strong { color: #f8fafc; font-weight: 600; }
 
 /* ─── DROPZONE ─── */
 .dropzone {
-  border: 1px dashed #ccc;
-  border-radius: 8px;
+  border: 1px dashed rgba(148,163,184,.3);
+  border-radius: 14px;
   padding: 56px 24px;
   text-align: center;
-  color: #888;
+  color: #94a3b8;
   font-size: 0.9rem;
   cursor: pointer;
   transition: border-color 0.25s, background 0.25s;
 }
-.dropzone:hover { border-color: #1a1a1a; background: #fafafa; }
-.dropzone strong { color: #1a1a1a; display: block; font-weight: 500; font-size: 1rem; margin-bottom: 4px; }
-.dropzone small { color: #aaa; font-size: 0.75rem; }
+.dropzone:hover { border-color: #22C55E; background: rgba(34,197,94,.05); }
+.dropzone strong { color: #f8fafc; display: block; font-weight: 500; font-size: 1rem; margin-bottom: 4px; }
+.dropzone small { color: #64748b; font-size: 0.75rem; }
 
 .analysis { display: none; margin-top: 24px; }
 .analysis.show { display: block; }
 .spec-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
 .spec-chip {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 10px;
   padding: 10px 16px;
   font-size: 0.78rem;
-  color: #555;
+  color: #94a3b8;
 }
-.spec-chip strong { display: block; color: #1a1a1a; font-size: 0.95rem; font-weight: 600; }
+.spec-chip strong { display: block; color: #4ADE80; font-size: 0.95rem; font-weight: 700; }
 
 /* voice energy bars */
 .energy { display: flex; align-items: flex-end; gap: 4px; height: 46px; margin: 10px 0 6px; }
 .energy i {
   flex: 1;
-  background: #e0e0e0;
+  background: rgba(148,163,184,.25);
   border-radius: 2px 2px 0 0;
   min-width: 5px;
   max-width: 18px;
 }
-.energy i.hot { background: #1a1a1a; }
+.energy i.hot { background: #22C55E; }
 
 /* ─── TESTING MATRIX ─── */
 .matrix-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
-.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.74rem; color: #888; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.74rem; color: #94a3b8; }
 .legend i {
   display: inline-block;
   width: 10px; height: 10px;
   border-radius: 2px;
   margin-right: 6px;
   vertical-align: -1px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(148,163,184,.25);
 }
-.legend .l-win { background: #ffeb3b66; border-color: #1a1a1a; }
-.legend .l-live { background: #fff; }
-.legend .l-kill { background: #f4f4f4; }
+.legend .l-win { background: rgba(34,197,94,.5); border-color: #22C55E; }
+.legend .l-live { background: rgba(15,23,42,.6); }
+.legend .l-kill { background: rgba(148,163,184,.08); }
 .matrix {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 6px;
 }
 .cell {
-  border: 1px solid #e0e0e0;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
   border-radius: 6px;
   padding: 8px 6px;
   text-align: center;
   font-size: 0.62rem;
-  color: #888;
+  color: #94a3b8;
   line-height: 1.5;
   transition: transform 0.2s, border-color 0.2s;
   cursor: default;
   position: relative;
 }
-.cell:hover { transform: translateY(-2px); border-color: #bbb; }
-.cell b { display: block; font-size: 0.68rem; color: #1a1a1a; font-weight: 600; }
-.cell.win { background: #ffeb3b44; border: 1.5px solid #1a1a1a; }
-.cell.kill { background: #f7f7f7; opacity: 0.55; }
+.cell:hover { transform: translateY(-2px); border-color: rgba(34,197,94,.4); }
+.cell b { display: block; font-size: 0.68rem; color: #f8fafc; font-weight: 600; }
+.cell.win { background: rgba(34,197,94,.15); border: 1.5px solid #22C55E; }
+.cell.kill { background: rgba(148,163,184,.04); opacity: 0.5; }
 .cell .w-badge {
   position: absolute;
   top: -7px; right: -5px;
-  background: #1a1a1a;
-  color: #fff;
+  background: #22C55E;
+  color: #020617;
   font-size: 0.55rem;
   font-weight: 700;
   border-radius: 100px;
@@ -567,14 +606,15 @@ tbody tr:hover { background: #fafafa; }
 }
 .threshold-note {
   font-size: 0.78rem;
-  color: #888;
-  background: #fafafa;
-  border-radius: 8px;
+  color: #94a3b8;
+  background: rgba(15,23,42,.6);
+  border: 1px solid rgba(148,163,184,.15);
+  border-radius: 12px;
   padding: 14px 18px;
   margin-top: 18px;
   line-height: 1.8;
 }
-.threshold-note strong { color: #1a1a1a; }
+.threshold-note strong { color: #f8fafc; }
 
 /* ─── SETTINGS ─── */
 .setting-row {
@@ -583,39 +623,39 @@ tbody tr:hover { background: #fafafa; }
   justify-content: space-between;
   gap: 16px;
   padding: 14px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(148,163,184,.08);
   font-size: 0.88rem;
 }
 .setting-row:last-child { border-bottom: none; }
-.setting-name { color: #1a1a1a; font-weight: 500; }
-.setting-name small { display: block; color: #999; font-weight: 400; font-size: 0.76rem; margin-top: 2px; }
+.setting-name { color: #f8fafc; font-weight: 500; }
+.setting-name small { display: block; color: #64748b; font-weight: 400; font-size: 0.76rem; margin-top: 2px; }
 .key-input {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.8rem;
-  color: #555;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  color: #94a3b8;
+  border: 1px solid rgba(148,163,184,.2);
+  border-radius: 8px;
   padding: 9px 14px;
-  background: #fafafa;
+  background: rgba(2,6,23,.6);
   width: 280px;
   max-width: 100%;
 }
 
 /* ─── MISC ─── */
-.inline-note { font-size: 0.78rem; color: #aaa; margin-top: 14px; }
+.inline-note { font-size: 0.78rem; color: #64748b; margin-top: 14px; }
 .main-footer {
   margin-top: 72px;
   padding-top: 24px;
-  border-top: 1px solid #e0e0e0;
-  color: #ccc;
+  border-top: 1px solid rgba(148,163,184,.15);
+  color: #475569;
   font-size: 0.78rem;
   display: flex;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
 }
-.main-footer a { color: #999; text-decoration: none; border-bottom: 1px solid #e0e0e0; }
-.main-footer a:hover { color: #1a1a1a; border-color: #1a1a1a; }
+.main-footer a { color: #64748b; text-decoration: none; border-bottom: 1px solid rgba(148,163,184,.25); }
+.main-footer a:hover { color: #4ADE80; border-color: #4ADE80; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 960px) {
@@ -625,7 +665,7 @@ tbody tr:hover { background: #fafafa; }
     height: auto;
     position: static;
     border-right: none;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(148,163,184,.15);
     padding: 20px 20px 12px;
     gap: 14px;
   }
@@ -659,8 +699,12 @@ tbody tr:hover { background: #fafafa; }
   <!-- ─── SIDEBAR ─── -->
   <aside class="sidebar">
     <div class="brand">
+      <div class="logo-row">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></svg>
+        <span class="wordmark">Elevated <strong>AI</strong></span>
+      </div>
       <div class="brand-name">The <strong>Content Engine</strong></div>
-      <div class="brand-sub">Admin Console &middot; Elevated AI</div>
+      <div class="brand-sub">Admin Console</div>
     </div>
 
     <nav class="nav">
@@ -698,7 +742,7 @@ tbody tr:hover { background: #fafafa; }
     <section class="panel active" id="panel-dashboard">
       <div class="fade-in">
         <div class="panel-label">Overview</div>
-        <div class="panel-title">The engine is running.</div>
+        <div class="panel-title">The engine is <span class="accent">running</span>.</div>
         <p class="panel-sub">Today at a glance. 50 videos a day is the target. Everything below feeds it.</p>
       </div>
 
@@ -720,9 +764,9 @@ tbody tr:hover { background: #fafafa; }
             <div class="kpi-delta">2 pushed to ads</div>
           </div>
           <div class="kpi">
-            <div class="kpi-number">$23,952</div>
+            <div class="kpi-number">$7,317</div>
             <div class="kpi-label">MRR &middot; 13 active clients</div>
-            <div class="kpi-delta">+$3,994 this month</div>
+            <div class="kpi-delta">+$1,294 this month</div>
           </div>
         </div>
         <div class="kpi-row">
@@ -774,8 +818,8 @@ tbody tr:hover { background: #fafafa; }
               <tr><td>09:12</td><td>Reel rendered</td><td>logan-v2 &middot; 14.6s &middot; Path A &middot; "structurally impossible" hook</td><td><span class="chip chip-live">Done</span></td></tr>
               <tr><td>08:55</td><td>Approval granted</td><td>Client approved 12 posts via Hermes (Telegram)</td><td><span class="chip chip-live">Done</span></td></tr>
               <tr><td>08:30</td><td>Blog published</td><td>botmo &middot; "ai content repurposing tools" &middot; 1,840 words</td><td><span class="chip chip-live">Live</span></td></tr>
-              <tr><td>07:58</td><td>Variant killed</td><td>V-713 &middot; 19% hook hold at 48h &mdash; below 25% kill line</td><td><span class="chip chip-muted">Killed</span></td></tr>
-              <tr><td>07:02</td><td>New subscription</td><td>Engine + Influencer &middot; $1,997/mo + $1,500 setup paid</td><td><span class="chip chip-live">Paid</span></td></tr>
+              <tr><td>07:58</td><td>Variant killed</td><td>V-713 &middot; 19% hook hold at 48h, below the 25% kill line</td><td><span class="chip chip-muted">Killed</span></td></tr>
+              <tr><td>07:02</td><td>New subscription</td><td>Influencer &middot; $997/mo &middot; no setup fee &middot; 14-day guarantee window open</td><td><span class="chip chip-live">Paid</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -786,8 +830,8 @@ tbody tr:hover { background: #fafafa; }
     <section class="panel" id="panel-queue">
       <div class="fade-in">
         <div class="panel-label">Distribution</div>
-        <div class="panel-title">Everything scheduled, everything shipped.</div>
-        <p class="panel-sub">The approval workflow in one place. Approve here or reply to Hermes in Telegram &mdash; same queue.</p>
+        <div class="panel-title">Everything scheduled, everything <span class="accent">shipped</span>.</div>
+        <p class="panel-sub">The approval workflow in one place. Approve here or reply to Hermes in Telegram, same queue either way.</p>
       </div>
 
       <div class="fade-in d1">
@@ -812,7 +856,7 @@ tbody tr:hover { background: #fafafa; }
               <tr data-status="posted"><td><strong>"I was today years old" &middot; repurposing discovery</strong></td><td>Instagram Reels</td><td>14s reel</td><td>Jul 10, 8:00 AM</td><td><span class="chip chip-live">Posted</span></td><td></td></tr>
               <tr data-status="posted"><td><strong>Podcast clip &middot; pricing objection breakdown</strong></td><td>YouTube Shorts</td><td>41s clip</td><td>Jul 9, 6:00 PM</td><td><span class="chip chip-live">Posted</span></td><td></td></tr>
               <tr data-status="posted"><td><strong>Founder story &middot; "we fired our agency" Path A</strong></td><td>TikTok &middot; @elevated.logan</td><td>28s reel</td><td>Jul 9, 4:00 PM</td><td><span class="chip chip-live">Posted</span></td><td></td></tr>
-              <tr data-status="failed"><td><strong>B-roll heavy cut &middot; office walkthrough</strong></td><td>Instagram Reels</td><td>16s reel</td><td>Jul 9, 2:00 PM</td><td><span class="chip chip-muted">Failed &middot; retrying</span></td><td><button class="btn btn-ghost btn-sm">Retry now</button></td></tr>
+              <tr data-status="failed"><td><strong>B-roll heavy cut &middot; office walkthrough</strong></td><td>Instagram Reels</td><td>16s reel</td><td>Jul 9, 2:00 PM</td><td><span class="chip chip-fail">Failed &middot; retrying</span></td><td><button class="btn btn-ghost btn-sm">Retry now</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -824,8 +868,8 @@ tbody tr:hover { background: #fafafa; }
     <section class="panel" id="panel-studio">
       <div class="fade-in">
         <div class="panel-label">Production</div>
-        <div class="panel-title">Your influencer, on demand.</div>
-        <p class="panel-sub">Pick a clone, pick a format, pick a content path. The engine writes the script, reads it in their voice, and lip-syncs their footage. 30 reels a month on the Engine + Influencer tier.</p>
+        <div class="panel-title">Your influencer, on <span class="accent">demand</span>.</div>
+        <p class="panel-sub">Pick a clone, pick a format, pick a content path. The engine writes the script, reads it in their voice, and lip-syncs their footage. 30 reels a month on the Influencer tier.</p>
       </div>
 
       <div class="block fade-in d1">
@@ -842,7 +886,7 @@ tbody tr:hover { background: #fafafa; }
             <span class="chip chip-muted">Archived</span>
             <div class="clone-avatar">L1</div>
             <h3>Logan v1</h3>
-            <p>Talking-head only. Superseded by v2 &mdash; kept for A/B history.</p>
+            <p>Talking-head only. Superseded by v2, kept for A/B history.</p>
             <div class="clone-meta">Retired May 2026 &middot; 118 reels produced</div>
           </div>
           <div class="card clone-card" data-clone="Katreen v1">
@@ -860,11 +904,11 @@ tbody tr:hover { background: #fafafa; }
         <div class="picker-row" data-picker="format">
           <div class="pick selected" data-value="6.3s">
             <h4>6.3s Seamless Loop</h4>
-            <p>Frame-perfect loop, split-sentence open. Viewers rewatch 2&ndash;3x without noticing &mdash; watch time over 100%.</p>
+            <p>Frame-perfect loop, split-sentence open. Viewers rewatch 2&ndash;3x without noticing, pushing watch time over 100%.</p>
           </div>
           <div class="pick" data-value="14-16s">
             <h4>14&ndash;16s Reel</h4>
-            <p>The completion sweet spot. Hardest length to fail on completion rate &mdash; the biggest discovery signal.</p>
+            <p>The completion sweet spot. Hardest length to fail on completion rate: the biggest discovery signal.</p>
           </div>
           <div class="pick" data-value="30s">
             <h4>30s Demo</h4>
@@ -896,7 +940,7 @@ tbody tr:hover { background: #fafafa; }
         <div class="form-grid">
           <div class="field full">
             <label>Offer / topic</label>
-            <textarea>The Content Engine — 50+ posts a month from content you already have. $997/mo, setup $1,500.</textarea>
+            <textarea>The Content Engine: 50+ posts a month from content you already have. Influencer tier, $997/mo, no setup fees.</textarea>
           </div>
           <div class="field">
             <label>Hook formula</label>
@@ -936,7 +980,7 @@ tbody tr:hover { background: #fafafa; }
           <div class="script-meta">
             <strong>B-roll queries:</strong> "overwhelmed editor timeline scrubbing" &middot; "content calendar filling time-lapse" &middot; "phone feed scroll close-up"<br>
             <strong>Caption emphasis:</strong> "structurally impossible" &middot; "50" &middot; "zero filming days"<br>
-            <strong>Compliance:</strong> AI-generated label applied on TikTok and Meta. Clone scripted as demo/info &mdash; never a personal testimonial.
+            <strong>Compliance:</strong> AI-generated label applied on TikTok and Meta. Clone scripted as demo/info, never a personal testimonial.
           </div>
           <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap;">
             <button class="btn btn-sm">Send to render queue</button>
@@ -951,8 +995,8 @@ tbody tr:hover { background: #fafafa; }
     <section class="panel" id="panel-analyzer">
       <div class="fade-in">
         <div class="panel-label">Reverse Engineering</div>
-        <div class="panel-title">Drop in a reel that works. Get the recipe.</div>
-        <p class="panel-sub">The analyzer breaks a sample down to shots, voice, pacing, and captions &mdash; then turns it into a template the engine can reproduce with your clone and your offer.</p>
+        <div class="panel-title">Drop in a reel that works. Get the <span class="accent">recipe</span>.</div>
+        <p class="panel-sub">The analyzer breaks a sample down to shots, voice, pacing, and captions, then turns it into a template the engine can reproduce with your clone and your offer.</p>
       </div>
 
       <div class="fade-in d1">
@@ -985,7 +1029,7 @@ tbody tr:hover { background: #fafafa; }
                   <tr><td>2</td><td>1.4&ndash;3.8s</td><td>B-roll &middot; screen capture</td><td>Dashboard scroll, matches "the feed needs 50" beat</td></tr>
                   <tr><td>3</td><td>3.8&ndash;6.2s</td><td><strong>Talking head &middot; medium</strong></td><td>Value stack, hand gesture on each number</td></tr>
                   <tr><td>4</td><td>6.2&ndash;8.1s</td><td>B-roll &middot; product in hand</td><td>Phone held up, feed autoplay visible</td></tr>
-                  <tr><td>5</td><td>8.1&ndash;11.9s</td><td><strong>Talking head &middot; close</strong></td><td>Proof beat &mdash; specific numbers, pace rises</td></tr>
+                  <tr><td>5</td><td>8.1&ndash;11.9s</td><td><strong>Talking head &middot; close</strong></td><td>Proof beat: specific numbers, pace rises</td></tr>
                   <tr><td>6</td><td>11.9&ndash;14.2s</td><td>Talking head + end card</td><td>CTA spoken once, 0.4s end card, loops cleanly to frame 1</td></tr>
                 </tbody>
               </table>
@@ -999,16 +1043,16 @@ tbody tr:hover { background: #fafafa; }
               <div class="energy">
                 <i style="height:40%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:62%"></i><i style="height:50%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:72%"></i><i class="hot" style="height:84%"></i><i class="hot" style="height:92%"></i><i class="hot" style="height:100%"></i>
               </div>
-              <p style="font-size:0.72rem; color:#aaa;">Per-second vocal energy &middot; dark bars = CTA window</p>
+              <p style="font-size:0.72rem; color:#64748b;">Per-second vocal energy &middot; green bars = CTA window</p>
             </div>
             <div class="card">
               <h3>Caption Style</h3>
-              <p>Karaoke word-pop, 2&ndash;3 words per line, centered at 68% frame height. Numbers and pain words get <span style="background:#ffeb3b44; padding:1px 5px;">yellow emphasis</span>. Safe-zone clean on TikTok and Reels UI.</p>
+              <p>Karaoke word-pop, 2&ndash;3 words per line, centered at 68% frame height. Numbers and pain words get <span style="background:rgba(250,204,21,.25); padding:1px 5px; border-radius:3px;">yellow emphasis</span>. Safe-zone clean on TikTok and Reels UI.</p>
             </div>
           </div>
 
           <div class="threshold-note">
-            <strong>Verdict:</strong> Hook lands inside the 1.5s window. Cut cadence and B-roll ratio match top-decile UGC. Recommend cloning this pacing and caption style into Sprint 08 with 10 fresh hooks &mdash; keep everything else identical to isolate the variable.
+            <strong>Verdict:</strong> Hook lands inside the 1.5s window. Cut cadence and B-roll ratio match top-decile UGC. Recommend cloning this pacing and caption style into Sprint 08 with 10 fresh hooks; keep everything else identical to isolate the variable.
           </div>
           <div style="margin-top:20px;">
             <button class="btn">Use as template for Sprint 08</button>
@@ -1021,8 +1065,8 @@ tbody tr:hover { background: #fafafa; }
     <section class="panel" id="panel-matrix">
       <div class="fade-in">
         <div class="panel-label">The 100-Video Test</div>
-        <div class="panel-title">Sprint 07 &mdash; Hook isolation.</div>
-        <p class="panel-sub">100 variants, one variable. Same clone, same offer, same format &mdash; only the hook changes. Winners get scaled. Losers get killed at 48 hours. No opinions, just numbers.</p>
+        <div class="panel-title">Sprint 07: Hook <span class="accent">isolation</span>.</div>
+        <p class="panel-sub">100 variants, one variable. Same clone, same offer, same format, only the hook changes. Winners get scaled. Losers get killed at 48 hours. No opinions, just numbers.</p>
       </div>
 
       <div class="fade-in d1">
@@ -1036,7 +1080,7 @@ tbody tr:hover { background: #fafafa; }
         </div>
         <div class="matrix" id="matrix"></div>
         <div class="threshold-note">
-          <strong>Kill line:</strong> under 25% 3-sec hook hold at 48 hours. <strong>Winner line:</strong> 60%+ hold and top-decile CTR &mdash; auto-flagged, budget raised 20&ndash;30% every 3&ndash;4 days, then pushed to GIZMO for paid scaling. Creative refreshes every 10&ndash;14 days on TikTok, 14&ndash;21 on Meta.
+          <strong>Kill line:</strong> under 25% 3-sec hook hold at 48 hours. <strong>Winner line:</strong> 60%+ hold and top-decile CTR, auto-flagged, budget raised 20&ndash;30% every 3&ndash;4 days, then pushed to GIZMO for paid scaling. Creative refreshes every 10&ndash;14 days on TikTok, 14&ndash;21 on Meta.
         </div>
       </div>
 
@@ -1062,8 +1106,8 @@ tbody tr:hover { background: #fafafa; }
     <section class="panel" id="panel-seo">
       <div class="fade-in">
         <div class="panel-label">SEO Autopilot &middot; botmo.io</div>
-        <div class="panel-title">Organic traffic on autopilot &mdash; guaranteed.</div>
-        <p class="panel-sub">AI-written SEO blogs plus site SEO wiring. AI assistants start seeing and recommending your content. Included in every Content Engine tier; sold standalone at botmo.io.</p>
+        <div class="panel-title">Organic traffic on <span class="accent">autopilot</span>.</div>
+        <p class="panel-sub">AI-written SEO blogs plus site SEO wiring, built so AI assistants can find, crawl, and cite your content. Included in every Content Engine tier; sold standalone at botmo.io.</p>
       </div>
 
       <div class="block fade-in d1">
@@ -1113,8 +1157,8 @@ tbody tr:hover { background: #fafafa; }
     <section class="panel" id="panel-ads">
       <div class="fade-in">
         <div class="panel-label">Winners &rarr; Paid</div>
-        <div class="panel-title">Organic proves it. GIZMO scales it.</div>
-        <p class="panel-sub">Winning variants get pushed to The AI Ads Department automatically &mdash; ads-ready exports, hook data attached, whitelisting requested. You never pay to test an unproven creative.</p>
+        <div class="panel-title">Organic proves it. GIZMO <span class="accent">scales</span> it.</div>
+        <p class="panel-sub">Winning variants get pushed to The AI Ads Department automatically: ads-ready exports, hook data attached, whitelisting requested. You never pay to test an unproven creative.</p>
       </div>
 
       <div class="block fade-in d1">
@@ -1143,8 +1187,8 @@ tbody tr:hover { background: #fafafa; }
           </div>
           <div class="card">
             <h3>The AI Ads Department</h3>
-            <p>A full CMO, chief of staff, and creative department &mdash; codename GIZMO. It feeds on this engine's output: 50 videos a day in, winning ads out.</p>
-            <p style="margin-top:12px;"><a href="../../ads-system/index.html" style="color:#1a1a1a; font-weight:600; text-decoration:none; border-bottom:1px solid #1a1a1a;">Open The AI Ads Department &rarr;</a></p>
+            <p>A full CMO, chief of staff, and creative department, codename GIZMO. It feeds on this engine's output: 50 videos a day in, winning ads out.</p>
+            <p style="margin-top:12px;"><a href="../../ads-system/index.html" style="color:#4ADE80; font-weight:600; text-decoration:none; border-bottom:1px solid #4ADE80;">Open The AI Ads Department &rarr;</a></p>
           </div>
         </div>
       </div>
@@ -1174,8 +1218,8 @@ tbody tr:hover { background: #fafafa; }
             <span class="chip chip-live">Receiving &middot; last event 2m ago</span>
           </div>
           <div class="setting-row">
-            <div class="setting-name">Products synced<small>3 tiers + setup fee + DFY upsell + ads SKUs</small></div>
-            <span class="chip">9 prices</span>
+            <div class="setting-name">Products synced<small>Starter $49 / Creator $297 / Influencer $997 + DFY upsell + ads SKUs &middot; no setup fees</small></div>
+            <span class="chip">8 prices</span>
           </div>
         </div>
       </div>
@@ -1205,7 +1249,7 @@ tbody tr:hover { background: #fafafa; }
           <button class="btn btn-ghost btn-sm" disabled>Rotate keys</button>
           <button class="btn btn-ghost btn-sm" disabled>Download audit log</button>
         </div>
-        <p class="inline-note">Actions disabled in demo mode. Full spec: <a href="../docs/backend-architecture.md" style="color:#999;">docs/backend-architecture.md</a></p>
+        <p class="inline-note">Actions disabled in demo mode. Full spec: <a href="../docs/backend-architecture.md" style="color:#64748b;">docs/backend-architecture.md</a></p>
       </div>
     </section>
 

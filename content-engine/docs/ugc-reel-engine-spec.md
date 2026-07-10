@@ -1,7 +1,7 @@
 # UGC Reel Engine — Engineering & Creative Spec
 
 **Module:** UGC / AI Influencer Studio
-**Product:** The Content Engine by Elevated AI — Tier 2 "Engine + Influencer" ($1,997/mo) and Tier 3 "Full Stack" ($2,997/mo)
+**Product:** The Content Engine by Elevated AI — Creator tier ($297/mo, stock-avatar reels) and Influencer tier ($997/mo, custom clone + 100-video testing matrix)
 **Status:** Build spec v1.0 — July 2026
 **Reads first:** [`open-source-video-stack.md`](../../docs/research/open-source-video-stack.md) · [`short-form-best-practices-2026.md`](../../docs/research/short-form-best-practices-2026.md)
 **Related:** [`backend-architecture.md`](backend-architecture.md) · [`vsl-script.md`](vsl-script.md) · The AI Ads Department ([`../../ads-system/index.html`](../../ads-system/index.html))
@@ -10,9 +10,9 @@
 
 ## 0. What this module is
 
-The machine behind the Tier 2 promise: **30 talking-head and full-body reels per month**, in the client's own cloned presenter, in the 6.3s loop and 14–16s viral formats, with B-roll injected automatically and full scripts generated per beat. At Tier 3 it also runs the **100-video testing matrix**, the **sample-reel analyzer**, and hands winners to GIZMO (The AI Ads Department) as ads-ready creative.
+The machine behind the Creator and Influencer promise: **30 talking-head and full-body reels per month** — stock AI avatars on Creator, the client's own cloned presenter on Influencer — in the 6.3s loop and 14–16s viral formats, with B-roll injected automatically and full scripts generated per beat. On Influencer it also runs the **100-video testing matrix**, the **sample-reel analyzer**, and hands winners to GIZMO (The AI Ads Department) as ads-ready creative.
 
-Design philosophy, straight from the stack research: **open source for orchestration, analysis, assembly, captions, and export. Paid APIs only at the two quality cliffs — voice and face.** Everything deterministic runs at near-zero marginal cost, which is what makes 30 reels/mo at $1,997 carry 70%+ gross margin.
+Design philosophy, straight from the stack research: **open source for orchestration, analysis, assembly, captions, and export. Paid APIs only at the two quality cliffs — voice and face.** Everything deterministic runs at near-zero marginal cost, which is what makes 30 reels/mo at $997 carry 70%+ gross margin on the self-host lanes.
 
 ---
 
@@ -28,7 +28,7 @@ One engine, three seller types. Each maps to a default mix of the three content 
 
 Why all three lanes run at once: Paths A and C carry direct-response weight; Path B compounds trust and lowers blended CAC. Each lane gets its own hook matrix in testing. This is the portfolio model codified in the best-practices research (§4).
 
-**Output contract per client per month (Tier 2):** 30 finished reels = roughly 12 × Path A, 10 × Path C, 8 × Path B, spread across the client's warmed accounts and platforms. Tier 3 clients additionally get a 100-variant testing cycle per angle (Section 6).
+**Output contract per client per month (Influencer):** 30 finished reels = roughly 12 × Path A, 10 × Path C, 8 × Path B, spread across the client's warmed accounts and platforms. Influencer clients additionally get a 100-variant testing cycle per angle (Section 6).
 
 ---
 
@@ -273,11 +273,11 @@ beat_sheet.json
 
 **QA gates (automatic):** hook overlay present in frame 1 · loop seam frame/audio diff pass (6.3s only) · caption/word alignment drift <80ms · disclosure layer present on promotional posts · avatar-testimonial lint pass · duration within format tolerance (±0.2s).
 
-**Throughput math:** the two GPU stages (face, upscale) budget ~3–6 min/reel on a 24GB card; everything else is CPU-cheap. One GPU box sustains 100+ reels/week — the Tier 3 testing matrix and the "50 videos/day" feed that The AI Ads Department (GIZMO) consumes.
+**Throughput math:** the two GPU stages (face, upscale) budget ~3–6 min/reel on a 24GB card; everything else is CPU-cheap. One GPU box sustains 100+ reels/week — the Influencer testing matrix and the "50 videos/day" feed that The AI Ads Department (GIZMO) consumes.
 
 ---
 
-## 5. Sample Reel Analyzer (Tier 3)
+## 5. Sample Reel Analyzer (Influencer)
 
 Client (or we) drops in any reel that's working — a competitor's, a viral reference, their own past winner — and the engine reverse-engineers it into a reusable spec, then regenerates "our version" with the client's clone and product.
 
@@ -322,7 +322,7 @@ sample_reel.mp4
 
 ---
 
-## 6. Testing Matrix (Tier 3 — the 100-video engine)
+## 6. Testing Matrix (Influencer — the 100-video engine)
 
 The 2026 operating model from the research: **cheap validation first, paid budget after data confirms.** AI-UGC organic posting is the validation layer; Spark Ads / whitelisting is the scaling layer.
 
@@ -392,11 +392,11 @@ Adjacent channels the same pipeline can serve. Each carries an explicit policy-r
 
 ## 8. Hermes — the agent that runs the engine
 
-Hermes is the Tier 3 automation agent. It lives on a VPS (not the GPU box), owns the operational loop, and is controlled from Telegram.
+Hermes is the Influencer-tier automation agent. It lives on a VPS (not the GPU box), owns the operational loop, and is controlled from Telegram.
 
 **Jobs:**
 
-1. **Queue management** — feeds the assembly pipeline: pulls approved beat sheets, orders jobs by client SLA (Tier 2 monthly quotas first, then matrix sprints), retries failed stages, escalates hard failures.
+1. **Queue management** — feeds the assembly pipeline: pulls approved beat sheets, orders jobs by client SLA (monthly reel quotas first, then matrix sprints), retries failed stages, escalates hard failures.
 2. **Approval workflow** — pushes finished reels to the client approval surface (the Content Engine admin dashboard, [`../admin/index.html`](../admin/index.html)); nothing posts without an approval record. Auto-approve rules per client are opt-in and logged.
 3. **Posting** — schedules approved reels across the warmed account bench per the cadence caps; enforces warm-up curves for new accounts; applies per-platform AI labels and disclosure text on every promotional post; staggers posting windows per account identity.
 4. **Metric pulls** — platform APIs + Obscura scraping cron every 6h; writes to the metrics store; evaluates the §6.3 decision table; kills, flags, and packages winners automatically.
@@ -409,20 +409,20 @@ Hermes is the Tier 3 automation agent. It lives on a VPS (not the GPU box), owns
 
 ## 9. Build phases & effort estimates
 
-Estimates are focused dev-days for one experienced builder with the research already done (it is). Phases 1–3 = Tier 2 shippable. Phases 4–5 = Tier 3.
+Estimates are focused dev-days for one experienced builder with the research already done (it is). Phases 1–3 = reel engine shippable (Creator/Influencer). Phases 4–5 = full Influencer stack.
 
 | Phase | Scope | Effort | Exit criteria |
 |---|---|---|---|
 | **0 — Clone foundation** | Capture kit doc + consent gate; Logan capture session; Chatterbox voice clone; LatentSync base-footage pipeline on the GPU box; one hand-assembled reel | 4–5 days | Logan clone passes the "2-second test" internally on one 14–16s reel |
 | **1 — Script engine** | Three path prompts, hook libraries, beat-sheet JSON schema, format linter, compliance linter (testimonial/disclosure/banned-words) | 4 days | 20 beat sheets generated, 100% linter-clean, human spot-check ≥80% usable |
 | **2 — Assembly MVP** | Voice → face → captions (.ass lane) → compose (FFmpeg filtergraph) → export + QA gates; 14–16s format only | 6–8 days | Beat sheet → finished reel with zero manual steps; 10 reels batch-run clean |
-| **3 — B-roll + loops + variants** | Pexels/Pixabay pull + open_clip re-rank + client asset library; 6.3s loop lane with seam QA; per-platform variant mutations; Remotion branded-template lane | 6–8 days | Loop seam auto-QA passing; 30-reel monthly batch for first client delivered. **← Tier 2 live** |
-| **4 — Testing matrix + Hermes** | Variant matrix generator; account-bench management + warm-up scheduler; posting + metric pulls (API + Obscura cron); KPI decision table; Telegram surface; GIZMO winner-packet handoff | 10–12 days | One full 100-variant cycle run end-to-end; winners packaged and accepted by the ads system. **← Tier 3 live** |
+| **3 — B-roll + loops + variants** | Pexels/Pixabay pull + open_clip re-rank + client asset library; 6.3s loop lane with seam QA; per-platform variant mutations; Remotion branded-template lane | 6–8 days | Loop seam auto-QA passing; 30-reel monthly batch for first client delivered. **← Reel engine live** |
+| **4 — Testing matrix + Hermes** | Variant matrix generator; account-bench management + warm-up scheduler; posting + metric pulls (API + Obscura cron); KPI decision table; Telegram surface; GIZMO winner-packet handoff | 10–12 days | One full 100-variant cycle run end-to-end; winners packaged and accepted by the ads system. **← Influencer stack live** |
 | **5 — Sample Reel Analyzer** | Analyzer pipeline (PySceneDetect/whisperX/pyannote/emotion2vec/VLM/open_clip), Higgsfield hosted lane, `reel_spec.json` → regeneration path | 6–8 days | Any pasted reel → our-version reel in under 30 min of compute |
 | **6 — Expansion modules** | 7a/7c pipelines only if sold; 7b off the menu by default | scoped per deal | Signed risk acknowledgment on file before build |
 
-**Total to Tier 2:** ~20–25 dev-days. **Total to Tier 3:** ~36–45 dev-days.
+**Total to reel engine:** ~20–25 dev-days. **Total to full Influencer stack:** ~36–45 dev-days.
 
-**Running costs per client (Tier 2, 30 reels/mo):** GPU amortization + stock APIs + storage ≈ $60–120/mo on the self-host lanes; +$100–300/mo if the client's ad spend justifies the ElevenLabs/HeyGen paid lanes. Against $1,997/mo, margin holds above 70% either way — which is the whole point of paying the open-source tax up front.
+**Running costs per client (Influencer, 30 reels/mo):** GPU amortization + stock APIs + storage ≈ $60–120/mo on the self-host lanes; +$100–300/mo if the client's ad spend justifies the ElevenLabs/HeyGen paid lanes. Against $997/mo, margin holds above 85% on the self-host lanes and above 55% even with the paid lanes on — which is the whole point of paying the open-source tax up front.
 
 **Licensing watchlist (re-check before each client launch):** Remotion company license once the team passes 3 people; OpenMontage is AGPL — steal its patterns, never resell it hosted; MuseTalk and IndexTTS-2 weight licenses read-before-shipping-ads; Wav2Lip / F5-TTS / Fish Speech weights stay excluded; Pexels/Pixabay ToS fine for commercial use, no raw-clip redistribution.
