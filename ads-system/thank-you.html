@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="description" content="Install confirmed. Here's your 30-day build schedule, the access checklist we need from you today, and where to book your kickoff call.">
+<title>Install Confirmed — The AI Ads Department</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 19px;
+  line-height: 2.0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  line-height: 1.5;
+  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+.btn-ghost {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+.btn-ghost:hover {
+  opacity: 1;
+  border-color: #bbb;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px;
+}
+.hero .brand-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.hero .subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 12px;
+}
+.hero .sub-desc {
+  font-size: 1rem;
+  color: #888;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 32px;
+}
+section .container {
+  width: 100%;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+/* ─── STAT BLOCK ─── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 48px 0 0;
+}
+.stat-item {
+  text-align: center;
+  padding: 32px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.stat-item:hover {
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+.stat-number {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ─── COPY BLOCKS ─── */
+.copy-block {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.copy-block p {
+  color: #555;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+.copy-block p strong { color: #1a1a1a; }
+
+/* ─── TIMELINE ─── */
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: #e0e0e0;
+}
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -33px; top: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e0e0e0;
+}
+.timeline-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1a1a1a;
+}
+.timeline-desc {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.timeline-desc a {
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 1px;
+}
+.timeline-desc a:hover { opacity: 0.6; }
+
+/* ─── GUARANTEE CHIP ─── */
+.guarantee-chip {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* ─── CHECKLIST CARDS ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+.card p {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.card a {
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 1px;
+}
+.card a:hover { opacity: 0.6; }
+.card ul {
+  list-style: none;
+  margin-top: 10px;
+}
+.card li {
+  color: #666;
+  font-size: 0.92rem;
+  padding: 4px 0 4px 22px;
+  position: relative;
+  line-height: 1.6;
+}
+.card li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ─── CALENDAR EMBED PLACEHOLDER ─── */
+.embed-placeholder {
+  max-width: 640px;
+  margin: 0 auto;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  padding: 96px 32px;
+  text-align: center;
+  color: #999;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.embed-placeholder strong {
+  display: block;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+footer a {
+  color: #999;
+  text-decoration: none;
+}
+footer a:hover { color: #1a1a1a; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
+  .stat-row { grid-template-columns: 1fr; gap: 16px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .embed-placeholder { padding: 64px 24px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-in">
+      <div class="brand-label">Elevated AI &middot; The AI Ads Department</div>
+      <h1>Install Confirmed.</h1>
+    </div>
+    <div class="fade-in d1">
+      <p class="subtitle">Your department build starts now. Live in 30 days.</p>
+    </div>
+    <div class="fade-in d2">
+      <p class="sub-desc">A receipt and your onboarding form are on the way to your inbox. Below: the build schedule week by week, the access we need from you today, and where to book your kickoff call.</p>
+    </div>
+
+    <div class="stat-row fade-in d3">
+      <div class="stat-item">
+        <div class="stat-number">20 min</div>
+        <div class="stat-label">Access checklist &mdash; today</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Week 3</div>
+        <div class="stat-label">First campaigns live</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Day 30</div>
+        <div class="stat-label">Department handed over &mdash; yours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE BUILD SCHEDULE -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Build</div>
+      <div class="section-title">From Checkout to Live Campaigns</div>
+      <div class="section-subtitle">No mystery, no waiting around. A senior operator leads your install &mdash; here's what each of the four weeks does.</div>
+    </div>
+
+    <div class="timeline fade-in d1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 1</div>
+        <div class="timeline-title">Access &amp; Audit</div>
+        <div class="timeline-desc">You complete the access checklist &mdash; ad accounts, brand assets, offer docs. We run the full account, funnel, and offer audit, set your baseline CPA in writing, and open your private Slack channel. Your guarantee clock is anchored to that baseline document.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 2</div>
+        <div class="timeline-title">Your Private Deployment</div>
+        <div class="timeline-desc">Your installation stands up on its own Tailscale-isolated network &mdash; your ad accounts, customer data, and API keys never touch a shared system. Tracking architecture gets built in your accounts. GIZMO trains on your brand and numbers, and the Content Engine feed is wired in. If you added the Full Stack bundle, your clone build starts here.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 3</div>
+        <div class="timeline-title">First Campaigns Live</div>
+        <div class="timeline-desc">Campaigns launch at controlled budgets. The first 100-variant testing matrix starts filling. Daily numbers land in your Slack the same day &mdash; spend, CPA, hook rates, what got killed and why. Losers die at 48 hours.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 4</div>
+        <div class="timeline-title">Handover &amp; Scale</div>
+        <div class="timeline-desc">Winners get budgets raised 20&ndash;30% every 3&ndash;4 days. SOPs, documentation, and team training are delivered &mdash; the department is installed and it's yours. Operations mode begins at $1,997/mo, billed only once campaigns are live.</div>
+      </div>
+    </div>
+
+    <div class="fade-in d2" style="text-align: center; margin-top: 48px;">
+      <div class="guarantee-chip">The guarantee stands: beat your written baseline within 90 days of operations &mdash; or the $19,997 install fee is credited back against operations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE NEED FROM YOU -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">What We Need From You</div>
+      <div class="section-title">Four Things. About 20 Minutes.</div>
+      <div class="section-subtitle">This is the only part of the build that can slow us down. Nothing here needs a designer or a developer &mdash; if you can invite a user and forward a folder, you're done today.</div>
+    </div>
+
+    <div class="cards-grid fade-in d1">
+      <div class="card">
+        <h3>1. Ad Account Access</h3>
+        <p>Admin invites to the accounts we'll run:</p>
+        <ul>
+          <li>Meta Business Manager</li>
+          <li>TikTok Ads Manager</li>
+          <li>Google Ads / YouTube</li>
+          <li>Pixel, analytics &amp; CRM access</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>2. Brand Assets</h3>
+        <p>One folder is fine:</p>
+        <ul>
+          <li>Logo, fonts, colors</li>
+          <li>Banned claims &amp; compliance rules</li>
+          <li>Past creative that worked</li>
+          <li>Anything that's ever embarrassed the brand</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>3. Offer Docs</h3>
+        <p>What we're selling and how:</p>
+        <ul>
+          <li>Pricing, guarantee, funnel URLs</li>
+          <li>Sales pages &amp; VSLs, if any</li>
+          <li>Top 5 objections you hear</li>
+          <li>Any case data or pilot results</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>4. One Decision-Maker</h3>
+        <p>A single person who can say yes:</p>
+        <ul>
+          <li>Joins the private Slack channel</li>
+          <li>Approves creative from their phone</li>
+          <li>~4 minutes a day, no meetings</li>
+          <li>Prefer Telegram? Say so at kickoff</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copy-block fade-in d2" style="margin-top: 48px;">
+      <p style="text-align: center;">The onboarding form in your inbox walks through every item. <strong>Do it today &mdash; your Week 1 audit starts the moment access lands.</strong></p>
+      <!-- PLACEHOLDER: replace # with live access checklist / onboarding form URL -->
+      <p style="text-align: center;"><a class="btn btn-ghost" href="#">Open the Access Checklist</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK YOUR KICKOFF CALL -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">One More Thing</div>
+      <div class="section-title">Book Your Kickoff Call</div>
+      <div class="section-subtitle">Thirty minutes with the senior operator leading your install. We confirm access, walk your offer and numbers, lock your baseline CPA, and set your Week 3 launch date. Bring nothing; we drive.</div>
+    </div>
+
+    <div class="fade-in d1">
+      <!-- PLACEHOLDER: replace this block with your live scheduler embed (Cal.com / Calendly / SavvyCal) -->
+      <div class="embed-placeholder">
+        <strong>[ Calendar embed goes here ]</strong>
+        30-minute install kickoff &middot; replace this block with your scheduling embed code
+      </div>
+    </div>
+
+    <div class="fade-in d2" style="text-align: center; margin-top: 32px;">
+      <!-- PLACEHOLDER: replace with live kickoff scheduling URL -->
+      <a class="btn" href="https://cal.com/REPLACE_ELEVATED_AI/kickoff-call">Book My Kickoff Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Questions</div>
+      <div class="section-title">A Human Reads Everything</div>
+      <div class="section-subtitle">Something unclear? Something broken? Don't sit on it &mdash; your launch date depends on fast answers, and we answer fast.</div>
+    </div>
+
+    <div class="cards-grid fade-in d1">
+      <div class="card">
+        <h3>Email Support</h3>
+        <!-- PLACEHOLDER: replace with live support address before launch -->
+        <p>Write to <a href="mailto:support@elevatedaisolutions.com">support@elevatedaisolutions.com</a>. Replies within one business day &mdash; usually much faster during your install month.</p>
+      </div>
+      <div class="card">
+        <h3>Your Slack Channel</h3>
+        <p>From Week 1, your reports, questions, and approvals live in a private channel with your install team. Once you're in, that's the fastest line &mdash; ask GIZMO's operators anything, any day.</p>
+      </div>
+    </div>
+
+    <div class="copy-block fade-in d2" style="margin-top: 48px;">
+      <p style="text-align: center;"><strong>That's it. Checklist today, kickoff this week, campaigns live in Week 3.</strong></p>
+      <p style="text-align: center;">Welcome to the department.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>The AI Ads Department &middot; Elevated AI &middot; &copy; 2026</p>
+    <p><a href="index.html">Back to overview</a> &middot; <a href="vsl.html">Rewatch the VSL</a> &middot; <a href="../content-engine/index.html">Explore The Content Engine &rarr;</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 1500);
+});
+</script>
+
+</body>
+</html>

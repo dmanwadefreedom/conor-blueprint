@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The AI Ads Department by Elevated AI — a full AI marketing department: AI CMO, chief of staff, and creative team in one installed system. Replaces $156k/yr of agency and creative payroll for ~$44k in year one. $19,997 install + $1,997/mo.">
+<meta name="keywords" content="AI marketing department, AI CMO, replace marketing agency with AI, AI ads department, AI media buying, AI creative department, white label AI ads, AI advertising system, marketing agency alternative">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Elevated AI">
+<meta property="og:title" content="The AI Ads Department — Replace Your Marketing Agency With an AI CMO">
+<meta property="og:description" content="A $156,000-a-year marketing department, installed for ~$44k in year one. AI CMO, chief of staff, and creative team — fed 50 videos a day by The Content Engine. You own the system.">
+<title>The AI Ads Department — Replace Your Marketing Agency With an AI CMO | Elevated AI</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 19px;
+  line-height: 2.0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  line-height: 1.5;
+  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+.btn-ghost {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+.btn-ghost:hover {
+  opacity: 1;
+  border-color: #bbb;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 0.9rem;
+  margin-top: 24px;
+}
+.btn-block + .btn-block { margin-top: 10px; }
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px;
+}
+.hero .brand-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.hero .subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 12px;
+}
+.hero .sub-desc {
+  font-size: 1rem;
+  color: #888;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 32px;
+}
+section .container {
+  width: 100%;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+/* ─── STAT BLOCK ─── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+.stat-item {
+  text-align: center;
+  padding: 32px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.stat-item:hover {
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+.stat-number {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ─── COPY BLOCKS ─── */
+.copy-block {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.copy-block p {
+  color: #555;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+.copy-block p strong { color: #1a1a1a; }
+
+/* ─── CARDS GRID ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 48px;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+.card p {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ─── PULL QUOTE ─── */
+.pull-quote {
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.8;
+}
+.pull-quote .highlight {
+  background: #ffeb3b44;
+  padding: 2px 6px;
+}
+
+/* ─── FLOW ─── */
+.journey-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+.journey-step {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 14px 22px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: center;
+  color: #1a1a1a;
+}
+.journey-arrow {
+  color: #ccc;
+  font-size: 1.2rem;
+}
+.big-stat {
+  text-align: center;
+  margin: 48px 0;
+}
+.big-stat-number {
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1;
+}
+.big-stat-label {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 12px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── MODULE CARDS ─── */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.module-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 36px 32px;
+  transition: transform 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.module-card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.module-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.module-card h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.module-card ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.module-card li {
+  color: #555;
+  font-size: 0.92rem;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.7;
+}
+.module-card li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 13px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.module-result {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: auto;
+}
+.module-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 1px;
+  transition: opacity 0.3s;
+  align-self: flex-start;
+}
+.module-link:hover { opacity: 0.6; }
+
+/* ─── SOLUTION / FEATURE BLOCKS ─── */
+.solution-block {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 40px 36px;
+  margin-bottom: 24px;
+  transition: border-color 0.3s;
+}
+.solution-block:hover {
+  border-color: #bbb;
+}
+.solution-part-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.solution-block h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.solution-block ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.solution-block li {
+  color: #555;
+  font-size: 0.95rem;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.7;
+}
+.solution-block li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 14px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.solution-result {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* ─── COMPARISON TABLE ─── */
+.compare-wrap {
+  overflow-x: auto;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+.compare {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.compare th, .compare td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  line-height: 1.6;
+  vertical-align: top;
+}
+.compare tr:last-child th, .compare tr:last-child td { border-bottom: none; }
+.compare thead th {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #999;
+  border-bottom: 1px solid #e0e0e0;
+}
+.compare tbody th {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.compare td { color: #555; }
+.compare .col-us {
+  background: #ffeb3b22;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+.compare thead .col-us {
+  color: #1a1a1a;
+}
+.compare-fine {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.82rem;
+}
+
+/* ─── TIMELINE ─── */
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: #e0e0e0;
+}
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -33px; top: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e0e0e0;
+}
+.timeline-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1a1a1a;
+}
+.timeline-desc {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ─── FOR / NOT FOR ─── */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.ba-col {
+  padding: 36px 32px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+.ba-col h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #999;
+}
+.ba-col ul { list-style: none; }
+.ba-col li {
+  color: #555;
+  font-size: 0.95rem;
+  padding: 8px 0 8px 24px;
+  position: relative;
+  line-height: 1.6;
+}
+.ba-before li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: #ccc;
+  font-weight: 500;
+}
+.ba-after li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* ─── PRICING ─── */
+.pricing-note {
+  text-align: center;
+  padding: 20px 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+  color: #555;
+}
+.pricing-note strong {
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.pricing-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 36px 28px 32px;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.pricing-card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.pricing-card.recommended {
+  border: 2px solid #1a1a1a;
+}
+.pricing-badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.pricing-tier {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+.pricing-price {
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+.pricing-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #999;
+}
+.pricing-desc {
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.6;
+}
+.pricing-features {
+  list-style: none;
+  margin: 20px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  flex-grow: 1;
+}
+.pricing-features li {
+  font-size: 0.85rem;
+  color: #555;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.6;
+}
+.pricing-features li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.pricing-fine {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.82rem;
+}
+
+/* ─── BUNDLE STRIP ─── */
+.bundle-strip {
+  margin-top: 32px;
+  margin-bottom: 24px;
+  padding: 32px 36px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  transition: border-color 0.3s;
+}
+.bundle-strip:hover { border-color: #bbb; }
+.bundle-strip .bundle-copy { flex: 1; min-width: 260px; }
+.bundle-strip .bundle-kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+.bundle-strip h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+.bundle-strip p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.7;
+}
+.bundle-strip .bundle-save {
+  background: #ffeb3b22;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.bundle-strip .btn { flex-shrink: 0; }
+
+/* ─── ROI BOX ─── */
+.roi-box {
+  margin-top: 80px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 48px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+}
+.roi-kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #999;
+  margin-bottom: 16px;
+}
+.roi-box h3 {
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+.roi-box p {
+  font-size: 18px;
+  line-height: 2.0;
+  color: #444;
+  margin-bottom: 24px;
+}
+.roi-inset {
+  padding: 32px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.roi-inset .roi-big {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.roi-inset .roi-small {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+.roi-close {
+  font-size: 16px !important;
+  color: #666 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ─── FAQ ─── */
+.faq-list {
+  margin-top: 40px;
+}
+.faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: border-color 0.3s;
+}
+.faq-item:hover { border-color: #bbb; }
+.faq-item summary {
+  padding: 20px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.6;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #999;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.faq-item[open] summary::after { content: '\2212'; }
+.faq-a {
+  padding: 0 24px 24px;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.faq-a p { margin-bottom: 12px; }
+.faq-a p:last-child { margin-bottom: 0; }
+
+/* ─── NEXT STEPS ─── */
+.next-steps {
+  text-align: center;
+}
+.next-steps .steps-list {
+  list-style: none;
+  margin: 40px 0;
+}
+.next-steps .steps-list li {
+  font-size: 1rem;
+  color: #555;
+  padding: 8px 0;
+  line-height: 1.8;
+}
+.next-steps .steps-list li span {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+.next-steps .ready {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+footer a {
+  color: #999;
+  text-decoration: none;
+}
+footer a:hover { color: #1a1a1a; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
+  .stat-row { grid-template-columns: 1fr; gap: 16px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .module-grid { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; gap: 16px; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+  .journey-arrow { display: none; }
+  .journey-flow { flex-direction: column; gap: 10px; }
+  .journey-step { width: 100%; }
+  .solution-block { padding: 28px 24px; }
+  .module-card { padding: 28px 24px; }
+  .roi-box { padding: 36px 24px; }
+  .bundle-strip { padding: 28px 24px; }
+  .bundle-strip .btn { width: 100%; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 2rem; }
+  .pull-quote { font-size: 1.05rem; }
+  .big-stat-number { font-size: 3.5rem; }
+  .hero-cta .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-in">
+      <div class="brand-label">Elevated AI &middot; Agent Codename: GIZMO</div>
+      <h1>The AI Ads Department</h1>
+    </div>
+    <div class="fade-in d1">
+      <p class="subtitle">A $156,000-a-year marketing department. Installed for about $44k in year one.</p>
+    </div>
+    <div class="fade-in d2">
+      <p class="sub-desc">AI CMO. Chief of staff. Full creative department. One system, installed in 30 days &mdash; and you own it.</p>
+    </div>
+    <div class="fade-in d3">
+      <div class="hero-cta">
+        <a href="vsl.html" class="btn">Watch the VSL</a>
+        <a href="https://cal.com/REPLACE_ELEVATED_AI/install-call" class="btn btn-ghost">Book the Install Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Problem</div>
+      <h2 class="section-title">You're Renting a Marketing Department You'll Never Own</h2>
+    </div>
+
+    <div class="stat-row fade-in d1">
+      <div class="stat-item">
+        <div class="stat-number">$5k/mo</div>
+        <div class="stat-label">The agency retainer &mdash; creative billed extra</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">$8k/mo</div>
+        <div class="stat-label">The in-house creative team behind it</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">$156k/yr</div>
+        <div class="stat-label">What that stack really costs you</div>
+      </div>
+    </div>
+
+    <div class="copy-block fade-in d2">
+      <p>Add it up. The "$5k/mo" agency quote never includes creative &mdash; that's another $500&ndash;$3,000 a month, plus tool fees passed through on the invoice. Then you hire creative help anyway, because the agency ships 15&ndash;20 assets a month and the algorithm eats creative for breakfast.</p>
+
+      <p>So you end up paying twice. Agency plus creative team: <strong>$13,000 a month. $156,000 a year.</strong></p>
+
+      <p>And here's the part that should bother you most: cancel the retainer and you walk away with nothing. No system. No tracking architecture. No creative engine. <strong>You rented a department for years and own zero of it.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- THE RENTED DEPARTMENT -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Rented Department</div>
+      <h2 class="section-title">Four Ways the Old Model Bleeds You</h2>
+    </div>
+
+    <div class="cards-grid fade-in d1">
+      <div class="card">
+        <h3>The Retainer Treadmill</h3>
+        <p>Same invoice every month whether the account grows or not. The all-in bill lands at $67k&ndash;$100k a year once creative and tool fees hit &mdash; before a dollar of ad spend.</p>
+      </div>
+      <div class="card">
+        <h3>Creative at Human Speed</h3>
+        <p>Winners come from testing 100+ variants per angle. Your agency ships 15&ndash;20 assets a month. You're not testing. You're guessing slowly and paying for it.</p>
+      </div>
+      <div class="card">
+        <h3>Zero Ownership</h3>
+        <p>The pixel setup, the naming conventions, the learnings, the creative library &mdash; it all lives in their accounts. Leave, and you start from scratch. That's the point. It keeps you paying.</p>
+      </div>
+      <div class="card">
+        <h3>Reporting Theater</h3>
+        <p>A monthly PDF, three weeks after the money was spent. By the time you see a losing campaign, it's already burned five figures. Decisions need to happen daily, not quarterly.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote fade-in d2">
+      <span class="highlight">"Stop renting a marketing department. Install one you own."</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT GIZMO DOES -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Department</div>
+      <h2 class="section-title">What GIZMO Actually Does All Day</h2>
+      <div class="section-subtitle">GIZMO is the agent that runs your ads operation: CMO brain, chief-of-staff execution, and a creative department fed 50 videos a day by The Content Engine.</div>
+    </div>
+
+    <div class="journey-flow fade-in d1">
+      <div class="journey-step">Content Engine ships 50 videos/day</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">GIZMO briefs &amp; builds campaigns</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">Budget flows to winners daily</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">Numbers land in your Slack</div>
+    </div>
+
+    <div class="solution-block fade-in d1">
+      <div class="solution-part-label">Part 1 &middot; The CMO</div>
+      <h3>Media Buying Strategy, Decided by Data</h3>
+      <ul>
+        <li>Audits your offer, funnel, and account history before a dollar moves</li>
+        <li>Picks angles and audiences per platform &mdash; Meta, TikTok, YouTube</li>
+        <li>Sets the testing plan: sprints of 10&ndash;20 variants, one variable at a time</li>
+        <li>Kills losers at 48 hours. Raises winner budgets 20&ndash;30% every 3&ndash;4 days</li>
+      </ul>
+      <div class="solution-result">Result: Strategy decisions made daily, not at the monthly check-in</div>
+    </div>
+
+    <div class="solution-block fade-in d2">
+      <div class="solution-part-label">Part 2 &middot; The Creative Department</div>
+      <h3>Briefs In, Ad-Ready Creative Out</h3>
+      <ul>
+        <li>Writes creative briefs from live performance data, not hunches</li>
+        <li>Feeds on The Content Engine's 50-videos-a-day output &mdash; your face, your voice, your offer</li>
+        <li>Turns winning organic hooks into paid creative automatically</li>
+        <li>Refreshes creative every 10&ndash;14 days, before fatigue eats your CPA</li>
+      </ul>
+      <div class="solution-result">Result: A 100-variant testing matrix your agency physically cannot match</div>
+    </div>
+
+    <div class="solution-block fade-in d3">
+      <div class="solution-part-label">Part 3 &middot; The Chief of Staff</div>
+      <h3>Campaign Builds and Budget Moves, Executed</h3>
+      <ul>
+        <li>Builds every campaign: structure, naming conventions, pixels, tracking architecture</li>
+        <li>Launches on schedule &mdash; no "it's in the queue with our media buyer"</li>
+        <li>Reallocates budget daily toward what the numbers say is working</li>
+        <li>Everything lives in your ad accounts. Your data. Your asset library. Yours</li>
+      </ul>
+      <div class="solution-result">Result: Execution at machine speed, inside accounts you own</div>
+    </div>
+
+    <div class="solution-block fade-in d4">
+      <div class="solution-part-label">Part 4 &middot; The Reporting Line</div>
+      <h3>Numbers in Your Slack, Not a Monthly Deck</h3>
+      <ul>
+        <li>Daily report to your Slack or Telegram: spend, CPA, ROAS, top creative</li>
+        <li>Every change explained &mdash; what moved, why, and what happens next</li>
+        <li>Ask it questions like you'd ask a marketing hire. Get answers in minutes</li>
+        <li>Full dashboard access whenever you want to go deeper</li>
+      </ul>
+      <div class="solution-result">Result: You always know where every dollar went &mdash; today, not in three weeks</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MATH -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Math</div>
+      <h2 class="section-title">Agency vs In-House vs the AI Ads Department</h2>
+      <div class="section-subtitle">Same job. Three price tags. One of them you own when you're done paying.</div>
+    </div>
+
+    <div class="compare-wrap fade-in d1">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Agency + Creative</th>
+            <th>In-House Team</th>
+            <th class="col-us">AI Ads Department</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Year-one cost</th>
+            <td>$156,000</td>
+            <td>~$587,000 fully loaded</td>
+            <td class="col-us">$43,961</td>
+          </tr>
+          <tr>
+            <th>Every year after</th>
+            <td>$156,000</td>
+            <td>~$587,000</td>
+            <td class="col-us">$23,964</td>
+          </tr>
+          <tr>
+            <th>Creative output</th>
+            <td>15&ndash;20 assets/mo</td>
+            <td>1&ndash;2 videos/day</td>
+            <td class="col-us">Fed 50 videos/day</td>
+          </tr>
+          <tr>
+            <th>New creative turnaround</th>
+            <td>Days to weeks</td>
+            <td>Days</td>
+            <td class="col-us">Hours</td>
+          </tr>
+          <tr>
+            <th>Budget decisions</th>
+            <td>Monthly check-in</td>
+            <td>Weekly meeting</td>
+            <td class="col-us">Daily, automatic</td>
+          </tr>
+          <tr>
+            <th>Reporting</th>
+            <td>Monthly PDF</td>
+            <td>When you ask</td>
+            <td class="col-us">Daily, in your Slack</td>
+          </tr>
+          <tr>
+            <th>Who owns the system</th>
+            <td>They do</td>
+            <td>You do (at $587k/yr)</td>
+            <td class="col-us">You do</td>
+          </tr>
+          <tr>
+            <th>If you leave</th>
+            <td>Start from zero</td>
+            <td>Payroll stops, system stalls</td>
+            <td class="col-us">Everything stays yours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-fine fade-in d2">Agency + Creative = $5k/mo retainer plus $8k/mo creative team. In-house = minimum viable marketing department, fully loaded.</p>
+
+    <div class="big-stat fade-in d3">
+      <div class="big-stat-number">$112k</div>
+      <div class="big-stat-label">kept in year one vs the agency + creative stack. Every year after: $132k.</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE INSTALL -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Install</div>
+      <h2 class="section-title">Live in 30 Days</h2>
+      <div class="section-subtitle">The $19,997 install isn't a setup fee. It's a department build: tracking architecture, creative engine, funnel assets, SOPs, and a trained operator handed over in four weeks.</div>
+    </div>
+
+    <div class="timeline fade-in d1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 1</div>
+        <div class="timeline-title">Audit &amp; Architecture</div>
+        <div class="timeline-desc">Full account and funnel audit. Pixel and tracking architecture built in your accounts. Offer mapped into angles. GIZMO trained on your brand, your numbers, your market.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 2</div>
+        <div class="timeline-title">Creative Engine Wired In</div>
+        <div class="timeline-desc">The Content Engine feed connects. First creative briefs generated from your audit data. The opening 100-variant testing matrix gets built and loaded.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 3</div>
+        <div class="timeline-title">Campaigns Go Live</div>
+        <div class="timeline-desc">First campaigns launch at controlled budgets. Data starts flowing to your Slack or Telegram the same day. Losers die at 48 hours. Winners get identified.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 4</div>
+        <div class="timeline-title">Handover &amp; Scale</div>
+        <div class="timeline-desc">GIZMO reallocates budget daily. SOPs and training delivered to your team. The department is installed, documented, and running. Operations mode begins: $1,997/mo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Fit</div>
+      <h2 class="section-title">Who This Is For &mdash; and Who It Isn't</h2>
+      <div class="section-subtitle">This is a department install, not a subscription you try for a month. It works when the fit is right. So we're picky.</div>
+    </div>
+
+    <div class="ba-grid fade-in d1">
+      <div class="ba-col ba-after">
+        <h3>Built For You If</h3>
+        <ul>
+          <li>You spend $10k+/mo on ads &mdash; or you're funded and ready to</li>
+          <li>You have an offer that already converts when traffic hits it</li>
+          <li>You're paying an agency, a creative team, or both &mdash; and feel the ceiling</li>
+          <li>You want daily numbers and a system your company owns</li>
+          <li>You're an agency that wants to sell this under your own brand</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-before">
+        <h3>Not For You If</h3>
+        <ul>
+          <li>You're hoping ads will fix an offer that's never converted</li>
+          <li>Your total marketing budget is under $5k a month</li>
+          <li>You want brand vibes and a logo refresh, not pipeline</li>
+          <li>You need someone to invent your business model on the call</li>
+          <li>You're not willing to let data kill your favorite creative</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POWERED BY THE CONTENT ENGINE -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Fuel</div>
+      <h2 class="section-title">Powered by The Content Engine</h2>
+      <div class="section-subtitle">An ads department is only as good as the creative you feed it. GIZMO eats from a machine that ships up to 50 videos a day.</div>
+    </div>
+
+    <div class="module-grid">
+      <div class="module-card fade-in d1">
+        <div class="module-num">The Creative Feed</div>
+        <h3>The Content Engine</h3>
+        <ul>
+          <li>Your AI clone &mdash; talking-head and full-body reels, built from ~20 minutes of footage</li>
+          <li>50+ posts and 30 reels a month, scripts written end to end</li>
+          <li>6.3s seamless loops and 14&ndash;16s completion-rate formats</li>
+          <li>Every winning organic hook becomes a paid creative candidate for GIZMO</li>
+        </ul>
+        <div class="module-result">Result: Paid traffic runs on proven creative &mdash; never on guesses</div>
+        <a class="module-link" href="../content-engine/index.html">Explore The Content Engine &rarr;</a>
+      </div>
+
+      <div class="module-card fade-in d2">
+        <div class="module-num">The Bundle</div>
+        <h3>Full Stack, $500/mo Off</h3>
+        <ul>
+          <li>Ads Department clients get Content Engine Full Stack for $2,497/mo instead of $2,997</li>
+          <li>100-video testing matrix, winning-ad detection, ads-ready creatives</li>
+          <li>Sample-reel analyzer plus Hermes agent automation</li>
+          <li>One pipeline: organic tests find winners, GIZMO scales them with budget</li>
+        </ul>
+        <div class="module-result">Result: The full organic-to-paid loop &mdash; $6,000/yr cheaper bundled</div>
+        <a class="module-link" href="#pricing">See bundle pricing &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Investment</div>
+      <h2 class="section-title">One Install. One Flat Retainer.</h2>
+    </div>
+
+    <div class="pricing-note fade-in d1">
+      <strong>Install: $19,997 one-time &middot; Operations: $1,997/mo</strong>
+      <span>Heavy build up front, light retainer after. Month to month once you're live &mdash; because the system is yours either way.</span>
+    </div>
+
+    <div class="pricing-grid fade-in d2">
+      <div class="pricing-card">
+        <div class="pricing-tier">The Install</div>
+        <div class="pricing-price">$19,997<span> one-time</span></div>
+        <p class="pricing-desc">The full department build, delivered in 30 days. You own every piece.</p>
+        <ul class="pricing-features">
+          <li>Account, funnel &amp; offer audit</li>
+          <li>Pixel + tracking architecture in your accounts</li>
+          <li>Creative engine wired to your brand</li>
+          <li>Funnel assets and campaign builds</li>
+          <li>SOPs, documentation &amp; team training</li>
+          <li>30-day supervised launch</li>
+        </ul>
+        <a class="btn btn-block" href="https://cal.com/REPLACE_ELEVATED_AI/install-call">Book the Install Call</a>
+        <a class="btn btn-ghost btn-block" href="https://buy.stripe.com/REPLACE_ADS_INSTALL_DEPOSIT">Reserve Your Install &mdash; Deposit</a>
+      </div>
+
+      <div class="pricing-card recommended">
+        <div class="pricing-badge">The Full Department</div>
+        <div class="pricing-tier">Operations</div>
+        <div class="pricing-price">$1,997<span>/mo</span></div>
+        <p class="pricing-desc">GIZMO runs the department daily. Starts after your install goes live.</p>
+        <ul class="pricing-features">
+          <li>Daily media buying &amp; budget reallocation</li>
+          <li>Continuous creative briefs and refresh cycles</li>
+          <li>100-variant testing matrices, always running</li>
+          <li>Losers killed at 48 hours, winners scaled</li>
+          <li>Daily reporting to your Slack or Telegram</li>
+          <li>Month to month &mdash; no annual contract</li>
+        </ul>
+        <a class="btn btn-block" href="https://cal.com/REPLACE_ELEVATED_AI/install-call">Book the Install Call</a>
+        <a class="btn btn-ghost btn-block" href="vsl.html">Watch the VSL First</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Agency White-Label</div>
+        <div class="pricing-price">$4,997<span>/mo</span></div>
+        <p class="pricing-desc">The entire department, licensed under your agency's brand.</p>
+        <ul class="pricing-features">
+          <li>Full GIZMO stack, your logo on it</li>
+          <li>Run it across your client roster</li>
+          <li>Creative department your clients think is yours</li>
+          <li>Two clients at typical retainers covers the license</li>
+          <li>Priority support &amp; partner onboarding</li>
+        </ul>
+        <a class="btn btn-block" href="https://cal.com/REPLACE_ELEVATED_AI/install-call">Book a Licensing Call</a>
+        <a class="btn btn-ghost btn-block" href="https://buy.stripe.com/REPLACE_ADS_WHITELABEL">Start White-Label Checkout</a>
+      </div>
+    </div>
+
+    <div class="bundle-strip fade-in d3">
+      <div class="bundle-copy">
+        <div class="bundle-kicker">For Ads Department Clients</div>
+        <h3>Add The Content Engine Full Stack &mdash; $2,497/mo <span class="bundle-save">save $500/mo</span></h3>
+        <p>Everything in Full Stack &mdash; clone reels, testing matrix, sample-reel analyzer, Hermes automation &mdash; bundled $500 under the standalone price. GIZMO never runs out of fuel.</p>
+      </div>
+      <a class="btn" href="https://buy.stripe.com/REPLACE_ADS_CE_FULLSTACK_BUNDLE">Add the Bundle</a>
+    </div>
+
+    <p class="pricing-fine fade-in d3">Install billed once, at signing. Operations begins when campaigns go live. Cancel operations anytime &mdash; the tracking architecture, creative library, and SOPs stay yours.</p>
+
+    <!-- HORMOZI ROI -->
+    <div class="roi-box fade-in d4">
+      <div class="roi-kicker">Do the Math</div>
+      <h3>What You're Already Paying for Less</h3>
+      <p>Right now, the standard stack costs $5,000 a month for the agency and $8,000 a month for the creative team behind it. That's $156,000 a year &mdash; for 15&ndash;20 assets a month, a monthly PDF, and a system you hand back the day you leave.</p>
+      <p>The AI Ads Department: $19,997 once, $1,997 a month. <strong>$43,961 in year one. $23,964 every year after.</strong> Fed 50 videos a day. Reporting daily. Owned by you.</p>
+      <div class="roi-inset">
+        <p class="roi-big">$112,039 stays in your business in year one.</p>
+        <p class="roi-small">Year two and beyond: $132,036 a year. Every year. That's the retainer math working for you instead of against you.</p>
+      </div>
+      <p class="roi-close">The same department. A quarter of the cost. And this one, you keep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Fair Questions</div>
+      <h2 class="section-title">Asked Before Every Install</h2>
+    </div>
+
+    <div class="faq-list fade-in d1">
+      <details class="faq-item">
+        <summary>What is an AI marketing department?</summary>
+        <div class="faq-a">
+          <p>It's the three functions you currently rent &mdash; a CMO who sets strategy, a chief of staff who executes, and a creative department that produces &mdash; rebuilt as one installed system. GIZMO handles media buying strategy, campaign builds, budget reallocation, and reporting. The Content Engine feeds it up to 50 videos a day. It lives in your accounts, not ours.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can AI really replace my marketing agency?</summary>
+        <div class="faq-a">
+          <p>For the parts an agency actually does &mdash; campaign structure, budget moves, creative testing, reporting &mdash; yes, and faster. An agency ships 15&ndash;20 assets a month and checks budgets weekly at best. GIZMO tests 100+ variants per angle, kills losers at 48 hours, and moves budget daily.</p>
+          <p>What it doesn't replace: your judgment. You set the goals and approve the direction. The department executes at machine speed underneath you.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What does the AI CMO actually decide?</summary>
+        <div class="faq-a">
+          <p>Angle selection, audience strategy per platform, testing plans, budget allocation, and creative refresh cycles. Every decision is data-backed and explained in your daily report &mdash; what moved, why, and what happens next. If you'd fire a human CMO for making a call without showing their reasoning, you'll like this one.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why is the install $19,997?</summary>
+        <div class="faq-a">
+          <p>Because it's a department build, not an account setup. Four weeks of work: full audit, pixel and tracking architecture, creative engine wiring, funnel assets, campaign builds, SOPs, team training, and a supervised launch. Typical AI-agency setup fees run $3k&ndash;$10k for a fraction of that scope.</p>
+          <p>The trade is deliberate: heavy install, light retainer. $1,997/mo is below what the market charges for ongoing AI marketing operations &mdash; because the expensive part happens once, and then you own it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What do I own after the install?</summary>
+        <div class="faq-a">
+          <p>Everything. Ad accounts, pixel data, tracking architecture, creative library, naming conventions, SOPs, and documentation &mdash; all built in your properties from day one. Cancel operations and it all keeps working. That's the opposite of the agency model, and it's on purpose.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Which platforms does it run?</summary>
+        <div class="faq-a">
+          <p>Meta, TikTok, and YouTube at install, with creative cut to each platform's native formats &mdash; 6.3-second loops, 14&ndash;16 second reels, 30&ndash;45 second Shorts. Reporting flows to Slack or Telegram, whichever your team already lives in.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How is this different from AI ad tools?</summary>
+        <div class="faq-a">
+          <p>Tools give you software and wish you luck. You still need someone to run strategy, build campaigns, and act on the data &mdash; which is why teams that buy tools still end up hiring agencies. This is a system plus an operator plus accountability: installed in your accounts, run daily, reported daily, with a human onboarding and SOP handover baked into the install.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do I need The Content Engine too?</summary>
+        <div class="faq-a">
+          <p>GIZMO needs creative volume to test properly &mdash; that's non-negotiable. If you already produce serious daily volume, we wire your pipeline in. If you don't (almost nobody does), the Content Engine Full Stack bundle at $2,497/mo is the fuel line: 50 videos a day of your face, your voice, your offer, $500/mo cheaper bundled.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How does the agency white-label work?</summary>
+        <div class="faq-a">
+          <p>$4,997/mo licenses the full stack under your brand. Your clients see your agency's name on the reporting, the dashboard, and the creative. Creative production is most agencies' biggest unbundled cost center &mdash; the license turns it into margin. Two clients at typical retainers covers it; everything after that is yours.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What results should I expect?</summary>
+        <div class="faq-a">
+          <p>We don't promise ROAS numbers &mdash; anyone who does is guessing with your money. What we promise is the process that finds results: 100+ variants tested per angle, losers cut at 48 hours, winners scaled 20&ndash;30% every 3&ndash;4 days, creative refreshed before fatigue. In pilot installs, that testing cadence is the difference clients notice first &mdash; decisions that used to take a month happen daily.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section>
+  <div class="container">
+    <div class="next-steps fade-in">
+      <div class="section-label" style="text-align:center;">Next Steps</div>
+      <h2 class="section-title">Stop Renting. Start Owning.</h2>
+      <p class="section-subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">The install call is a working session on your numbers &mdash; not a sales pitch. If the math doesn't work for your business, we'll tell you.</p>
+
+      <ul class="steps-list">
+        <li><span>1.</span> Watch the VSL &mdash; the full breakdown in under 15 minutes</li>
+        <li><span>2.</span> Book the install call &mdash; we audit your stack live</li>
+        <li><span>3.</span> Department live in 30 days</li>
+      </ul>
+
+      <p class="ready">Ready? Let's install it.</p>
+
+      <div class="hero-cta">
+        <a href="vsl.html" class="btn">Watch the VSL</a>
+        <a href="https://cal.com/REPLACE_ELEVATED_AI/install-call" class="btn btn-ghost">Book the Install Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>The AI Ads Department &middot; Elevated AI &middot; &copy; 2026</p>
+    <p>Every ads department needs fuel. <a href="../content-engine/index.html">Meet The Content Engine &rarr;</a></p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an AI marketing department?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's the three functions you currently rent — a CMO who sets strategy, a chief of staff who executes, and a creative department that produces — rebuilt as one installed system. GIZMO handles media buying strategy, campaign builds, budget reallocation, and reporting. The Content Engine feeds it up to 50 videos a day. It lives in your accounts, not ours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI really replace my marketing agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For the parts an agency actually does — campaign structure, budget moves, creative testing, reporting — yes, and faster. An agency ships 15–20 assets a month and checks budgets weekly at best. GIZMO tests 100+ variants per angle, kills losers at 48 hours, and moves budget daily. What it doesn't replace is your judgment: you set the goals and approve the direction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the AI CMO actually decide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Angle selection, audience strategy per platform, testing plans, budget allocation, and creative refresh cycles. Every decision is data-backed and explained in your daily report — what moved, why, and what happens next."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the install $19,997?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because it's a department build, not an account setup: full audit, pixel and tracking architecture, creative engine wiring, funnel assets, campaign builds, SOPs, team training, and a supervised launch over four weeks. The trade is deliberate — heavy install, light retainer at $1,997/mo, and you own the system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I own after the install?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Everything. Ad accounts, pixel data, tracking architecture, creative library, naming conventions, SOPs, and documentation — all built in your properties from day one. Cancel operations and it all keeps working."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from AI ad tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tools give you software and wish you luck. This is a system plus an operator plus accountability: installed in your accounts, run daily, reported daily to your Slack or Telegram, with human onboarding and an SOP handover baked into the install."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the agency white-label work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$4,997/mo licenses the full stack under your brand. Your clients see your agency's name on the reporting, dashboard, and creative. Two clients at typical retainers covers the license; everything after that is margin."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 1500);
+});
+</script>
+
+</body>
+</html>

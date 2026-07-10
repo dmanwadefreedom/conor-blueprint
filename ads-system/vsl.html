@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fire Your Agency. Keep the Results. — The AI Ads Department</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 19px;
+  line-height: 2.0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── HEADER ─── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 32px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.topbar .brand { color: #999; }
+.topbar .brand span { color: #1a1a1a; }
+.topbar a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+.topbar a:hover { color: #555; }
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 32px;
+}
+section .container {
+  width: 100%;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+/* ─── WATCH HERO ─── */
+.watch-hero {
+  text-align: center;
+}
+.watch-hero .section-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+}
+.watch-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.1rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+
+/* ─── VIDEO FRAME ─── */
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #1a1a1a;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin: 48px 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.video-frame:hover { transform: translateY(-2px); }
+.play-btn {
+  width: 78px;
+  height: 78px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play-btn::after {
+  content: '';
+  display: block;
+  margin-left: 6px;
+  border-left: 20px solid #ffffff;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+.video-note {
+  color: #888;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.video-caption {
+  font-size: 0.82rem;
+  color: #aaa;
+  margin-bottom: 40px;
+}
+.video-caption .highlight {
+  background: #ffeb3b44;
+  padding: 2px 6px;
+  color: #555;
+}
+
+/* ─── PROOF BULLETS ─── */
+.proof-list {
+  list-style: none;
+  max-width: 620px;
+  margin: 0 auto 44px;
+  text-align: left;
+}
+.proof-list li {
+  color: #555;
+  font-size: 0.98rem;
+  padding: 10px 0 10px 28px;
+  position: relative;
+  line-height: 1.7;
+}
+.proof-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.proof-list li strong { color: #1a1a1a; }
+
+/* ─── CTA ─── */
+.btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 18px 44px;
+  border-radius: 100px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.88;
+}
+.btn-note {
+  font-size: 0.82rem;
+  color: #aaa;
+  margin-top: 16px;
+}
+.btn-secondary {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.btn-secondary:hover { color: #1a1a1a; }
+.transcript-jump {
+  display: block;
+  margin-top: 28px;
+  font-size: 0.85rem;
+  color: #999;
+}
+.transcript-jump a {
+  color: #555;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.transcript-jump a:hover { color: #1a1a1a; }
+
+/* ─── TRANSCRIPT ─── */
+.transcript {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+.transcript:hover { border-color: #bbb; }
+.transcript summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+.transcript summary::-webkit-details-marker { display: none; }
+.transcript summary .toggle-icon {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #999;
+  line-height: 1;
+  transition: transform 0.3s;
+}
+.transcript[open] summary .toggle-icon { transform: rotate(45deg); }
+.transcript-body {
+  padding: 8px 28px 40px;
+  border-top: 1px solid #e0e0e0;
+}
+.t-beat {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin: 32px 0 8px;
+}
+.transcript-body p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.transcript-body p strong { color: #1a1a1a; }
+.transcript-cta {
+  text-align: center;
+  margin-top: 36px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+footer a { color: #aaa; text-decoration: none; }
+footer a:hover { color: #555; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 60px 24px; min-height: 100vh; }
+  .topbar { padding: 16px 24px; }
+  .play-btn { width: 64px; height: 64px; }
+  .play-btn::after { border-left-width: 16px; border-top-width: 10px; border-bottom-width: 10px; }
+  .transcript summary { padding: 20px 22px; }
+  .transcript-body { padding: 8px 22px 32px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .watch-hero h1 { font-size: 1.9rem; }
+  .topbar { font-size: 10px; letter-spacing: 1.5px; }
+  .btn { padding: 16px 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="topbar">
+  <div class="brand">Elevated AI &middot; <span>The AI Ads Department</span></div>
+  <a href="index.html#pricing">Pricing &rarr;</a>
+</div>
+
+<!-- WATCH -->
+<section>
+  <div class="container watch-hero">
+    <div class="fade-in">
+      <div class="section-label">Watch This First &middot; 11 Min</div>
+      <h1>Fire your agency. Keep the results.</h1>
+      <p class="section-subtitle">Your agency plus your creative team costs $156,000 a year. Eleven minutes on the machine that replaces both &mdash; and belongs to you.</p>
+    </div>
+
+    <div class="fade-in d1">
+      <!--
+        VIDEO EMBED: replace the .video-frame div below with your player.
+        Keep a 16:9 wrapper (aspect-ratio: 16/9) so the layout holds.
+
+        Wistia:  <script src="https://fast.wistia.com/embed/medias/VIDEO_ID.jsonp" async></script>
+                 <div class="wistia_embed wistia_async_VIDEO_ID" style="aspect-ratio:16/9;width:100%"></div>
+
+        YouTube: <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="The AI Ads Department VSL"
+                 style="aspect-ratio:16/9;width:100%;border:0;border-radius:8px" allowfullscreen></iframe>
+
+        Vimeo:   <iframe src="https://player.vimeo.com/video/VIDEO_ID" title="The AI Ads Department VSL"
+                 style="aspect-ratio:16/9;width:100%;border:0;border-radius:8px" allowfullscreen></iframe>
+      -->
+      <div class="video-frame" role="img" aria-label="Video placeholder — The AI Ads Department VSL, 11 minutes">
+        <div class="play-btn"></div>
+        <div class="video-note">[ VSL EMBEDS HERE &middot; 11:00 ]</div>
+      </div>
+      <p class="video-caption"><span class="highlight">The presenter is an AI clone. The creative department in this system made this video.</span> That's the demo.</p>
+    </div>
+
+    <div class="fade-in d2">
+      <ul class="proof-list">
+        <li><strong>$156,000 a year.</strong> That's a $5k/mo agency plus an $8k/mo creative team. This department runs ~$44k in year one, ~$24k after &mdash; and you own the system.</li>
+        <li><strong>50 creatives a day, tested 100 variants at a time.</strong> UGC-style creative runs ~4x the click-through at roughly half the cost per click of polished brand ads.</li>
+        <li><strong>Performance guarantee, in writing.</strong> Beat your baseline cost per acquisition within 90 days of operations &mdash; or the $19,997 install fee is credited back against operations.</li>
+      </ul>
+    </div>
+
+    <div class="fade-in d3">
+      <a class="btn" href="https://calendly.com/REPLACE_ADS_INSTALL_CALL">Book the Install Call &rarr;</a>
+      <p class="btn-note">30 minutes &middot; A working session, not a sales pitch &middot; 4 installs per month</p>
+      <a class="btn-secondary" href="index.html#pricing">See pricing first &rarr;</a>
+      <p class="transcript-jump">Prefer to read? <a href="#transcript">Full transcript below</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSCRIPT -->
+<section id="transcript">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Full Transcript</div>
+      <div class="section-title">Every word, in writing</div>
+      <div class="section-subtitle">The complete script of the video above. Read it in four minutes if you'd rather skim.</div>
+    </div>
+
+    <div class="fade-in d1">
+      <details class="transcript">
+        <summary>Read the full transcript<span class="toggle-icon">+</span></summary>
+        <div class="transcript-body">
+
+          <div class="t-beat">00:00 &mdash; The Two Invoices</div>
+          <p>I want you to add up two invoices for me.</p>
+          <p>The first one is from your ad agency. Five thousand a month for "management." Sixty thousand a year &mdash; and read the fine print, because creative isn't included. Neither are the tool fees they pass through.</p>
+          <p>The second is your creative team. An editor, a designer, a content person &mdash; call it eight thousand a month fully loaded, and that's running lean. Ninety-six thousand a year.</p>
+          <p><strong>That's a hundred and fifty-six thousand dollars a year.</strong></p>
+          <p>For what? Two campaigns a month. A creative refresh every three weeks. And a report you don't read.</p>
+          <p>I'm going to show you the machine that replaces both invoices &mdash; the strategy, the media buying, and the entire creative department &mdash; for about forty-four thousand in year one, and around twenty-four after that.</p>
+          <p>And you'll own it. Not rent it.</p>
+          <p>Give me eleven minutes.</p>
+
+          <div class="t-beat">01:05 &mdash; Agencies Scale People. We Scaled Software.</div>
+          <p>First, understand why your agency costs what it costs.</p>
+          <p>An agency is a payroll company that runs ads. Their biggest expense is people. Your account manager is juggling eight other accounts. Your media buyer opens your account twice a week &mdash; Monday and Thursday, if you're lucky. Your creative requests sit in a queue behind every other client's.</p>
+          <p>When an agency grows, it hires. When it hires, prices go up and attention goes down. That's not a bad agency. That's the model. <strong>Agencies scale people.</strong></p>
+          <p>We run ads too. And two years ago we hit the same wall &mdash; every new account meant another hire, another handoff, another place for performance to leak.</p>
+          <p>So we made a different bet. We stopped scaling people, and spent eighteen months scaling software.</p>
+          <p>We built the media buyer that never sleeps. The strategist that reads every number, every hour. The creative team that ships fifty pieces a day. Then we wired them into one system.</p>
+          <p>We call it the AI Ads Department. The agent that runs it is named GIZMO.</p>
+          <p>And in 2026, that stops being science fiction &mdash; and starts being an invoice you can cancel.</p>
+
+          <div class="t-beat">02:25 &mdash; The Mechanism: Three Layers</div>
+          <p>Here's what's actually inside. Three layers.</p>
+          <p><strong>Layer one: the strategy brain.</strong> GIZMO is your CMO and chief of staff in one. It ingests your numbers every hour &mdash; spend, hook rate, cost per acquisition, checkout data. It writes the media plan. It sets the budgets. It briefs the creative work. And every Monday morning it sends you the report a real CMO would: what won, what died, and what it's doing about it. In plain English.</p>
+          <p><strong>Layer two: the creative department.</strong> GIZMO plugs straight into our Content Engine &mdash; the production line that turns one idea into fifty finished video creatives a day. UGC-style talking heads. Hooks in the first second and a half. Captions burned in. B-roll cut over the slow middle.</p>
+          <p>And UGC-style creative is the whole game right now: it runs about four times the click-through at roughly half the cost per click of polished brand ads. Volume, plus native. That's 2026.</p>
+          <p><strong>Layer three: the testing matrix.</strong> This is where statistical certainty replaces guessing.</p>
+          <p>Most agencies test three or four ads a month and call it optimization. GIZMO tests a hundred variants at a time &mdash; one variable isolated per batch. Hooks. Offers. Avatars. Openers.</p>
+          <p>Then it runs the ruthless loop no human team has the patience for.</p>
+          <p>Any variant under a twenty-five percent hook rate at forty-eight hours &mdash; dies. Winners get budgets raised twenty to thirty percent every three to four days. And every ten to fourteen days, fresh creative rolls in before fatigue touches your numbers.</p>
+          <p>Your agency finds a winning ad by luck, a few times a year. A hundred-variant matrix finds one on schedule.</p>
+          <p><strong>That's not better ads. That's different physics.</strong></p>
+
+          <div class="t-beat">04:25 &mdash; A Monday With the Department Installed</div>
+          <p>Here's what that looks like once it's running. Monday morning.</p>
+          <p>Seven a.m. GIZMO has already read the weekend &mdash; every campaign, every variant, every dollar. The report is in your inbox before your coffee. Two winners found. Three variants killed. Budgets already shifted.</p>
+          <p>Eight thirty. The Content Engine delivers today's batch &mdash; fifty fresh creatives built off last week's winning hooks. They pass your brand gates and stack up in the approval queue.</p>
+          <p>Nine fifteen. You scroll the queue on your phone. Approve, approve, kill one, approve. Four minutes. That's your entire involvement in the ads department today.</p>
+          <p>By Thursday, the new batch has forty-eight hours of data. The losers die on schedule. The two new winners get their budgets raised. And next Monday's report is already writing itself.</p>
+          <p>No status calls. No "quick syncs." No waiting three weeks for a creative refresh.</p>
+          <p><strong>A department that runs &mdash; while you run the company.</strong></p>
+
+          <div class="t-beat">05:40 &mdash; The Three Questions Smart Buyers Ask</div>
+          <p>Now the three questions every smart buyer asks.</p>
+          <p>One: "Where does my data live?"</p>
+          <p>On your infrastructure, not ours. Every installation runs in its own isolated deployment, on a Tailscale-secured private network. Your ad accounts, your customer data, your API keys &mdash; none of it touches a shared system. None of it trains anyone else's models. None of it is visible to any other client. When we hand you the keys, they are actually your keys.</p>
+          <p>Two: "Will a machine embarrass my brand?"</p>
+          <p>No &mdash; because nothing ships without your sign-off. During install we encode your brand guardrails: banned claims, tone, compliance rules, visual rules. Every creative passes those gates, then lands in an approval queue on your phone. You start by approving everything. Most clients loosen the leash within a month &mdash; but that's your call, not ours.</p>
+          <p>Three: "Is AI creative actually good enough in 2026?"</p>
+          <p>Wrong question. The right question is: does the ad feel native to the feed? Because that's the only test the platform runs. UGC-style creative &mdash; the kind this system mass-produces &mdash; consistently beats polished brand ads on click-through and cost. Your customers have been scrolling past AI-assisted creative for two years. They don't care. The auction doesn't care. Only the numbers care.</p>
+          <p>And one more &mdash; the honest one: "If AI tools can do this, why not just buy one myself?"</p>
+          <p>Because the market already ran that experiment. The self-serve AI ad tools all hit the same ceiling: software without an operator is a hobby. This isn't a tool you have to learn. It's a department we install, run, and stay accountable for. <strong>System, plus operator, plus accountability.</strong> That's the part you can't download.</p>
+
+          <div class="t-beat">07:40 &mdash; The Offer</div>
+          <p>Here's the offer.</p>
+          <p><strong>The install: nineteen thousand, nine hundred ninety-seven. One time.</strong> Over thirty to sixty days we build the whole department: your tracking architecture rebuilt end to end. GIZMO trained on your offer and your numbers. The creative engine wired to your brand. Funnel assets. Launch. And the SOPs &mdash; because you own this system. If we ever part ways, the department stays with you.</p>
+          <p><strong>Operations: nineteen ninety-seven a month.</strong> We run it. Monitoring, scaling decisions reviewed by a human operator, the Monday CMO report, and creative testing that never stops.</p>
+          <p>Now the math. Year one, all in: about forty-four thousand. Year two: about twenty-four. Against the hundred and fifty-six thousand you're paying now, that's over a hundred and ten thousand dollars back in year one &mdash; and the asset is yours.</p>
+          <p>Two more doors.</p>
+          <p>If you want the full content operation feeding this machine &mdash; the fifty-videos-a-day Content Engine, Full Stack tier &mdash; it bundles at twenty-four ninety-seven a month. Five hundred off. One invoice. One system.</p>
+          <p>And if you're an agency owner watching this thinking "this kills my model" &mdash; you're right, and there's a better move. The white-label license is forty-nine ninety-seven a month: run the AI Ads Department under your brand, across your whole book, and keep your margin without hiring another media buyer. Ask about it on the call.</p>
+
+          <div class="t-beat">09:15 &mdash; The Guarantee</div>
+          <p>The guarantee is performance-based, and it's simple.</p>
+          <p>At install, we set your baseline &mdash; your current cost per acquisition, in writing. <strong>If after ninety days of operations the department isn't beating that baseline, your entire install fee gets credited back against operations.</strong> All nineteen thousand, nine ninety-seven of it. That's roughly ten months of us working for free until it does.</p>
+          <p>We can offer that because we're not guessing. The testing matrix makes performance a math problem &mdash; and we've already done the math.</p>
+          <p>Your agency will never put its retainer on the line. Ask them why.</p>
+
+          <div class="t-beat">10:00 &mdash; Four Installs a Month</div>
+          <p>One constraint. An install is a real build &mdash; tracking rebuilt, creative engine calibrated, guardrails encoded, launch run with you in the loop. A senior operator leads every one.</p>
+          <p>So we take four installs a month. That's not fake scarcity &mdash; that's payroll math. When this month's slots are gone, you wait. And your agency invoices you again while you do.</p>
+
+          <div class="t-beat">10:25 &mdash; The Close</div>
+          <p>So here's the move.</p>
+          <p>Below this video is a button that books a thirty-minute install call. It's a working session, not a pitch. Bring your ad account. We'll pull your real numbers, price what your current setup actually costs you, and show you exactly what the department would do in your first ninety days.</p>
+          <p>If the math doesn't work for your business, we'll tell you &mdash; and you'll leave with a free audit either way.</p>
+          <p>You've just watched an AI-run department explain itself for eleven minutes.</p>
+          <p><strong>Imagine what it does with your budget.</strong></p>
+          <p>Book the call.</p>
+
+          <div class="transcript-cta">
+            <a class="btn" href="https://calendly.com/REPLACE_ADS_INSTALL_CALL">Book the Install Call &rarr;</a>
+            <p class="btn-note">$19,997 install &middot; $1,997/mo operations &middot; 90-day performance guarantee</p>
+          </div>
+
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Elevated AI &middot; The AI Ads Department &middot; <a href="index.html">Back to overview</a> &middot; <a href="../content-engine/index.html">The Content Engine</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Safety net: reveal anything unrevealed after 1.5s
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 1500);
+});
+</script>
+
+</body>
+</html>
