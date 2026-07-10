@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Content Engine by Elevated AI — an AI content department that ships up to 50 videos a day. Your face, your voice, your brand. 50+ posts and 30 reels a month, without filming.">
+<title>The Content Engine — An AI Content Department That Ships 50 Videos a Day</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 19px;
+  line-height: 2.0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  line-height: 1.5;
+  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+.btn-ghost {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+.btn-ghost:hover {
+  opacity: 1;
+  border-color: #bbb;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 0.9rem;
+  margin-top: 24px;
+}
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px;
+}
+.hero .brand-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.hero .subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 12px;
+}
+.hero .sub-desc {
+  font-size: 1rem;
+  color: #888;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 32px;
+}
+section .container {
+  width: 100%;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+/* ─── STAT BLOCK ─── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+.stat-item {
+  text-align: center;
+  padding: 32px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.stat-item:hover {
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+.stat-number {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ─── COPY BLOCKS ─── */
+.copy-block {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.copy-block p {
+  color: #555;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+.copy-block p strong { color: #1a1a1a; }
+
+/* ─── CARDS GRID ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 48px;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+.card p {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ─── PULL QUOTE ─── */
+.pull-quote {
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.8;
+}
+.pull-quote .highlight {
+  background: #ffeb3b44;
+  padding: 2px 6px;
+}
+
+/* ─── FLOW ─── */
+.journey-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+.journey-step {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 14px 22px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: center;
+  color: #1a1a1a;
+}
+.journey-arrow {
+  color: #ccc;
+  font-size: 1.2rem;
+}
+.big-stat {
+  text-align: center;
+  margin: 48px 0;
+}
+.big-stat-number {
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1;
+}
+.big-stat-label {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 12px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── MODULE CARDS ─── */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.module-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 36px 32px;
+  transition: transform 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.module-card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.module-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.module-card h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.module-card ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.module-card li {
+  color: #555;
+  font-size: 0.92rem;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.7;
+}
+.module-card li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 13px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.module-result {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: auto;
+}
+.module-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 1px;
+  transition: opacity 0.3s;
+  align-self: flex-start;
+}
+.module-link:hover { opacity: 0.6; }
+
+/* ─── SOLUTION / FEATURE BLOCKS ─── */
+.solution-block {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 40px 36px;
+  margin-bottom: 24px;
+  transition: border-color 0.3s;
+}
+.solution-block:hover {
+  border-color: #bbb;
+}
+.solution-part-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.solution-block h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.solution-block ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.solution-block li {
+  color: #555;
+  font-size: 0.95rem;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.7;
+}
+.solution-block li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 14px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.solution-result {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* ─── TIMELINE ─── */
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: #e0e0e0;
+}
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -33px; top: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e0e0e0;
+}
+.timeline-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1a1a1a;
+}
+.timeline-desc {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ─── BEFORE / AFTER ─── */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.ba-col {
+  padding: 36px 32px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+.ba-col h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #999;
+}
+.ba-col ul { list-style: none; }
+.ba-col li {
+  color: #555;
+  font-size: 0.95rem;
+  padding: 8px 0 8px 24px;
+  position: relative;
+  line-height: 1.6;
+}
+.ba-before li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: #ccc;
+  font-weight: 500;
+}
+.ba-after li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* ─── PRICING ─── */
+.pricing-note {
+  text-align: center;
+  padding: 20px 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+  color: #555;
+}
+.pricing-note strong {
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.pricing-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 36px 28px 32px;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.pricing-card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.pricing-card.recommended {
+  border: 2px solid #1a1a1a;
+}
+.pricing-badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.pricing-tier {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+.pricing-price {
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+.pricing-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #999;
+}
+.pricing-desc {
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.6;
+}
+.pricing-features {
+  list-style: none;
+  margin: 20px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  flex-grow: 1;
+}
+.pricing-features li {
+  font-size: 0.85rem;
+  color: #555;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  line-height: 1.6;
+}
+.pricing-features li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.pricing-fine {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.82rem;
+}
+
+/* ─── ROI BOX ─── */
+.roi-box {
+  margin-top: 80px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 48px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+}
+.roi-kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #999;
+  margin-bottom: 16px;
+}
+.roi-box h3 {
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+.roi-box p {
+  font-size: 18px;
+  line-height: 2.0;
+  color: #444;
+  margin-bottom: 24px;
+}
+.roi-inset {
+  padding: 32px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.roi-inset .roi-big {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.roi-inset .roi-small {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+.roi-close {
+  font-size: 16px !important;
+  color: #666 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ─── FAQ ─── */
+.faq-list {
+  margin-top: 40px;
+}
+.faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: border-color 0.3s;
+}
+.faq-item:hover { border-color: #bbb; }
+.faq-item summary {
+  padding: 20px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.6;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #999;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.faq-item[open] summary::after { content: '\2212'; }
+.faq-a {
+  padding: 0 24px 24px;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.faq-a p { margin-bottom: 12px; }
+.faq-a p:last-child { margin-bottom: 0; }
+
+/* ─── NEXT STEPS ─── */
+.next-steps {
+  text-align: center;
+}
+.next-steps .steps-list {
+  list-style: none;
+  margin: 40px 0;
+}
+.next-steps .steps-list li {
+  font-size: 1rem;
+  color: #555;
+  padding: 8px 0;
+  line-height: 1.8;
+}
+.next-steps .steps-list li span {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+.next-steps .ready {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+footer a {
+  color: #999;
+  text-decoration: none;
+}
+footer a:hover { color: #1a1a1a; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
+  .stat-row { grid-template-columns: 1fr; gap: 16px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .module-grid { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; gap: 16px; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+  .journey-arrow { display: none; }
+  .journey-flow { flex-direction: column; gap: 10px; }
+  .journey-step { width: 100%; }
+  .solution-block { padding: 28px 24px; }
+  .module-card { padding: 28px 24px; }
+  .roi-box { padding: 36px 24px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 2rem; }
+  .pull-quote { font-size: 1.05rem; }
+  .big-stat-number { font-size: 3.5rem; }
+  .hero-cta .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-in">
+      <div class="brand-label">Elevated AI</div>
+      <h1>The Content Engine</h1>
+    </div>
+    <div class="fade-in d1">
+      <p class="subtitle">An AI content department that ships up to 50 videos a day.</p>
+    </div>
+    <div class="fade-in d2">
+      <p class="sub-desc">Your face. Your voice. Your offer. 50+ posts and 30 reels a month &mdash; without picking up a camera.</p>
+    </div>
+    <div class="fade-in d3">
+      <div class="hero-cta">
+        <a href="#pricing" class="btn">See Plans &amp; Pricing</a>
+        <a href="vsl.html" class="btn btn-ghost">Watch the 6-Minute Breakdown</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE BOTTLENECK -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Bottleneck</div>
+      <div class="section-title">Content Is the Highest-Leverage Thing You're Not Doing Enough Of</div>
+    </div>
+
+    <div class="stat-row fade-in d1">
+      <div class="stat-item">
+        <div class="stat-number">$100k+</div>
+        <div class="stat-label">One in-house editor, fully loaded</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1&ndash;2</div>
+        <div class="stat-label">Videos that editor ships per day</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Variants it takes to find a winner</div>
+      </div>
+    </div>
+
+    <div class="copy-block fade-in d2">
+      <p>You already know how this works. The brands winning your market aren't smarter than you. <strong>They post more than you.</strong> Every day. Every platform. Every format.</p>
+
+      <p>And you've done the math on catching up. Film it yourself &mdash; you burn out by week three. Hire an editor &mdash; $100k+ fully loaded for 1&ndash;2 videos a day. Hire an agency &mdash; the "$5k/mo" quote quietly becomes $67k&ndash;$100k a year once creative production and tool fees hit the invoice.</p>
+
+      <p><strong>The bottleneck was never ideas. It's production.</strong></p>
+
+      <p>So we automated production.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE CHALLENGE -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Challenge</div>
+      <div class="section-title">Why the Old Options Keep Failing</div>
+    </div>
+    <div class="fade-in d1">
+      <div class="section-subtitle">Every path to daily content has the same ending: you pay too much, ship too little, and quit before the compounding starts.</div>
+    </div>
+
+    <div class="cards-grid fade-in d2">
+      <div class="card">
+        <h3>The Agency Trap</h3>
+        <p>"$5k/mo" almost never includes creative. Add $500&ndash;$3,000/mo for production, plus tool pass-throughs. Real bill: $67k&ndash;$100k a year &mdash; for 15&ndash;20 assets a month.</p>
+      </div>
+      <div class="card">
+        <h3>Founder Burnout</h3>
+        <p>Script, film, edit, caption, post. Every day. Forever. You have a business to run. Something has to give &mdash; and it's always the content.</p>
+      </div>
+      <div class="card">
+        <h3>The Volume Problem</h3>
+        <p>Winners come from testing 100+ variants per angle. A human team ships 5 a month and calls it a strategy. You never find out what actually works.</p>
+      </div>
+      <div class="card">
+        <h3>Inconsistency Kills Reach</h3>
+        <p>Go quiet for two weeks and the algorithm forgets you exist. Consistency isn't a virtue anymore. It's the price of distribution.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote fade-in d3">
+      <span class="highlight">"You don't have a content problem. You have a production problem. Production is now a machine's job."</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE REALITY -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Reality</div>
+      <div class="section-title">Distribution Is Decided in 1.5 Seconds</div>
+    </div>
+
+    <div class="journey-flow fade-in d1">
+      <div class="journey-step">Viewer sees frame one</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">1.5 seconds to hook</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">60%+ must hold 3 seconds</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">~70% must finish</div>
+    </div>
+
+    <div class="big-stat fade-in d2">
+      <div class="big-stat-number">100+</div>
+      <div class="big-stat-label">variants per angle. That's what it takes to find hooks that clear those thresholds.</div>
+    </div>
+
+    <div class="copy-block fade-in d3">
+      <p>Those are the numbers the platforms grade you on in 2026. Hook rate. Hold rate. Completion. Miss them and your video dies quietly, no matter how good the message was.</p>
+
+      <p>No founder iterates at that speed. No editor does either. <strong>A machine does.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- THE ENGINE -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Engine</div>
+      <div class="section-title">One Input. Fifty Outputs.</div>
+      <div class="section-subtitle">Feed it a podcast episode. A blog post. A voice memo. One idea on a walk. The Engine does the rest.</div>
+    </div>
+
+    <div class="journey-flow fade-in d1">
+      <div class="journey-step">You feed it one input</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">Engine scripts, films, edits</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">50+ platform-ready posts</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">You tap approve</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">Auto-published everywhere</div>
+    </div>
+
+    <div class="copy-block fade-in d2">
+      <p>The Engine writes the scripts. Your AI clone delivers them &mdash; talking-head or full-body. B-roll drops in on beat. Captions burn in. Every video is cut to the format that wins on each platform: <strong>6.3-second seamless loops</strong> that push watch time past 100% on TikTok, <strong>14&ndash;16 second reels</strong> built for the completion rates Instagram rewards.</p>
+
+      <p>Then everything lands in your approval queue. One tap. Scheduled. Published. <strong>You went from one idea to fifty assets without touching a camera.</strong></p>
+    </div>
+
+    <div class="fade-in d3" style="text-align: center;">
+      <div class="solution-result">Result: A month of daily content from an hour of your input</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MODULES -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Modules</div>
+      <div class="section-title">Four Modules. One Machine.</div>
+      <div class="section-subtitle">Start with the core engine. Stack modules as you scale. Everything talks to everything.</div>
+    </div>
+
+    <div class="module-grid">
+      <div class="module-card fade-in d1">
+        <div class="module-num">Module 01</div>
+        <h3>UGC / AI Influencer Studio</h3>
+        <ul>
+          <li>A clone of you &mdash; talking-head and full-body reels, built from about 20 minutes of footage</li>
+          <li>30 reels a month, scripted end to end, B-roll injected on beat</li>
+          <li>6.3s seamless loops (rewatches count &mdash; loops push watch time past 100%) and 14&ndash;16s completion-rate formats</li>
+          <li>Three content lanes running at once: storytelling &rarr; CTA, real-life product use, and show-and-tell demos</li>
+        </ul>
+        <div class="module-result">Result: Ads that don't look like ads &mdash; UGC-style creative runs ~4x the CTR at half the CPC</div>
+      </div>
+
+      <div class="module-card fade-in d2">
+        <div class="module-num">Module 02</div>
+        <h3>SEO Autopilot &middot; botmo.io</h3>
+        <ul>
+          <li>Get organic traffic to your website on autopilot &mdash; guaranteed</li>
+          <li>AI-written SEO blogs published on schedule, matched to what your buyers search</li>
+          <li>Full site SEO wiring &mdash; structure, speed, and schema handled</li>
+          <li>AI assistants start seeing and recommending your content when buyers ask them for options</li>
+        </ul>
+        <div class="module-result">Result: Traffic that compounds while the reels do the daily work</div>
+        <a class="module-link" href="https://botmo.io">Also sold standalone at botmo.io &rarr;</a>
+      </div>
+
+      <div class="module-card fade-in d3">
+        <div class="module-num">Module 03</div>
+        <h3>Ads Attachment &middot; The AI Ads Department</h3>
+        <ul>
+          <li>A full AI CMO, chief of staff, and creative department &mdash; codename GIZMO</li>
+          <li>Feeds directly on the Engine's 50-videos-a-day output</li>
+          <li>Winning organic hooks become paid creative automatically</li>
+          <li>Replaces a $5k/mo agency plus an $8k/mo in-house creative team</li>
+        </ul>
+        <div class="module-result">Result: Paid traffic poured on proven creative &mdash; never on guesses</div>
+        <a class="module-link" href="../ads-system/index.html">Explore The AI Ads Department &rarr;</a>
+      </div>
+
+      <div class="module-card fade-in d4">
+        <div class="module-num">Module 04</div>
+        <h3>Testing Matrix + Agent Automation</h3>
+        <ul>
+          <li>100-video testing matrix per angle &mdash; sprints of 10&ndash;20 variants, one variable at a time</li>
+          <li>Winner detection on 3-second hold, completion, saves, and shares</li>
+          <li>Losers killed at 48 hours; winners scaled and refreshed every 10&ndash;14 days</li>
+          <li>Hermes agent orchestration runs the whole loop while you sleep</li>
+        </ul>
+        <div class="module-result">Result: You stop guessing which video works &mdash; the matrix tells you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE-REEL ANALYZER -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Sample-Reel Analyzer</div>
+      <div class="section-title">See a Reel You Wish You'd Made? Send It.</div>
+      <div class="section-subtitle">Every niche has ten videos doing most of the winning. The Analyzer reverse-engineers why &mdash; then rebuilds the mechanics with your face, your voice, and your offer.</div>
+    </div>
+
+    <div class="journey-flow fade-in d1">
+      <div class="journey-step">Upload any reel</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">Voice, emotion &amp; frame-by-frame analysis</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">Hook, pacing &amp; cut pattern extracted</div>
+      <div class="journey-arrow">&rarr;</div>
+      <div class="journey-step">Your branded version, at scale</div>
+    </div>
+
+    <div class="copy-block fade-in d2">
+      <p>It breaks down the spoken hook word by word. Reads the emotional arc of the delivery. Maps every cut, zoom, and caption beat against the retention curve.</p>
+
+      <p><strong>Not a copy. A blueprint.</strong> The structure that earned the views, rebuilt around your brand &mdash; then multiplied into variants and fed straight into the testing matrix.</p>
+    </div>
+
+    <div class="fade-in d3" style="text-align: center;">
+      <div class="solution-result">Included in the Full Stack tier</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">How It Works</div>
+      <div class="section-title">Setup to Autopilot in 60 Days</div>
+    </div>
+
+    <div class="timeline fade-in d1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 1</div>
+        <div class="timeline-title">The Build</div>
+        <div class="timeline-desc">Your $1,500 setup covers all of it: clone built from ~20 minutes of footage, brand and voice ingested, accounts connected, approval workflow live.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 2</div>
+        <div class="timeline-title">First Batch</div>
+        <div class="timeline-desc">Your first 50 posts hit the approval queue. You review in one sitting. Auto-scheduling begins across every platform.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Weeks 3&ndash;4</div>
+        <div class="timeline-title">Reels Go Live</div>
+        <div class="timeline-desc">Your clone starts shipping &mdash; 6.3s loops and 14&ndash;16s formats, three content lanes running simultaneously. People start asking when you found time to film.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Weeks 5&ndash;8</div>
+        <div class="timeline-title">The Matrix Turns On</div>
+        <div class="timeline-desc">Variant sprints begin. Hook rate and completion tracked per variant. Losers cut at 48 hours. Winners scaled and refreshed on cycle.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">After 60 Days</div>
+        <div class="timeline-title">Autopilot</div>
+        <div class="timeline-desc">The Engine runs itself. You approve in weekly batches, watch the dashboard, and take calls from people who saw you everywhere.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Results</div>
+      <div class="section-title">What Changes in 60 Days</div>
+    </div>
+
+    <div class="ba-grid fade-in d1">
+      <div class="ba-col ba-before">
+        <h3>Before</h3>
+        <ul>
+          <li>Posting when you find the time</li>
+          <li>3&ndash;5 assets a month, zero data on why</li>
+          <li>$5k/mo agency invoices &mdash; creative billed extra</li>
+          <li>Your best ideas die in your notes app</li>
+          <li>Invisible the week you get busy</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-after">
+        <h3>After 60 Days</h3>
+        <ul>
+          <li>50+ posts and 30 reels a month, on schedule</li>
+          <li>Every video measured &mdash; hook, hold, completion</li>
+          <li>One flat monthly number, creative included</li>
+          <li>Every idea becomes 10 variants by Friday</li>
+          <li>Present on every platform, every day, without you</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Investment</div>
+      <div class="section-title">Pick Your Engine</div>
+    </div>
+
+    <div class="pricing-note fade-in d1">
+      <strong>One-time setup: $1,500 (every tier)</strong>
+      <span>Covers clone build, brand ingest, and full system wiring. Month to month after that.</span>
+    </div>
+
+    <div class="pricing-grid fade-in d2">
+      <div class="pricing-card">
+        <div class="pricing-tier">Engine</div>
+        <div class="pricing-price">$997<span>/mo</span></div>
+        <p class="pricing-desc">The production layer. Daily presence without filming daily.</p>
+        <ul class="pricing-features">
+          <li>Content repurposing engine &mdash; 50+ posts a month</li>
+          <li>SEO blog autopilot (lite)</li>
+          <li>Auto-scheduling across every platform</li>
+          <li>Approval workflow &mdash; nothing ships without your sign-off</li>
+        </ul>
+        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_TIER1_ENGINE">Start with Engine</a>
+      </div>
+
+      <div class="pricing-card recommended">
+        <div class="pricing-badge">Recommended</div>
+        <div class="pricing-tier">Engine + Influencer</div>
+        <div class="pricing-price">$1,997<span>/mo</span></div>
+        <p class="pricing-desc">The full content department. Your clone does the talking.</p>
+        <ul class="pricing-features">
+          <li>Everything in Engine</li>
+          <li>UGC AI clone &mdash; talking-head + full-body reels</li>
+          <li>30 reels a month, full scripts included</li>
+          <li>B-roll injection, on beat</li>
+          <li>6.3s loop + 14&ndash;16s viral formats</li>
+        </ul>
+        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_TIER2_INFLUENCER">Start with Engine + Influencer</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Full Stack</div>
+        <div class="pricing-price">$2,997<span>/mo</span></div>
+        <p class="pricing-desc">The whole machine, including the parts that find winners.</p>
+        <ul class="pricing-features">
+          <li>Everything in Engine + Influencer</li>
+          <li>100-video testing matrix</li>
+          <li>Winning-ad detection</li>
+          <li>Ads-ready creatives</li>
+          <li>Sample-reel analyzer</li>
+          <li>Hermes agent automation</li>
+        </ul>
+        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_TIER3_FULLSTACK">Start with Full Stack</a>
+      </div>
+    </div>
+
+    <p class="pricing-fine fade-in d3">Setup billed at checkout. No annual contract. Cancel anytime &mdash; you keep your clone and every asset the Engine has shipped.</p>
+
+    <!-- HORMOZI ROI -->
+    <div class="roi-box fade-in d4">
+      <div class="roi-kicker">Do the Math</div>
+      <h3>What Does a Creative Department Actually Cost?</h3>
+      <p>A "$5k/mo" agency really bills $67k&ndash;$100k a year once creative and tool fees land on the invoice. An in-house video team runs ~$300k. Either way, you get 15&ndash;20 assets a month.</p>
+      <p>The Engine at the recommended tier: $1,997 a month plus $1,500 once. That's 80+ finished assets a month &mdash; about <strong>$25 per asset</strong>. Your editor charges more than that per revision.</p>
+      <div class="roi-inset">
+        <p class="roi-big">$25,464 &mdash; your entire year one at Engine + Influencer.</p>
+        <p class="roi-small">Less than five months of the agency you'd hire instead.</p>
+      </div>
+      <p class="roi-close">The output of a creative department. A tenth of the payroll.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Fair Questions</div>
+      <div class="section-title">Asked Before Buying</div>
+    </div>
+
+    <div class="faq-list fade-in d1">
+      <details class="faq-item">
+        <summary>Will it look like AI?</summary>
+        <div class="faq-a">
+          <p>The litmus test is simple: does it feel native, or does it feel like an ad? The Engine is built to pass that test. Your clone is trained on your real footage and your real voice. Scripts follow the organic formats already winning your feed &mdash; storytelling, day-in-the-life, show-and-tell.</p>
+          <p>UGC-style creative outperforms polished brand content (~4x the CTR at roughly half the CPC) precisely because it doesn't look produced. And nothing publishes without your approval &mdash; if a video reads fake to you, kill it with one tap.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What about platform rules on AI content?</summary>
+        <div class="faq-a">
+          <p>Handled automatically. TikTok and Meta both allow AI-generated content when it's labeled, and the Engine applies the correct label per platform. Meta has stated its AI label carries no distribution penalty.</p>
+          <p>Scripts follow policy too: AI avatars deliver demos and information &mdash; never fake personal testimonials. EU labeling requirements arriving August 2026 are already built in.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Who owns my clone and the content?</summary>
+        <div class="faq-a">
+          <p>You do. Your likeness, your voice model, and every asset the Engine produces are yours, contractually. Cancel and we hand over the files and delete our copies. Your clone never appears in anyone else's content. Ever.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How much of my time does this take?</summary>
+        <div class="faq-a">
+          <p>About 20 minutes a week. You open the approval queue, kill anything off-brand, and tap approve. Setup week asks the most of you: roughly 20 minutes of recorded footage and one onboarding call. By day 60, most clients approve in a single weekly batch.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What do you need from me to start?</summary>
+        <div class="faq-a">
+          <p>Three things. About 20 minutes of footage &mdash; a podcast, a Zoom recording, or clips we walk you through filming on your phone. Your brand assets. Access to your social accounts.</p>
+          <p>That's the whole list. If you have existing content sitting around &mdash; episodes, blog posts, old videos &mdash; the Engine turns it into your first month of posts.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>I already have an agency or an editor.</summary>
+        <div class="faq-a">
+          <p>Keep them if they're working. Clients typically do one of two things: replace the $5k/mo retainer outright, or keep the strategist and let the Engine handle production at ~$25 per asset instead of $150&ndash;$300. Either way your cost per asset drops 80&ndash;90%.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What if the content doesn't perform?</summary>
+        <div class="faq-a">
+          <p>Performance isn't a hope here &mdash; it's a process. Every variant is measured on 3-second hold and completion. Anything under a 25% hook rate is killed at 48 hours. Winners get scaled and refreshed every 10&ndash;14 days.</p>
+          <p>The system is built to find what works in your niche, not assume it. You see every number on the dashboard.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What's the contract?</summary>
+        <div class="faq-a">
+          <p>Month to month. No annual lock-in. The $1,500 setup is one-time and covers your clone build and full system wiring. Cancel whenever &mdash; you keep your clone and every asset shipped.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="next-steps fade-in">
+      <div class="section-label" style="text-align:center;">Next Steps</div>
+      <div class="section-title">Your Next 50 Videos Are One Decision Away</div>
+      <p class="section-subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">Same brand. Same voice. Just shipping every day instead of when you find time.</p>
+
+      <ul class="steps-list">
+        <li><span>1.</span> Pick your tier &mdash; checkout takes 2 minutes</li>
+        <li><span>2.</span> Book your build call &mdash; we collect footage and brand assets</li>
+        <li><span>3.</span> First 50 posts hit your approval queue by Week 2</li>
+      </ul>
+
+      <p class="ready">Ready? Pick your engine.</p>
+
+      <div class="hero-cta">
+        <a href="#pricing" class="btn">See Plans &amp; Pricing</a>
+        <a href="vsl.html" class="btn btn-ghost">Watch the 6-Minute Breakdown</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>The Content Engine &middot; Elevated AI &middot; &copy; 2026</p>
+    <p>Ready for paid traffic? <a href="../ads-system/index.html">Explore The AI Ads Department &rarr;</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 1500);
+});
+</script>
+
+</body>
+</html>
