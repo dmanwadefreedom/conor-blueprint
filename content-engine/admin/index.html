@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Content Engine — Admin Console</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+button { font-family: inherit; }
+
+/* ─── FADE-IN ─── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── APP SHELL ─── */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 232px;
+  flex-shrink: 0;
+  border-right: 1px solid #e0e0e0;
+  padding: 28px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.brand {
+  padding: 0 12px;
+}
+.brand-name {
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+  color: #1a1a1a;
+}
+.brand-name strong { font-weight: 600; }
+.brand-sub {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 2px;
+}
+.nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.nav-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  padding: 14px 12px 6px;
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.nav-btn:hover { border-color: #e0e0e0; color: #1a1a1a; }
+.nav-btn.active {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.nav-count {
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #ffeb3b44;
+  border-radius: 100px;
+  padding: 1px 8px;
+  color: #1a1a1a;
+}
+.sidebar-foot {
+  border-top: 1px solid #e0e0e0;
+  padding: 16px 12px 0;
+  font-size: 0.78rem;
+  color: #999;
+  line-height: 1.9;
+}
+.sidebar-foot a { color: #555; text-decoration: none; border-bottom: 1px solid #e0e0e0; }
+.sidebar-foot a:hover { color: #1a1a1a; border-color: #1a1a1a; }
+.agent-line { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; color: #555; }
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  box-shadow: 0 0 0 3px #ffeb3b44;
+  flex-shrink: 0;
+}
+
+/* ─── MAIN ─── */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 40px 64px;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 32px;
+}
+.topbar h1 {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  font-weight: 300;
+  letter-spacing: -0.3px;
+}
+.topbar-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.demo-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: #ffeb3b44;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  padding: 5px 14px;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+.topbar-date { font-size: 0.82rem; color: #999; }
+
+/* ─── PANELS ─── */
+.panel { display: none; }
+.panel.active { display: block; }
+
+.panel-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 12px;
+}
+.panel-title {
+  font-size: 1.35rem;
+  font-weight: 300;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+.panel-sub {
+  font-size: 0.92rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.block { margin-bottom: 44px; }
+.block-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 14px;
+}
+
+/* ─── KPI TILES ─── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.kpi {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 22px 20px 18px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.kpi:hover { border-color: #bbb; transform: translateY(-2px); }
+.kpi-number {
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1.15;
+}
+.kpi-number span { font-size: 0.95rem; color: #999; font-weight: 400; }
+.kpi-label {
+  font-size: 0.78rem;
+  color: #888;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.kpi-delta {
+  font-size: 0.72rem;
+  color: #1a1a1a;
+  background: #ffeb3b22;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 2px 8px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+.meter {
+  height: 4px;
+  background: #efefef;
+  border-radius: 100px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.meter-fill { height: 100%; background: #1a1a1a; border-radius: 100px; }
+
+/* ─── PIPELINE STRIP ─── */
+.pipe-flow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pipe-step {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: center;
+}
+.pipe-step small { display: block; font-weight: 400; color: #999; font-size: 0.72rem; }
+.pipe-arrow { color: #ccc; font-size: 1rem; }
+
+/* ─── TABLES ─── */
+.table-wrap {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 640px;
+}
+th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #999;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
+}
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #555;
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+td strong { color: #1a1a1a; font-weight: 600; }
+tbody tr { transition: background 0.2s; }
+tbody tr:hover { background: #fafafa; }
+
+/* ─── CHIPS ─── */
+.chip {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 100px;
+  padding: 3px 12px;
+  white-space: nowrap;
+  border: 1px solid #e0e0e0;
+  color: #555;
+}
+.chip-live { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+.chip-warn { background: #ffeb3b44; border-color: #e0e0e0; color: #1a1a1a; }
+.chip-muted { color: #999; }
+.chip-win { background: #ffeb3b44; border-color: #1a1a1a; color: #1a1a1a; }
+
+/* ─── FILTERS ─── */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.filter-btn {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s;
+}
+.filter-btn:hover { border-color: #bbb; color: #1a1a1a; }
+.filter-btn.active { border-color: #1a1a1a; color: #1a1a1a; font-weight: 600; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  padding: 11px 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.btn:hover { transform: translateY(-2px); opacity: 0.9; }
+.btn-ghost {
+  background: none;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+.btn-ghost:hover { border-color: #1a1a1a; }
+.btn-sm { padding: 6px 14px; font-size: 0.75rem; }
+.btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+.btn[disabled]:hover { transform: none; }
+
+/* ─── CARDS ─── */
+.cards-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px 22px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.card:hover { transform: translateY(-3px); border-color: #bbb; }
+.card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; }
+.card p { color: #666; font-size: 0.85rem; line-height: 1.7; }
+
+/* ─── CLONE CARDS ─── */
+.clone-card { cursor: pointer; position: relative; }
+.clone-card.selected { border: 2px solid #1a1a1a; }
+.clone-card .chip { position: absolute; top: 16px; right: 16px; }
+.clone-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+}
+.clone-meta { font-size: 0.75rem; color: #999; margin-top: 6px; line-height: 1.7; }
+
+/* ─── FORMS ─── */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field.full { grid-column: 1 / -1; }
+.field label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #999;
+}
+.field input, .field select, .field textarea {
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 11px 14px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.25s;
+  width: 100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: #1a1a1a; }
+.field textarea { resize: vertical; min-height: 74px; line-height: 1.6; }
+.field-hint { font-size: 0.72rem; color: #aaa; }
+
+/* ─── PICKERS (radio cards) ─── */
+.picker-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pick {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.pick:hover { border-color: #bbb; transform: translateY(-2px); }
+.pick.selected { border: 2px solid #1a1a1a; padding: 15px; }
+.pick h4 { font-size: 0.85rem; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+.pick p { font-size: 0.74rem; color: #888; line-height: 1.6; }
+
+/* ─── SCRIPT OUTPUT ─── */
+.script-out {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 28px;
+  margin-top: 20px;
+  display: none;
+}
+.script-out.show { display: block; }
+.beat {
+  display: flex;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.88rem;
+}
+.beat:last-of-type { border-bottom: none; }
+.beat-t {
+  flex-shrink: 0;
+  width: 96px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #aaa;
+  padding-top: 3px;
+}
+.beat-copy { color: #555; line-height: 1.7; }
+.beat-copy .hl { background: #ffeb3b44; padding: 1px 5px; }
+.script-meta {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.78rem;
+  color: #888;
+  line-height: 2.0;
+}
+.script-meta strong { color: #1a1a1a; font-weight: 600; }
+
+/* ─── DROPZONE ─── */
+.dropzone {
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 56px 24px;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+.dropzone:hover { border-color: #1a1a1a; background: #fafafa; }
+.dropzone strong { color: #1a1a1a; display: block; font-weight: 500; font-size: 1rem; margin-bottom: 4px; }
+.dropzone small { color: #aaa; font-size: 0.75rem; }
+
+.analysis { display: none; margin-top: 24px; }
+.analysis.show { display: block; }
+.spec-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.spec-chip {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.78rem;
+  color: #555;
+}
+.spec-chip strong { display: block; color: #1a1a1a; font-size: 0.95rem; font-weight: 600; }
+
+/* voice energy bars */
+.energy { display: flex; align-items: flex-end; gap: 4px; height: 46px; margin: 10px 0 6px; }
+.energy i {
+  flex: 1;
+  background: #e0e0e0;
+  border-radius: 2px 2px 0 0;
+  min-width: 5px;
+  max-width: 18px;
+}
+.energy i.hot { background: #1a1a1a; }
+
+/* ─── TESTING MATRIX ─── */
+.matrix-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.74rem; color: #888; }
+.legend i {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border: 1px solid #e0e0e0;
+}
+.legend .l-win { background: #ffeb3b66; border-color: #1a1a1a; }
+.legend .l-live { background: #fff; }
+.legend .l-kill { background: #f4f4f4; }
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+}
+.cell {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 8px 6px;
+  text-align: center;
+  font-size: 0.62rem;
+  color: #888;
+  line-height: 1.5;
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: default;
+  position: relative;
+}
+.cell:hover { transform: translateY(-2px); border-color: #bbb; }
+.cell b { display: block; font-size: 0.68rem; color: #1a1a1a; font-weight: 600; }
+.cell.win { background: #ffeb3b44; border: 1.5px solid #1a1a1a; }
+.cell.kill { background: #f7f7f7; opacity: 0.55; }
+.cell .w-badge {
+  position: absolute;
+  top: -7px; right: -5px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  border-radius: 100px;
+  padding: 1px 6px;
+  letter-spacing: 1px;
+}
+.threshold-note {
+  font-size: 0.78rem;
+  color: #888;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 18px;
+  line-height: 1.8;
+}
+.threshold-note strong { color: #1a1a1a; }
+
+/* ─── SETTINGS ─── */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.88rem;
+}
+.setting-row:last-child { border-bottom: none; }
+.setting-name { color: #1a1a1a; font-weight: 500; }
+.setting-name small { display: block; color: #999; font-weight: 400; font-size: 0.76rem; margin-top: 2px; }
+.key-input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 9px 14px;
+  background: #fafafa;
+  width: 280px;
+  max-width: 100%;
+}
+
+/* ─── MISC ─── */
+.inline-note { font-size: 0.78rem; color: #aaa; margin-top: 14px; }
+.main-footer {
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.78rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.main-footer a { color: #999; text-decoration: none; border-bottom: 1px solid #e0e0e0; }
+.main-footer a:hover { color: #1a1a1a; border-color: #1a1a1a; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  .app { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 20px 12px;
+    gap: 14px;
+  }
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-label { display: none; }
+  .nav-btn { white-space: nowrap; width: auto; }
+  .sidebar-foot { display: none; }
+  .main { padding: 24px 20px 48px; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .cards-2, .cards-3, .picker-row, .form-grid { grid-template-columns: 1fr; }
+  .matrix { grid-template-columns: repeat(5, 1fr); }
+}
+@media (max-width: 520px) {
+  .kpi-row { grid-template-columns: 1fr; }
+  .matrix { grid-template-columns: repeat(4, 1fr); }
+  .pipe-arrow { display: none; }
+  .pipe-step { flex: 1 1 40%; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-name">The <strong>Content Engine</strong></div>
+      <div class="brand-sub">Admin Console &middot; Elevated AI</div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-btn active" data-tab="dashboard" data-title="Dashboard">Dashboard</button>
+      <button class="nav-btn" data-tab="queue" data-title="Content Queue">Content Queue <span class="nav-count">9</span></button>
+      <button class="nav-btn" data-tab="studio" data-title="UGC Studio">UGC Studio</button>
+      <button class="nav-btn" data-tab="analyzer" data-title="Sample Reel Analyzer">Reel Analyzer</button>
+      <button class="nav-btn" data-tab="matrix" data-title="Testing Matrix">Testing Matrix</button>
+      <div class="nav-label">Modules</div>
+      <button class="nav-btn" data-tab="seo" data-title="SEO Autopilot &middot; botmo">SEO &middot; botmo</button>
+      <button class="nav-btn" data-tab="ads" data-title="Ads Handoff &rarr; GIZMO">Ads Handoff</button>
+      <div class="nav-label">System</div>
+      <button class="nav-btn" data-tab="settings" data-title="Settings">Settings</button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="agent-line"><span class="dot"></span> Hermes agent online</div>
+      <a href="../index.html">&larr; Sales page</a><br>
+      <a href="../../ads-system/index.html">The AI Ads Department &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <main class="main">
+
+    <header class="topbar">
+      <h1 id="page-title">Dashboard</h1>
+      <div class="topbar-right">
+        <span class="demo-badge">Demo Data</span>
+        <span class="topbar-date">Friday, July 10, 2026</span>
+      </div>
+    </header>
+
+    <!-- ══════════ DASHBOARD ══════════ -->
+    <section class="panel active" id="panel-dashboard">
+      <div class="fade-in">
+        <div class="panel-label">Overview</div>
+        <div class="panel-title">The engine is running.</div>
+        <p class="panel-sub">Today at a glance. 50 videos a day is the target. Everything below feeds it.</p>
+      </div>
+
+      <div class="block fade-in d1">
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-number">34 <span>/ 50</span></div>
+            <div class="kpi-label">Videos produced today</div>
+            <div class="meter"><div class="meter-fill" style="width:68%"></div></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">68</div>
+            <div class="kpi-label">Variants in testing &middot; 4 sprints</div>
+            <div class="kpi-delta">Sprint 07 day 2 of 4</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">6</div>
+            <div class="kpi-label">Winners found this cycle</div>
+            <div class="kpi-delta">2 pushed to ads</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">$23,952</div>
+            <div class="kpi-label">MRR &middot; 13 active clients</div>
+            <div class="kpi-delta">+$3,994 this month</div>
+          </div>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-number">112</div>
+            <div class="kpi-label">Posts scheduled, next 7 days</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">9</div>
+            <div class="kpi-label">Waiting for approval</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">41%</div>
+            <div class="kpi-label">Avg 3-sec hook hold (target 60%)</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">42</div>
+            <div class="kpi-label">SEO posts live &middot; botmo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block fade-in d2">
+        <div class="block-title">Render Pipeline &middot; Live</div>
+        <div class="pipe-flow">
+          <div class="pipe-step">Analyze <small>idle</small></div>
+          <div class="pipe-arrow">&rarr;</div>
+          <div class="pipe-step">Script <small>3 queued</small></div>
+          <div class="pipe-arrow">&rarr;</div>
+          <div class="pipe-step">Voice <small>1 running</small></div>
+          <div class="pipe-arrow">&rarr;</div>
+          <div class="pipe-step">Face <small>2 running</small></div>
+          <div class="pipe-arrow">&rarr;</div>
+          <div class="pipe-step">B-roll <small>1 queued</small></div>
+          <div class="pipe-arrow">&rarr;</div>
+          <div class="pipe-step">Assemble <small>4 queued</small></div>
+          <div class="pipe-arrow">&rarr;</div>
+          <div class="pipe-step">Export <small>2 done/hr</small></div>
+        </div>
+      </div>
+
+      <div class="block fade-in d3">
+        <div class="block-title">Recent Activity</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Time</th><th>Event</th><th>Detail</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>09:41</td><td><strong>Winner detected</strong></td><td>V-728 &middot; 64% hold, 5.8% CTR &middot; auto-flagged for GIZMO push</td><td><span class="chip chip-win">Winner</span></td></tr>
+              <tr><td>09:12</td><td>Reel rendered</td><td>logan-v2 &middot; 14.6s &middot; Path A &middot; "structurally impossible" hook</td><td><span class="chip chip-live">Done</span></td></tr>
+              <tr><td>08:55</td><td>Approval granted</td><td>Client approved 12 posts via Hermes (Telegram)</td><td><span class="chip chip-live">Done</span></td></tr>
+              <tr><td>08:30</td><td>Blog published</td><td>botmo &middot; "ai content repurposing tools" &middot; 1,840 words</td><td><span class="chip chip-live">Live</span></td></tr>
+              <tr><td>07:58</td><td>Variant killed</td><td>V-713 &middot; 19% hook hold at 48h &mdash; below 25% kill line</td><td><span class="chip chip-muted">Killed</span></td></tr>
+              <tr><td>07:02</td><td>New subscription</td><td>Engine + Influencer &middot; $1,997/mo + $1,500 setup paid</td><td><span class="chip chip-live">Paid</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTENT QUEUE ══════════ -->
+    <section class="panel" id="panel-queue">
+      <div class="fade-in">
+        <div class="panel-label">Distribution</div>
+        <div class="panel-title">Everything scheduled, everything shipped.</div>
+        <p class="panel-sub">The approval workflow in one place. Approve here or reply to Hermes in Telegram &mdash; same queue.</p>
+      </div>
+
+      <div class="fade-in d1">
+        <div class="filter-row" id="queue-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="approval">Needs approval</button>
+          <button class="filter-btn" data-filter="scheduled">Scheduled</button>
+          <button class="filter-btn" data-filter="posted">Posted</button>
+          <button class="filter-btn" data-filter="failed">Failed</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="queue-table">
+            <thead><tr><th>Post</th><th>Platform</th><th>Format</th><th>Scheduled</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr data-status="approval"><td><strong>"You were never supposed to edit this yourself"</strong></td><td>TikTok &middot; @elevated.logan</td><td>14&ndash;16s reel</td><td>Jul 10, 4:00 PM</td><td><span class="chip chip-warn">Needs approval</span></td><td><button class="btn btn-ghost btn-sm approve-btn">Approve</button></td></tr>
+              <tr data-status="approval"><td><strong>"50 posts a month from one podcast" carousel</strong></td><td>LinkedIn</td><td>Carousel &middot; 8 slides</td><td>Jul 10, 5:30 PM</td><td><span class="chip chip-warn">Needs approval</span></td><td><button class="btn btn-ghost btn-sm approve-btn">Approve</button></td></tr>
+              <tr data-status="approval"><td><strong>6.3s loop &middot; "calendar fills itself" time-lapse</strong></td><td>Instagram Reels</td><td>6.3s loop</td><td>Jul 10, 7:00 PM</td><td><span class="chip chip-warn">Needs approval</span></td><td><button class="btn btn-ghost btn-sm approve-btn">Approve</button></td></tr>
+              <tr data-status="scheduled"><td><strong>"The $587k marketing department you don't need"</strong></td><td>YouTube Shorts</td><td>32s demo</td><td>Jul 11, 9:00 AM</td><td><span class="chip">Scheduled</span></td><td></td></tr>
+              <tr data-status="scheduled"><td><strong>Blog quote card &middot; "AI assistants recommend you now"</strong></td><td>X &middot; LinkedIn</td><td>Static + copy</td><td>Jul 11, 11:00 AM</td><td><span class="chip">Scheduled</span></td><td></td></tr>
+              <tr data-status="scheduled"><td><strong>V-728 winner &middot; comment-reply format remix</strong></td><td>TikTok &middot; @logan.builds</td><td>14&ndash;16s reel</td><td>Jul 11, 3:00 PM</td><td><span class="chip">Scheduled</span></td><td></td></tr>
+              <tr data-status="posted"><td><strong>"I was today years old" &middot; repurposing discovery</strong></td><td>Instagram Reels</td><td>14s reel</td><td>Jul 10, 8:00 AM</td><td><span class="chip chip-live">Posted</span></td><td></td></tr>
+              <tr data-status="posted"><td><strong>Podcast clip &middot; pricing objection breakdown</strong></td><td>YouTube Shorts</td><td>41s clip</td><td>Jul 9, 6:00 PM</td><td><span class="chip chip-live">Posted</span></td><td></td></tr>
+              <tr data-status="posted"><td><strong>Founder story &middot; "we fired our agency" Path A</strong></td><td>TikTok &middot; @elevated.logan</td><td>28s reel</td><td>Jul 9, 4:00 PM</td><td><span class="chip chip-live">Posted</span></td><td></td></tr>
+              <tr data-status="failed"><td><strong>B-roll heavy cut &middot; office walkthrough</strong></td><td>Instagram Reels</td><td>16s reel</td><td>Jul 9, 2:00 PM</td><td><span class="chip chip-muted">Failed &middot; retrying</span></td><td><button class="btn btn-ghost btn-sm">Retry now</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="inline-note">Auto-scheduling follows each platform's cadence rules: TikTok 1&ndash;3/day per account, IG Reels 2&ndash;4/week, YT Shorts 3&ndash;5/week. New TikTok accounts warm up for 14 days before full cadence.</p>
+      </div>
+    </section>
+
+    <!-- ══════════ UGC STUDIO ══════════ -->
+    <section class="panel" id="panel-studio">
+      <div class="fade-in">
+        <div class="panel-label">Production</div>
+        <div class="panel-title">Your influencer, on demand.</div>
+        <p class="panel-sub">Pick a clone, pick a format, pick a content path. The engine writes the script, reads it in their voice, and lip-syncs their footage. 30 reels a month on the Engine + Influencer tier.</p>
+      </div>
+
+      <div class="block fade-in d1">
+        <div class="block-title">Clone Selector</div>
+        <div class="cards-3">
+          <div class="card clone-card selected" data-clone="Logan v2">
+            <span class="chip chip-live">Active</span>
+            <div class="clone-avatar">L2</div>
+            <h3>Logan v2</h3>
+            <p>Talking-head + full-body. Trained Jun 2026 from a 3-min base video.</p>
+            <div class="clone-meta">30 reels/mo quota &middot; 22 used &middot; voice + face</div>
+          </div>
+          <div class="card clone-card" data-clone="Logan v1">
+            <span class="chip chip-muted">Archived</span>
+            <div class="clone-avatar">L1</div>
+            <h3>Logan v1</h3>
+            <p>Talking-head only. Superseded by v2 &mdash; kept for A/B history.</p>
+            <div class="clone-meta">Retired May 2026 &middot; 118 reels produced</div>
+          </div>
+          <div class="card clone-card" data-clone="Katreen v1">
+            <span class="chip chip-warn">Training</span>
+            <div class="clone-avatar">K1</div>
+            <h3>Katreen v1</h3>
+            <p>Base video uploaded. Voice clone ready; face model finishes tonight.</p>
+            <div class="clone-meta">ETA Jul 11 &middot; consent form on file</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block fade-in d2">
+        <div class="block-title">Format</div>
+        <div class="picker-row" data-picker="format">
+          <div class="pick selected" data-value="6.3s">
+            <h4>6.3s Seamless Loop</h4>
+            <p>Frame-perfect loop, split-sentence open. Viewers rewatch 2&ndash;3x without noticing &mdash; watch time over 100%.</p>
+          </div>
+          <div class="pick" data-value="14-16s">
+            <h4>14&ndash;16s Reel</h4>
+            <p>The completion sweet spot. Hardest length to fail on completion rate &mdash; the biggest discovery signal.</p>
+          </div>
+          <div class="pick" data-value="30s">
+            <h4>30s Demo</h4>
+            <p>Show-and-tell. Product on screen frame 1. Use for YT Shorts and Shop-tagged posts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block fade-in d3">
+        <div class="block-title">Content Path</div>
+        <div class="picker-row" data-picker="path">
+          <div class="pick selected" data-value="A">
+            <h4>Path A &middot; Storytelling Pitch</h4>
+            <p>Hook &rarr; agitate &rarr; reveal &rarr; proof &rarr; CTA. One verbal hook, one CTA. 15&ndash;35s.</p>
+          </div>
+          <div class="pick" data-value="B">
+            <h4>Path B &middot; Real-Life Use</h4>
+            <p>Loopable lifestyle content, product incidental. CTA lives in the caption. Awareness and trust lane.</p>
+          </div>
+          <div class="pick" data-value="C">
+            <h4>Path C &middot; Show-and-Tell</h4>
+            <p>Demo removes doubt. Product on screen from frame 1, benefit spoken over it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block fade-in d4">
+        <div class="block-title">Script Generator</div>
+        <div class="form-grid">
+          <div class="field full">
+            <label>Offer / topic</label>
+            <textarea>The Content Engine — 50+ posts a month from content you already have. $997/mo, setup $1,500.</textarea>
+          </div>
+          <div class="field">
+            <label>Hook formula</label>
+            <select>
+              <option selected>Contrarian claim</option>
+              <option>Mistake warning</option>
+              <option>List tease</option>
+              <option>Outcome-first showcase</option>
+              <option>Curiosity gap</option>
+              <option>"I was today years old"</option>
+              <option>POV / question</option>
+              <option>Comment-bait mid-sentence</option>
+            </select>
+            <span class="field-hint">Spoken hooks: 10&ndash;14 words. The first 1.5 seconds decide distribution.</span>
+          </div>
+          <div class="field">
+            <label>B-roll injection</label>
+            <select>
+              <option selected>Auto (2&ndash;4s cutaways on beat grid)</option>
+              <option>Talking head only</option>
+              <option>B-roll heavy (60%+)</option>
+            </select>
+            <span class="field-hint">Cutaways pulled and re-ranked against each script beat.</span>
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <button class="btn" id="gen-btn">Generate script</button>
+        </div>
+
+        <div class="script-out" id="script-out">
+          <div class="block-title">Output &middot; Logan v2 &middot; 14&ndash;16s &middot; Path A &middot; Contrarian</div>
+          <div class="beat"><div class="beat-t">Hook 0.0&ndash;1.5s</div><div class="beat-copy"><span class="hl">"Your content team isn't slow. It's structurally impossible."</span></div></div>
+          <div class="beat"><div class="beat-t">Beat 1 &middot; 1.5&ndash;5s</div><div class="beat-copy">"One editor ships 3 videos a week. The feed needs 50 a month. That math never closes."</div></div>
+          <div class="beat"><div class="beat-t">Beat 2 &middot; 5&ndash;9s</div><div class="beat-copy">"So we filmed the founder once. Now his clone ships every single day."</div></div>
+          <div class="beat"><div class="beat-t">Beat 3 &middot; 9&ndash;13s</div><div class="beat-copy">"50 posts a month. 30 reels. Zero filming days. Approval takes one tap."</div></div>
+          <div class="beat"><div class="beat-t">CTA 13&ndash;15s</div><div class="beat-copy">"Link's below. It does the math for your business."</div></div>
+          <div class="script-meta">
+            <strong>B-roll queries:</strong> "overwhelmed editor timeline scrubbing" &middot; "content calendar filling time-lapse" &middot; "phone feed scroll close-up"<br>
+            <strong>Caption emphasis:</strong> "structurally impossible" &middot; "50" &middot; "zero filming days"<br>
+            <strong>Compliance:</strong> AI-generated label applied on TikTok and Meta. Clone scripted as demo/info &mdash; never a personal testimonial.
+          </div>
+          <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-sm">Send to render queue</button>
+            <button class="btn btn-ghost btn-sm">Regenerate</button>
+            <button class="btn btn-ghost btn-sm">Spin 10 hook variants</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SAMPLE REEL ANALYZER ══════════ -->
+    <section class="panel" id="panel-analyzer">
+      <div class="fade-in">
+        <div class="panel-label">Reverse Engineering</div>
+        <div class="panel-title">Drop in a reel that works. Get the recipe.</div>
+        <p class="panel-sub">The analyzer breaks a sample down to shots, voice, pacing, and captions &mdash; then turns it into a template the engine can reproduce with your clone and your offer.</p>
+      </div>
+
+      <div class="fade-in d1">
+        <div class="dropzone" id="dropzone">
+          <strong>Drop a video file here</strong>
+          Or click to browse &middot; MP4 / MOV up to 3 minutes
+          <br><small>Demo: click to load logan-sample-04.mp4</small>
+        </div>
+
+        <div class="analysis" id="analysis">
+          <div class="block">
+            <div class="block-title">logan-sample-04.mp4 &middot; 14.2s &middot; 1080&times;1920 &middot; Analyzed in 38s</div>
+            <div class="spec-chips">
+              <div class="spec-chip"><strong>1.4s</strong>Hook lands</div>
+              <div class="spec-chip"><strong>168 WPM</strong>Speech rate</div>
+              <div class="spec-chip"><strong>0.42/s</strong>Cut cadence</div>
+              <div class="spec-chip"><strong>2.4s</strong>Avg shot length</div>
+              <div class="spec-chip"><strong>38%</strong>B-roll ratio</div>
+              <div class="spec-chip"><strong>12.8s</strong>CTA position</div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="block-title">Shot Breakdown</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>#</th><th>Time</th><th>Type</th><th>Note</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>0.0&ndash;1.4s</td><td><strong>Talking head &middot; close</strong></td><td>Hook on frame 1, direct to lens, caption already on screen</td></tr>
+                  <tr><td>2</td><td>1.4&ndash;3.8s</td><td>B-roll &middot; screen capture</td><td>Dashboard scroll, matches "the feed needs 50" beat</td></tr>
+                  <tr><td>3</td><td>3.8&ndash;6.2s</td><td><strong>Talking head &middot; medium</strong></td><td>Value stack, hand gesture on each number</td></tr>
+                  <tr><td>4</td><td>6.2&ndash;8.1s</td><td>B-roll &middot; product in hand</td><td>Phone held up, feed autoplay visible</td></tr>
+                  <tr><td>5</td><td>8.1&ndash;11.9s</td><td><strong>Talking head &middot; close</strong></td><td>Proof beat &mdash; specific numbers, pace rises</td></tr>
+                  <tr><td>6</td><td>11.9&ndash;14.2s</td><td>Talking head + end card</td><td>CTA spoken once, 0.4s end card, loops cleanly to frame 1</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="cards-2 block">
+            <div class="card">
+              <h3>Voice Read</h3>
+              <p>Emotion: confident &rarr; urgent. Three pauses, avg 0.31s, all before numbers. Energy rises 22% into the CTA.</p>
+              <div class="energy">
+                <i style="height:40%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:62%"></i><i style="height:50%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:72%"></i><i class="hot" style="height:84%"></i><i class="hot" style="height:92%"></i><i class="hot" style="height:100%"></i>
+              </div>
+              <p style="font-size:0.72rem; color:#aaa;">Per-second vocal energy &middot; dark bars = CTA window</p>
+            </div>
+            <div class="card">
+              <h3>Caption Style</h3>
+              <p>Karaoke word-pop, 2&ndash;3 words per line, centered at 68% frame height. Numbers and pain words get <span style="background:#ffeb3b44; padding:1px 5px;">yellow emphasis</span>. Safe-zone clean on TikTok and Reels UI.</p>
+            </div>
+          </div>
+
+          <div class="threshold-note">
+            <strong>Verdict:</strong> Hook lands inside the 1.5s window. Cut cadence and B-roll ratio match top-decile UGC. Recommend cloning this pacing and caption style into Sprint 08 with 10 fresh hooks &mdash; keep everything else identical to isolate the variable.
+          </div>
+          <div style="margin-top:20px;">
+            <button class="btn">Use as template for Sprint 08</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ TESTING MATRIX ══════════ -->
+    <section class="panel" id="panel-matrix">
+      <div class="fade-in">
+        <div class="panel-label">The 100-Video Test</div>
+        <div class="panel-title">Sprint 07 &mdash; Hook isolation.</div>
+        <p class="panel-sub">100 variants, one variable. Same clone, same offer, same format &mdash; only the hook changes. Winners get scaled. Losers get killed at 48 hours. No opinions, just numbers.</p>
+      </div>
+
+      <div class="fade-in d1">
+        <div class="matrix-head">
+          <div class="block-title" style="margin:0;">V-701 &ndash; V-800 &middot; Day 2 of 4 &middot; 68 live &middot; 26 killed &middot; 6 winners</div>
+          <div class="legend">
+            <span><i class="l-win"></i>Winner</span>
+            <span><i class="l-live"></i>Testing</span>
+            <span><i class="l-kill"></i>Killed</span>
+          </div>
+        </div>
+        <div class="matrix" id="matrix"></div>
+        <div class="threshold-note">
+          <strong>Kill line:</strong> under 25% 3-sec hook hold at 48 hours. <strong>Winner line:</strong> 60%+ hold and top-decile CTR &mdash; auto-flagged, budget raised 20&ndash;30% every 3&ndash;4 days, then pushed to GIZMO for paid scaling. Creative refreshes every 10&ndash;14 days on TikTok, 14&ndash;21 on Meta.
+        </div>
+      </div>
+
+      <div class="block fade-in d2" style="margin-top:44px;">
+        <div class="block-title">Winners This Sprint</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Variant</th><th>Hook</th><th>CTR</th><th>3-sec hold</th><th>Completion</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>V-728</strong></td><td>"Your content team isn't slow. It's structurally impossible."</td><td>5.8%</td><td>64%</td><td>74%</td><td><span class="chip chip-win">Pushed to GIZMO</span></td></tr>
+              <tr><td><strong>V-704</strong></td><td>"I fired our editor. Output went up 16x."</td><td>5.1%</td><td>61%</td><td>71%</td><td><span class="chip chip-win">Pushed to GIZMO</span></td></tr>
+              <tr><td><strong>V-741</strong></td><td>"Stop filming content. You already filmed it."</td><td>4.7%</td><td>62%</td><td>69%</td><td><span class="chip chip-warn">Scaling +30%</span></td></tr>
+              <tr><td><strong>V-717</strong></td><td>"POV: your last podcast just became 50 posts"</td><td>4.4%</td><td>60%</td><td>72%</td><td><span class="chip chip-warn">Scaling +20%</span></td></tr>
+              <tr><td><strong>V-766</strong></td><td>"3 mistakes killing your reels (the second one hurts)"</td><td>4.2%</td><td>63%</td><td>68%</td><td><span class="chip">Confirming &middot; day 3</span></td></tr>
+              <tr><td><strong>V-784</strong></td><td>"I was today years old when I learned reels can loop forever"</td><td>4.0%</td><td>66%</td><td>81%</td><td><span class="chip">Confirming &middot; day 3</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SEO / BOTMO ══════════ -->
+    <section class="panel" id="panel-seo">
+      <div class="fade-in">
+        <div class="panel-label">SEO Autopilot &middot; botmo.io</div>
+        <div class="panel-title">Organic traffic on autopilot &mdash; guaranteed.</div>
+        <p class="panel-sub">AI-written SEO blogs plus site SEO wiring. AI assistants start seeing and recommending your content. Included in every Content Engine tier; sold standalone at botmo.io.</p>
+      </div>
+
+      <div class="block fade-in d1">
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-number">42</div>
+            <div class="kpi-label">Posts live</div>
+            <div class="kpi-delta">+8 this month</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">18.4k</div>
+            <div class="kpi-label">Search impressions, 28 days</div>
+            <div class="kpi-delta">+31% vs prior</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">31</div>
+            <div class="kpi-label">Keywords on page 1</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-number">9</div>
+            <div class="kpi-label">AI-assistant citations found</div>
+            <div class="kpi-delta">+4 this month</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block fade-in d2">
+        <div class="block-title">Blog Pipeline</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Target keyword</th><th>Intent</th><th>Stage</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ai content repurposing tools</strong></td><td>Commercial</td><td><span class="chip chip-live">Published</span></td><td>Live Jul 10 &middot; indexed in 6h</td></tr>
+              <tr><td><strong>ugc ads vs branded ads</strong></td><td>Informational</td><td><span class="chip chip-live">Indexed</span></td><td>Position 7 &rarr; 4 this week</td></tr>
+              <tr><td><strong>how many reels per week</strong></td><td>Informational</td><td><span class="chip chip-win">Cited by AI assistants</span></td><td>Recommended in 3 assistant answers</td></tr>
+              <tr><td><strong>content engine pricing</strong></td><td>Transactional</td><td><span class="chip chip-warn">In review</span></td><td>Awaiting one-tap approval</td></tr>
+              <tr><td><strong>ai clone video for business</strong></td><td>Commercial</td><td><span class="chip">Drafting</span></td><td>1,600 words &middot; ETA today 6 PM</td></tr>
+              <tr><td><strong>repurpose podcast into clips</strong></td><td>Informational</td><td><span class="chip">Researching</span></td><td>SERP gap found &middot; outline queued</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="inline-note">Every post ships with schema markup, internal links, and llms.txt wiring so assistants can crawl and cite it.</p>
+      </div>
+    </section>
+
+    <!-- ══════════ ADS HANDOFF ══════════ -->
+    <section class="panel" id="panel-ads">
+      <div class="fade-in">
+        <div class="panel-label">Winners &rarr; Paid</div>
+        <div class="panel-title">Organic proves it. GIZMO scales it.</div>
+        <p class="panel-sub">Winning variants get pushed to The AI Ads Department automatically &mdash; ads-ready exports, hook data attached, whitelisting requested. You never pay to test an unproven creative.</p>
+      </div>
+
+      <div class="block fade-in d1">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Creative</th><th>Source</th><th>Organic proof</th><th>Pushed</th><th>Status in GIZMO</th></tr></thead>
+            <tbody>
+              <tr><td><strong>V-728 &middot; "structurally impossible"</strong></td><td>Sprint 07</td><td>5.8% CTR &middot; 64% hold</td><td>Jul 10</td><td><span class="chip chip-warn">In ads testing &middot; 3 audiences</span></td></tr>
+              <tr><td><strong>V-704 &middot; "fired our editor"</strong></td><td>Sprint 07</td><td>5.1% CTR &middot; 61% hold</td><td>Jul 10</td><td><span class="chip chip-warn">In ads testing &middot; 3 audiences</span></td></tr>
+              <tr><td><strong>V-663 &middot; "the $587k department"</strong></td><td>Sprint 06</td><td>5.4% CTR &middot; 67% hold</td><td>Jul 3</td><td><span class="chip chip-live">Scaling &middot; $150/day</span></td></tr>
+              <tr><td><strong>V-641 &middot; "one placement covers it"</strong></td><td>Sprint 06</td><td>4.9% CTR &middot; 62% hold</td><td>Jul 1</td><td><span class="chip chip-live">Scaling &middot; $100/day</span></td></tr>
+              <tr><td><strong>V-598 &middot; comment-reply remix</strong></td><td>Sprint 05</td><td>4.6% CTR &middot; 60% hold</td><td>Jun 24</td><td><span class="chip chip-muted">Retired &middot; fatigue day 13</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:20px;">
+          <button class="btn">Push V-741 to GIZMO</button>
+        </div>
+      </div>
+
+      <div class="block fade-in d2">
+        <div class="cards-2">
+          <div class="card">
+            <h3>Spark Ads / Whitelisting</h3>
+            <p>Winners run from the organic handles with 365-day authorization. Pilot results across accounts: materially higher engagement and lower CPA than running the same creative from an ad account cold.</p>
+          </div>
+          <div class="card">
+            <h3>The AI Ads Department</h3>
+            <p>A full CMO, chief of staff, and creative department &mdash; codename GIZMO. It feeds on this engine's output: 50 videos a day in, winning ads out.</p>
+            <p style="margin-top:12px;"><a href="../../ads-system/index.html" style="color:#1a1a1a; font-weight:600; text-decoration:none; border-bottom:1px solid #1a1a1a;">Open The AI Ads Department &rarr;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SETTINGS ══════════ -->
+    <section class="panel" id="panel-settings">
+      <div class="fade-in">
+        <div class="panel-label">System</div>
+        <div class="panel-title">Settings</div>
+        <p class="panel-sub">Billing keys, platform connections, and infrastructure status. Everything here is mocked in the demo.</p>
+      </div>
+
+      <div class="block fade-in d1">
+        <div class="block-title">Billing &middot; Stripe</div>
+        <div class="card" style="cursor:default;">
+          <div class="setting-row">
+            <div class="setting-name">Publishable key<small>Used by checkout on the sales page</small></div>
+            <input class="key-input" value="pk_live_51N&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;7xQ2" readonly>
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Secret key<small>Server-side only &middot; never leaves the backend</small></div>
+            <input class="key-input" value="sk_live_&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" readonly>
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Webhook endpoint<small>whsec_&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</small></div>
+            <span class="chip chip-live">Receiving &middot; last event 2m ago</span>
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Products synced<small>3 tiers + setup fee + DFY upsell + ads SKUs</small></div>
+            <span class="chip">9 prices</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block fade-in d2">
+        <div class="block-title">Platform Connections</div>
+        <div class="card" style="cursor:default;">
+          <div class="setting-row"><div class="setting-name">TikTok &middot; @elevated.logan<small>Primary &middot; full cadence</small></div><span class="chip chip-live">Connected</span></div>
+          <div class="setting-row"><div class="setting-name">TikTok &middot; @logan.builds<small>Secondary &middot; unique identity, own device profile</small></div><span class="chip chip-warn">Warming up &middot; day 9 of 14</span></div>
+          <div class="setting-row"><div class="setting-name">Instagram &middot; Reels + Stories<small>AI-Info label enabled</small></div><span class="chip chip-live">Connected</span></div>
+          <div class="setting-row"><div class="setting-name">YouTube &middot; Shorts<small>3&ndash;5 posts/week schedule</small></div><span class="chip chip-live">Connected</span></div>
+          <div class="setting-row"><div class="setting-name">LinkedIn &middot; company + founder<small>Carousels and clips</small></div><span class="chip chip-live">Connected</span></div>
+          <div class="setting-row"><div class="setting-name">Meta Ads &middot; whitelisting<small>365-day creator authorization active</small></div><span class="chip chip-live">Connected</span></div>
+        </div>
+      </div>
+
+      <div class="block fade-in d3">
+        <div class="block-title">Infrastructure &middot; Agents</div>
+        <div class="card" style="cursor:default;">
+          <div class="setting-row"><div class="setting-name">Hermes agent &middot; Telegram bot<small>Approvals, alerts, daily digest &middot; runs on the VPS under systemd</small></div><span class="chip chip-live">Online &middot; 26d uptime</span></div>
+          <div class="setting-row"><div class="setting-name">Render worker &middot; GPU VPS<small>Voice, face, assembly jobs</small></div><span class="chip chip-live">Online &middot; queue 7 jobs</span></div>
+          <div class="setting-row"><div class="setting-name">Tailscale mesh<small>Dashboard &harr; worker &harr; storage, private network</small></div><span class="chip chip-live">4 devices connected</span></div>
+          <div class="setting-row"><div class="setting-name">Object storage &middot; Cloudflare R2<small>Renders, base footage, blog assets &middot; zero egress fees</small></div><span class="chip">212 GB used</span></div>
+          <div class="setting-row"><div class="setting-name">Database &middot; Postgres (Supabase)<small>Nightly backups &middot; point-in-time recovery on</small></div><span class="chip chip-live">Healthy</span></div>
+        </div>
+        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-ghost btn-sm" disabled>Rotate keys</button>
+          <button class="btn btn-ghost btn-sm" disabled>Download audit log</button>
+        </div>
+        <p class="inline-note">Actions disabled in demo mode. Full spec: <a href="../docs/backend-architecture.md" style="color:#999;">docs/backend-architecture.md</a></p>
+      </div>
+    </section>
+
+    <footer class="main-footer">
+      <span>Demo interface. All data on this page is illustrative.</span>
+      <span>&copy; 2026 Elevated AI &middot; <a href="../index.html">Sales page</a> &middot; <a href="../../ads-system/index.html">AI Ads Department</a></span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* ── Fade-in observer (repo-standard) ── */
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+  setTimeout(function() {
+    document.querySelectorAll('.panel.active .fade-in').forEach(function(el) { el.classList.add('visible'); });
+  }, 1500);
+
+  /* ── Tab switching ── */
+  var navBtns = document.querySelectorAll('.nav-btn');
+  var panels = document.querySelectorAll('.panel');
+  var pageTitle = document.getElementById('page-title');
+
+  navBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      navBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('panel-' + btn.dataset.tab);
+      panel.classList.add('active');
+      pageTitle.innerHTML = btn.dataset.title;
+      window.scrollTo({ top: 0 });
+      /* reveal this panel's fade-ins (staggered) */
+      panel.querySelectorAll('.fade-in').forEach(function(el, i) {
+        el.classList.remove('visible');
+        setTimeout(function() { el.classList.add('visible'); }, 60 + i * 90);
+      });
+    });
+  });
+
+  /* ── Queue filters ── */
+  var filterBtns = document.querySelectorAll('#queue-filters .filter-btn');
+  var queueRows = document.querySelectorAll('#queue-table tbody tr');
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      queueRows.forEach(function(row) {
+        row.style.display = (f === 'all' || row.dataset.status === f) ? '' : 'none';
+      });
+    });
+  });
+
+  /* ── Approve buttons (demo) ── */
+  document.querySelectorAll('.approve-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var row = btn.closest('tr');
+      row.dataset.status = 'scheduled';
+      row.querySelector('.chip').outerHTML = '<span class="chip">Scheduled</span>';
+      btn.remove();
+      var count = document.querySelector('.nav-count');
+      if (count) count.textContent = Math.max(0, parseInt(count.textContent, 10) - 1);
+    });
+  });
+
+  /* ── Pickers (clone / format / path) ── */
+  document.querySelectorAll('[data-picker]').forEach(function(group) {
+    group.querySelectorAll('.pick').forEach(function(p) {
+      p.addEventListener('click', function() {
+        group.querySelectorAll('.pick').forEach(function(x) { x.classList.remove('selected'); });
+        p.classList.add('selected');
+      });
+    });
+  });
+  document.querySelectorAll('.clone-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      document.querySelectorAll('.clone-card').forEach(function(c) { c.classList.remove('selected'); });
+      card.classList.add('selected');
+    });
+  });
+
+  /* ── Script generator (demo) ── */
+  var genBtn = document.getElementById('gen-btn');
+  genBtn.addEventListener('click', function() {
+    genBtn.textContent = 'Generating…';
+    genBtn.disabled = true;
+    setTimeout(function() {
+      document.getElementById('script-out').classList.add('show');
+      genBtn.textContent = 'Generate script';
+      genBtn.disabled = false;
+    }, 700);
+  });
+
+  /* ── Analyzer dropzone (demo) ── */
+  var dropzone = document.getElementById('dropzone');
+  dropzone.addEventListener('click', function() {
+    dropzone.innerHTML = '<strong>Analyzing logan-sample-04.mp4…</strong>Scene detection &middot; transcript &middot; voice read &middot; caption map';
+    setTimeout(function() {
+      dropzone.innerHTML = '<strong>logan-sample-04.mp4</strong>Analysis complete &middot; 38 seconds';
+      document.getElementById('analysis').classList.add('show');
+    }, 900);
+  });
+
+  /* ── Testing matrix (seeded demo data) ── */
+  function mulberry32(a) {
+    return function() {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  var rand = mulberry32(728);
+  var winners = { 3: 1, 16: 1, 27: 1, 40: 1, 65: 1, 83: 1 }; /* V-704, 717, 728, 741, 766, 784 */
+  var matrix = document.getElementById('matrix');
+  var frag = document.createDocumentFragment();
+  for (var i = 0; i < 100; i++) {
+    var id = 'V-' + (701 + i);
+    var cell = document.createElement('div');
+    var ctr, hold;
+    if (winners[i]) {
+      ctr = (4.0 + rand() * 2.0).toFixed(1);
+      hold = Math.round(60 + rand() * 7);
+      cell.className = 'cell win';
+      cell.innerHTML = '<span class="w-badge">W</span><b>' + id + '</b>' + ctr + '% &middot; ' + hold + '%';
+    } else {
+      ctr = (0.4 + rand() * 3.2).toFixed(1);
+      hold = Math.round(12 + rand() * 40);
+      var killed = hold < 25;
+      cell.className = killed ? 'cell kill' : 'cell';
+      cell.innerHTML = '<b>' + id + '</b>' + ctr + '% &middot; ' + hold + '%';
+    }
+    cell.title = id + ' · CTR ' + ctr + '% · 3-sec hold ' + hold + '%';
+    frag.appendChild(cell);
+  }
+  matrix.appendChild(frag);
+
+});
+</script>
+
+</body>
+</html>
