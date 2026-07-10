@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="description" content="One decision before your dashboard: the Done-For-You Launch + Clone Build. We build your clone, launch your first 30 reels, wire your accounts, and run your first testing matrix.">
+<title>Wait — One Decision Before Your Dashboard | The Content Engine</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 19px;
+  line-height: 2.0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  line-height: 1.5;
+  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 16px 20px;
+  font-size: 0.95rem;
+}
+.decline-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 0.88rem;
+  color: #999;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.decline-link:hover {
+  color: #1a1a1a;
+  border-color: #1a1a1a;
+}
+.cta-microcopy {
+  font-size: 0.82rem;
+  color: #aaa;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px;
+}
+.hero .brand-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.hero .subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 12px;
+}
+.hero .sub-desc {
+  font-size: 1rem;
+  color: #888;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.hero .once-note {
+  display: inline-block;
+  margin-top: 32px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  padding: 10px 18px;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 32px;
+}
+section .container {
+  width: 100%;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+/* ─── COPY BLOCKS ─── */
+.copy-block {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.copy-block p {
+  color: #555;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+.copy-block p strong { color: #1a1a1a; }
+
+/* ─── PULL QUOTE ─── */
+.pull-quote {
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.8;
+}
+.pull-quote .highlight {
+  background: #ffeb3b44;
+  padding: 2px 6px;
+}
+
+/* ─── BEFORE / AFTER (You Build It / We Build It) ─── */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+.ba-col {
+  padding: 36px 32px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+.ba-col h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #999;
+}
+.ba-col ul { list-style: none; }
+.ba-col li {
+  color: #555;
+  font-size: 0.95rem;
+  padding: 8px 0 8px 24px;
+  position: relative;
+  line-height: 1.6;
+}
+.ba-before li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: #ccc;
+  font-weight: 500;
+}
+.ba-after li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* ─── OFFER CARD ─── */
+.offer-card {
+  max-width: 640px;
+  margin: 40px auto 0;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 48px 40px 40px;
+  position: relative;
+  text-align: center;
+}
+.offer-badge {
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.offer-name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+.offer-sub {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 28px;
+}
+.stack-list {
+  list-style: none;
+  text-align: left;
+  border-top: 1px solid #e0e0e0;
+  margin-bottom: 4px;
+}
+.stack-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.stack-item {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.6;
+}
+.stack-item strong {
+  display: block;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.stack-value {
+  font-size: 0.88rem;
+  color: #999;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.stack-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.offer-price {
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-top: 24px;
+}
+.offer-price span {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #999;
+}
+.offer-guarantee {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 16px 0 24px;
+}
+
+/* ─── ROI BOX ─── */
+.roi-box {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 48px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+}
+.roi-kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #999;
+  margin-bottom: 16px;
+}
+.roi-box h3 {
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+.roi-box p {
+  font-size: 18px;
+  line-height: 2.0;
+  color: #444;
+  margin-bottom: 24px;
+}
+.roi-inset {
+  padding: 32px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.roi-inset .roi-big {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.roi-inset .roi-small {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+.roi-close {
+  font-size: 16px !important;
+  color: #666 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ─── DECISION ─── */
+.decision {
+  text-align: center;
+  max-width: 560px;
+  margin: 48px auto 0;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+footer a {
+  color: #999;
+  text-decoration: none;
+}
+footer a:hover { color: #1a1a1a; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
+  .ba-grid { grid-template-columns: 1fr; gap: 16px; }
+  .offer-card { padding: 40px 24px 32px; }
+  .roi-box { padding: 36px 24px; }
+  .stack-list li { flex-direction: column; gap: 2px; }
+  .stack-value { color: #aaa; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 2rem; }
+  .pull-quote { font-size: 1.05rem; }
+  .btn-block { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-in">
+      <div class="brand-label">Order Confirmed &middot; The Content Engine</div>
+      <h1>Wait &mdash; Read This Page Once</h1>
+    </div>
+    <div class="fade-in d1">
+      <p class="subtitle">Your order went through. Your Engine build starts today.</p>
+    </div>
+    <div class="fade-in d2">
+      <p class="sub-desc">But there are two ways your first 30 days can go &mdash; and you only get to choose here.</p>
+    </div>
+    <div class="fade-in d3">
+      <div class="once-note">This page appears once, right after checkout. It's not in your dashboard, and there's no countdown timer &mdash; when you leave, it's gone.</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FORK -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Fork</div>
+      <div class="section-title">Two Ways Your First 30 Days Can Go</div>
+      <div class="section-subtitle">Standard onboarding is genuinely good. You'll get the capture kit, the checklists, and our team on call. But it asks about 15 hours of you across four weeks. There's a faster road.</div>
+    </div>
+
+    <div class="ba-grid fade-in d1">
+      <div class="ba-col ba-before">
+        <h3>You Build It &mdash; Included</h3>
+        <ul>
+          <li>Film ~20 minutes of footage using our capture kit</li>
+          <li>Fill the onboarding form, review clone drafts</li>
+          <li>Wire your accounts with our checklist</li>
+          <li>First clone reel around day 21</li>
+          <li>First testing matrix turns on weeks 5&ndash;8</li>
+          <li>Autopilot at day 60</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-after">
+        <h3>We Build It &mdash; $4,997 Once</h3>
+        <ul>
+          <li>One 90-minute directed capture session &mdash; we run it</li>
+          <li>We build and QA your clone, talking-head and full-body</li>
+          <li>We script, produce, and schedule your first 30 reels</li>
+          <li>We wire every account, pixel, and posting window</li>
+          <li>First matrix sprint run for you &mdash; winners report in hand</li>
+          <li>Autopilot at day 30</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pull-quote fade-in d2">
+      <span class="highlight">"Same Engine either way. One path costs you 15 hours and a month. The other costs 90 minutes."</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE OFFER -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">The Offer</div>
+      <div class="section-title">Done-For-You Launch + Clone Build</div>
+      <div class="section-subtitle">Our launch team takes everything on your onboarding checklist and does it for you &mdash; then hands you a running machine with data already in it.</div>
+    </div>
+
+    <div class="offer-card fade-in d1">
+      <div class="offer-badge">One-Time Offer &middot; New Orders Only</div>
+      <div class="offer-name">Done-For-You Launch + Clone Build</div>
+      <p class="offer-sub">Everything below is hands-on work by our launch team, on top of the plan you just bought.</p>
+
+      <ul class="stack-list">
+        <li>
+          <div class="stack-item"><strong>Directed capture + broadcast-grade clone build</strong>We direct the session live. Multiple angles, outfits, and delivery styles. Full QA passes until it's indistinguishable.</div>
+          <div class="stack-value">$1,997 value</div>
+        </li>
+        <li>
+          <div class="stack-item"><strong>Your first 30 reels, launched for you</strong>Scripted to your offer, produced, captioned, and scheduled. You approve one batch. That's your whole job.</div>
+          <div class="stack-value">$2,500 value</div>
+        </li>
+        <li>
+          <div class="stack-item"><strong>Full account wiring</strong>Profiles, bios, link-in-bio, pixels, posting windows, approval flow &mdash; every connection tested before launch.</div>
+          <div class="stack-value">$1,500 value</div>
+        </li>
+        <li>
+          <div class="stack-item"><strong>First 100-video testing matrix run + winners report</strong>We run your first sprint, kill the losers at 48 hours, and hand you the hooks that won &mdash; with the numbers.</div>
+          <div class="stack-value">$2,997 value</div>
+        </li>
+      </ul>
+      <div class="stack-total">
+        <span>Total build work</span>
+        <span>$8,994</span>
+      </div>
+
+      <div class="offer-price">$4,997 <span>one-time</span></div>
+      <div class="offer-guarantee">Same guarantee as everything we ship: your first 30 reels live in 30 days, or we keep working free until they are.</div>
+
+      <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_UPSELL_DFY_LAUNCH">Add Done-For-You Launch &mdash; $4,997</a>
+      <p class="cta-microcopy">One click. Uses the payment method from your order. One-time charge &mdash; your monthly plan doesn't change.</p>
+      <a class="decline-link" href="thank-you.html">No thanks &mdash; I'll build my clone myself &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- DO THE MATH -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="roi-box">
+        <div class="roi-kicker">Do the Math</div>
+        <h3>What Are 15 Hours and 30 Days Worth to You?</h3>
+        <p>Standard setup asks about 15 hours of you: filming, forms, reviews, wiring. The done-for-you build asks 90 minutes. At $250 an hour, that's <strong>$3,375 in hours back</strong> before we count the calendar.</p>
+        <p>Then count the calendar. Done-for-you puts you at day 30 where the standard path puts you at day 60. That's a full month of daily presence &mdash; roughly 80 assets &mdash; your competitors ship and you don't.</p>
+        <div class="roi-inset">
+          <p class="roi-big">$8,994 of build work. $4,997 once.</p>
+          <p class="roi-small">Hours back, a month gained, and your first winners report waiting on day 30.</p>
+        </div>
+        <p class="roi-close">You bought the machine. This is us delivering it assembled.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ONCE + DECISION -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Why This Page Only Shows Once</div>
+      <div class="section-title">No Timer. Just a Calendar.</div>
+    </div>
+
+    <div class="copy-block fade-in d1">
+      <p>Done-for-you builds are hands-on. A launch strategist directs your capture session. Producers cut your first 30 reels. An analyst runs your matrix sprint. <strong>We can only take a handful of these per month.</strong></p>
+
+      <p>Build slots are assigned in checkout order. Right now &mdash; while you're a brand-new order &mdash; there's a slot open next to your name. When you leave this page, it goes to the next order in line.</p>
+
+      <p>That's the whole mechanism. No fake countdown. No "price doubles at midnight." <strong>Just a small team and a short calendar.</strong></p>
+    </div>
+
+    <div class="decision fade-in d2">
+      <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_UPSELL_DFY_LAUNCH">Add Done-For-You Launch &mdash; $4,997</a>
+      <p class="cta-microcopy">One click. One-time. First 30 reels live in 30 days &mdash; or we keep working free.</p>
+      <a class="decline-link" href="thank-you.html">No thanks &mdash; I'll build my clone myself &rarr;</a>
+      <p class="cta-microcopy" style="margin-top: 24px;">Either way, your order is confirmed and your onboarding starts today.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>The Content Engine &middot; Elevated AI &middot; &copy; 2026</p>
+    <p><a href="thank-you.html">Continue to your confirmation page &rarr;</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 1500);
+});
+</script>
+
+</body>
+</html>

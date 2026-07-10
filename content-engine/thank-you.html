@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="description" content="Order confirmed. Here's exactly what happens next: your onboarding form, your clone capture kit, and your first 50 posts hitting the approval queue.">
+<title>Order Confirmed — Welcome to The Content Engine</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 19px;
+  line-height: 2.0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.3; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  line-height: 1.5;
+  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+.btn-ghost {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+.btn-ghost:hover {
+  opacity: 1;
+  border-color: #bbb;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px;
+}
+.hero .brand-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+.hero .subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 12px;
+}
+.hero .sub-desc {
+  font-size: 1rem;
+  color: #888;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 32px;
+}
+section .container {
+  width: 100%;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+/* ─── STAT BLOCK ─── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 48px 0 0;
+}
+.stat-item {
+  text-align: center;
+  padding: 32px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.stat-item:hover {
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+.stat-number {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ─── COPY BLOCKS ─── */
+.copy-block {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.copy-block p {
+  color: #555;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+.copy-block p strong { color: #1a1a1a; }
+
+/* ─── TIMELINE ─── */
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: #e0e0e0;
+}
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -33px; top: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e0e0e0;
+}
+.timeline-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1a1a1a;
+}
+.timeline-desc {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.timeline-desc a {
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 1px;
+}
+.timeline-desc a:hover { opacity: 0.6; }
+
+/* ─── GUARANTEE CHIP ─── */
+.guarantee-chip {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  background: #ffeb3b22;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* ─── CALENDAR EMBED PLACEHOLDER ─── */
+.embed-placeholder {
+  max-width: 640px;
+  margin: 0 auto;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  padding: 96px 32px;
+  text-align: center;
+  color: #999;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.embed-placeholder strong {
+  display: block;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* ─── SUPPORT CARDS ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #bbb;
+}
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+.card p {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.card a {
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 1px;
+}
+.card a:hover { opacity: 0.6; }
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid #e0e0e0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+footer a {
+  color: #999;
+  text-decoration: none;
+}
+footer a:hover { color: #1a1a1a; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
+  .stat-row { grid-template-columns: 1fr; gap: 16px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .embed-placeholder { padding: 64px 24px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-in">
+      <div class="brand-label">Elevated AI &middot; The Content Engine</div>
+      <h1>You're In.</h1>
+    </div>
+    <div class="fade-in d1">
+      <p class="subtitle">Order confirmed. Your Engine build starts now.</p>
+    </div>
+    <div class="fade-in d2">
+      <p class="sub-desc">A receipt is on its way to your inbox, along with your onboarding form. Everything below tells you exactly what happens next &mdash; and the one thing we need from you today.</p>
+    </div>
+
+    <div class="stat-row fade-in d3">
+      <div class="stat-item">
+        <div class="stat-number">10 min</div>
+        <div class="stat-label">Onboarding form &mdash; today</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">~20 min</div>
+        <div class="stat-label">Footage for your clone &mdash; this week</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">21 days</div>
+        <div class="stat-label">To your first clone reel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS NEXT -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">What Happens Next</div>
+      <div class="section-title">From Checkout to First Reel</div>
+      <div class="section-subtitle">No mystery, no waiting around. Here's the build schedule &mdash; and where you're in it.</div>
+    </div>
+
+    <div class="timeline fade-in d1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Right Now</div>
+        <div class="timeline-title">Fill the Onboarding Form</div>
+        <div class="timeline-desc">Check your inbox for the confirmation email &mdash; it links to your onboarding form. Ten minutes: your offer, your voice notes, your account access. This is the one thing that can hold up your build, so do it today. <!-- PLACEHOLDER: replace # with live onboarding form URL --><a href="#">Open the onboarding form &rarr;</a></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Within 24 Hours</div>
+        <div class="timeline-title">Your Clone Capture Kit Arrives</div>
+        <div class="timeline-desc">A short guide with exactly what to film &mdash; about 20 minutes of footage, three simple clips, phone camera is fine. If you added the Done-For-You Launch, skip this: we direct your capture session live on your build call.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Days 2&ndash;7</div>
+        <div class="timeline-title">The Build</div>
+        <div class="timeline-desc">We build your clone, ingest your brand and voice, connect your accounts, and switch on your approval workflow. You'll get a dashboard login as each piece goes live.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Week 2</div>
+        <div class="timeline-title">First 50 Posts Hit Your Queue</div>
+        <div class="timeline-desc">Your first batch lands in the approval queue. Review in one sitting &mdash; kill what's off-brand, approve the rest. Auto-scheduling begins across every platform.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Weeks 3&ndash;4</div>
+        <div class="timeline-title">Your Clone Goes Live</div>
+        <div class="timeline-desc">First reels ship &mdash; 6.3-second loops and 14&ndash;16 second formats. By day 30 you're posting daily on every platform without touching a camera.</div>
+      </div>
+    </div>
+
+    <div class="fade-in d2" style="text-align: center; margin-top: 48px;">
+      <div class="guarantee-chip">The guarantee stands: 50 posts live in your first 30 days &mdash; or we keep working free until they are.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK YOUR BUILD CALL -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">One More Thing</div>
+      <div class="section-title">Book Your Build Call</div>
+      <div class="section-subtitle">Thirty minutes with your launch strategist. We walk through your footage, brand assets, and account access &mdash; and lock your Week 2 launch date. Bring nothing; we drive.</div>
+    </div>
+
+    <div class="fade-in d1">
+      <!-- PLACEHOLDER: replace this block with your live scheduler embed (Calendly / Cal.com / SavvyCal) -->
+      <div class="embed-placeholder">
+        <strong>[ Calendar embed goes here ]</strong>
+        30-minute build call &middot; replace this block with your scheduling embed code
+      </div>
+    </div>
+
+    <div class="fade-in d2" style="text-align: center; margin-top: 32px;">
+      <!-- PLACEHOLDER: replace # with live scheduling URL -->
+      <a class="btn" href="#">Book My Build Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section>
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Questions</div>
+      <div class="section-title">A Human Reads Everything</div>
+      <div class="section-subtitle">Something unclear? Something broken? Don't sit on it &mdash; your launch date depends on fast answers, and we answer fast.</div>
+    </div>
+
+    <div class="cards-grid fade-in d1">
+      <div class="card">
+        <h3>Email Support</h3>
+        <!-- PLACEHOLDER: replace with live support address before launch -->
+        <p>Write to <a href="mailto:support@elevatedaisolutions.com">support@elevatedaisolutions.com</a>. Replies within one business day &mdash; usually much faster during your build week.</p>
+      </div>
+      <div class="card">
+        <h3>Or Just Reply</h3>
+        <p>Every email we send you comes from a monitored inbox. Reply to any of them &mdash; your onboarding emails, your capture kit, your receipts. It all reaches your launch team.</p>
+      </div>
+    </div>
+
+    <div class="copy-block fade-in d2" style="margin-top: 48px;">
+      <p style="text-align: center;"><strong>That's it. Form today, footage this week, first 50 posts by Week 2.</strong></p>
+      <p style="text-align: center;">Welcome to the Engine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>The Content Engine &middot; Elevated AI &middot; &copy; 2026</p>
+    <p><a href="index.html">Back to overview</a> &middot; <a href="vsl.html">Rewatch the 6-minute breakdown</a> &middot; <a href="../ads-system/index.html">Explore The AI Ads Department &rarr;</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  setTimeout(function() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 1500);
+});
+</script>
+
+</body>
+</html>
