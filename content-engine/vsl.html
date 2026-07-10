@@ -3,16 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How We Ship 50 Videos a Day Without Filming — The Content Engine</title>
+<title>How We Ship 50 Videos a Day Without Filming | The Content Engine</title>
+<meta name="description" content="Watch the 6:40 video. The Content Engine by Elevated AI ships daily posts, avatar reels, and full AI clone videos without filming. Plans from $49/mo, no setup fees.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #020617;
+  color: #f8fafc;
   font-size: 19px;
   line-height: 2.0;
   -webkit-font-smoothing: antialiased;
@@ -25,6 +29,8 @@ h1, h2, h3, h4 { line-height: 1.3; }
   margin: 0 auto;
   padding: 0 32px;
 }
+
+.accent { color: #22C55E; }
 
 /* Fade-in animation */
 .fade-in {
@@ -48,19 +54,27 @@ h1, h2, h3, h4 { line-height: 1.3; }
   justify-content: space-between;
   gap: 16px;
   padding: 20px 32px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-.topbar .brand { color: #999; }
-.topbar .brand span { color: #1a1a1a; }
-.topbar a {
-  color: #1a1a1a;
-  text-decoration: none;
+.topbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94a3b8;
 }
-.topbar a:hover { color: #555; }
+.topbar .brand svg { flex-shrink: 0; }
+.topbar .brand .wordmark { color: #f8fafc; font-weight: 800; }
+.topbar .brand .divider { color: #94a3b8; font-weight: 400; }
+.topbar a {
+  color: #4ADE80;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.topbar a:hover { color: #22C55E; }
 
 /* ─── SECTIONS ─── */
 section {
@@ -75,21 +89,21 @@ section .container {
 
 .section-label {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #4ADE80;
   margin-bottom: 16px;
 }
 .section-title {
   font-size: clamp(2rem, 4vw, 2.6rem);
   font-weight: 300;
   margin-bottom: 16px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .section-subtitle {
   font-size: 1.05rem;
-  color: #666;
+  color: #94a3b8;
   max-width: 640px;
   margin-bottom: 48px;
   line-height: 1.8;
@@ -109,7 +123,7 @@ section .container {
   font-weight: 300;
   letter-spacing: -0.5px;
   margin-bottom: 16px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 
 /* ─── VIDEO FRAME ─── */
@@ -117,9 +131,11 @@ section .container {
   position: relative;
   aspect-ratio: 16 / 9;
   width: 100%;
-  background: #1a1a1a;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
   margin: 48px 0 12px;
   display: flex;
   flex-direction: column;
@@ -127,13 +143,17 @@ section .container {
   justify-content: center;
   gap: 20px;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
-.video-frame:hover { transform: translateY(-2px); }
+.video-frame:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 12px 40px rgba(34, 197, 94, 0.12);
+}
 .play-btn {
   width: 78px;
   height: 78px;
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  border: 2px solid #22C55E;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -143,25 +163,26 @@ section .container {
   content: '';
   display: block;
   margin-left: 6px;
-  border-left: 20px solid #ffffff;
+  border-left: 20px solid #4ADE80;
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
 }
 .video-note {
-  color: #888;
+  color: #94a3b8;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 1px;
 }
 .video-caption {
   font-size: 0.82rem;
-  color: #aaa;
+  color: #94a3b8;
   margin-bottom: 40px;
 }
 .video-caption .highlight {
-  background: #ffeb3b44;
+  background: rgba(34, 197, 94, 0.15);
   padding: 2px 6px;
-  color: #555;
+  border-radius: 4px;
+  color: #4ADE80;
 }
 
 /* ─── PROOF BULLETS ─── */
@@ -172,7 +193,7 @@ section .container {
   text-align: left;
 }
 .proof-list li {
-  color: #555;
+  color: #94a3b8;
   font-size: 0.98rem;
   padding: 10px 0 10px 28px;
   position: relative;
@@ -182,53 +203,60 @@ section .container {
   content: '\2713';
   position: absolute;
   left: 0;
-  color: #1a1a1a;
-  font-weight: 600;
+  color: #22C55E;
+  font-weight: 700;
 }
-.proof-list li strong { color: #1a1a1a; }
+.proof-list li strong { color: #f8fafc; }
 
 /* ─── CTA ─── */
 .btn {
   display: inline-block;
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #22C55E;
+  color: #020617;
   text-decoration: none;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.5px;
   padding: 18px 44px;
   border-radius: 100px;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
 }
 .btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.88;
+  transform: translateY(-3px);
+  background: #4ADE80;
+  box-shadow: 0 10px 35px rgba(34, 197, 94, 0.3);
 }
 .btn-note {
   font-size: 0.82rem;
-  color: #aaa;
+  color: #94a3b8;
   margin-top: 16px;
 }
 .transcript-jump {
   display: block;
   margin-top: 28px;
   font-size: 0.85rem;
-  color: #999;
+  color: #94a3b8;
 }
 .transcript-jump a {
-  color: #555;
+  color: #4ADE80;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.transcript-jump a:hover { color: #1a1a1a; }
+.transcript-jump a:hover { color: #22C55E; }
 
 /* ─── TRANSCRIPT ─── */
 .transcript {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  transition: border-color 0.3s;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.transcript:hover { border-color: #bbb; }
+.transcript:hover {
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.08);
+}
 .transcript summary {
   list-style: none;
   display: flex;
@@ -239,36 +267,36 @@ section .container {
   cursor: pointer;
   font-size: 1.05rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .transcript summary::-webkit-details-marker { display: none; }
 .transcript summary .toggle-icon {
   font-size: 1.4rem;
   font-weight: 300;
-  color: #999;
+  color: #4ADE80;
   line-height: 1;
   transition: transform 0.3s;
 }
 .transcript[open] summary .toggle-icon { transform: rotate(45deg); }
 .transcript-body {
   padding: 8px 28px 40px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
 }
 .t-beat {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #4ADE80;
   margin: 32px 0 8px;
 }
 .transcript-body p {
-  color: #555;
+  color: #94a3b8;
   font-size: 0.95rem;
   line-height: 1.9;
   margin-bottom: 16px;
 }
-.transcript-body p strong { color: #1a1a1a; }
+.transcript-body p strong { color: #f8fafc; }
 .transcript-cta {
   text-align: center;
   margin-top: 36px;
@@ -278,12 +306,12 @@ section .container {
 footer {
   text-align: center;
   padding: 48px 32px;
-  border-top: 1px solid #e0e0e0;
-  color: #ccc;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
   font-size: 0.82rem;
 }
-footer a { color: #aaa; text-decoration: none; }
-footer a:hover { color: #555; }
+footer a { color: #4ADE80; text-decoration: none; }
+footer a:hover { color: #22C55E; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
@@ -307,7 +335,12 @@ footer a:hover { color: #555; }
 
 <!-- HEADER -->
 <div class="topbar">
-  <div class="brand">Elevated AI &middot; <span>The Content Engine</span></div>
+  <div class="brand">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 12.18-9.17 4.16a2 2 0 0 1-1.66 0L2 12.18"/><path d="m22 17.18-9.17 4.16a2 2 0 0 1-1.66 0L2 17.18"/></svg>
+    <span class="wordmark">Elevated AI</span>
+    <span class="divider">&middot;</span>
+    <span>The Content Engine</span>
+  </div>
   <a href="index.html#pricing">Pricing &rarr;</a>
 </div>
 
@@ -316,7 +349,7 @@ footer a:hover { color: #555; }
   <div class="container watch-hero">
     <div class="fade-in">
       <div class="section-label">Watch This First &middot; 6 Min 40 Sec</div>
-      <h1>How we ship 50 videos a day without filming</h1>
+      <h1>How we ship 50 videos a day without <span class="accent">filming</span></h1>
       <p class="section-subtitle">No camera. No editor. No content calendar guilt. Six minutes and you'll see the whole machine.</p>
     </div>
 
@@ -329,12 +362,12 @@ footer a:hover { color: #555; }
                  <div class="wistia_embed wistia_async_VIDEO_ID" style="aspect-ratio:16/9;width:100%"></div>
 
         YouTube: <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="The Content Engine VSL"
-                 style="aspect-ratio:16/9;width:100%;border:0;border-radius:8px" allowfullscreen></iframe>
+                 style="aspect-ratio:16/9;width:100%;border:0;border-radius:16px" allowfullscreen></iframe>
 
         Vimeo:   <iframe src="https://player.vimeo.com/video/VIDEO_ID" title="The Content Engine VSL"
-                 style="aspect-ratio:16/9;width:100%;border:0;border-radius:8px" allowfullscreen></iframe>
+                 style="aspect-ratio:16/9;width:100%;border:0;border-radius:16px" allowfullscreen></iframe>
       -->
-      <div class="video-frame" role="img" aria-label="Video placeholder — The Content Engine VSL, 6 minutes 40 seconds">
+      <div class="video-frame" role="img" aria-label="Video placeholder: The Content Engine VSL, 6 minutes 40 seconds">
         <div class="play-btn"></div>
         <div class="video-note">[ VSL EMBEDS HERE &middot; 6:40 ]</div>
       </div>
@@ -343,15 +376,15 @@ footer a:hover { color: #555; }
 
     <div class="fade-in d2">
       <ul class="proof-list">
-        <li><strong>Pilot accounts shipped 50+ posts and 30 clone reels in month one.</strong> Total filming time: zero minutes.</li>
-        <li><strong>About $25 per finished asset</strong> on the recommended tier. A single human UGC video runs $150&ndash;$250.</li>
-        <li><strong>First clone reel live within 21 days of setup.</strong> Nothing publishes until you tap approve.</li>
+        <li><strong>Zero filming, ever.</strong> Pilot accounts publish posts, blogs, and reels daily without a camera in the building.</li>
+        <li><strong>Onboarding in a couple of clicks.</strong> Hermes asks a few questions, connects your accounts, and fills in your brand voice, strategy, and content plan.</li>
+        <li><strong>You stay editor-in-chief.</strong> Nothing publishes until you tap approve in the queue.</li>
       </ul>
     </div>
 
     <div class="fade-in d3">
       <a class="btn" href="index.html#pricing">See Pricing &amp; Start &rarr;</a>
-      <p class="btn-note">Plans from $997/mo &middot; $1,500 one-time setup</p>
+      <p class="btn-note">Plans from $49/mo &middot; No setup fees &middot; 14-day money-back guarantee</p>
       <p class="transcript-jump">Prefer to read? <a href="#transcript">Full transcript below</a>.</p>
     </div>
   </div>
@@ -371,70 +404,70 @@ footer a:hover { color: #555; }
         <summary>Read the full transcript<span class="toggle-icon">+</span></summary>
         <div class="transcript-body">
 
-          <div class="t-beat">00:00 &mdash; The Hook</div>
+          <div class="t-beat">00:00 &middot; The Hook</div>
           <p>Quick confession before we start.</p>
           <p>I didn't film this video. Nobody filmed this video.</p>
           <p>There's no camera. No studio. No editor waiting on a rough cut.</p>
-          <p>The person you're watching right now is an AI clone &mdash; my clone &mdash; built from about twenty minutes of reference footage.</p>
-          <p>And if you couldn't tell &mdash; that's the point.</p>
-          <p>Give me six minutes, and I'll show you the machine that lets us ship fifty videos a day &mdash; without anyone filming anything, ever.</p>
+          <p>The person you're watching right now is an AI clone. My clone. Built from about twenty minutes of reference footage.</p>
+          <p>And if you couldn't tell, that's the point.</p>
+          <p>Give me six minutes, and I'll show you the machine that lets us ship fifty videos a day, without anyone filming anything, ever.</p>
 
-          <div class="t-beat">00:35 &mdash; The Problem</div>
+          <div class="t-beat">00:35 &middot; The Problem</div>
           <p>Here's the trap you're in.</p>
           <p>You already know content is the game. Every client you'll ever sign is scrolling a feed right now, and they buy from whoever shows up in that feed every single day.</p>
           <p>You've heard the fix a thousand times: post daily, be everywhere, build the brand.</p>
           <p>So you tried. Be honest. You filmed for one ambitious weekend. You posted for two weeks. Then a client fire broke out, and the feed went dark. Again.</p>
           <p>Then you priced out hiring your way out of it.</p>
-          <p>A content manager runs sixty-five thousand a year. A video editor is about a hundred thousand fully loaded. UGC creators charge one-fifty to two-fifty per video &mdash; thirty videos a month is six grand before you spend a dollar on ads.</p>
+          <p>A content manager runs sixty-five thousand a year. A video editor is about a hundred thousand fully loaded. UGC creators charge one-fifty to two-fifty per video. Thirty videos a month is six grand before you spend a dollar on ads.</p>
           <p>A full in-house content team? Around three hundred thousand a year.</p>
           <p>And here's the part nobody says out loud: even that team is too slow.</p>
-          <p>In 2026, the platforms reward volume and testing. The accounts that win aren't posting three times a week &mdash; they're testing fifty, a hundred variations a month and doubling down on what hits.</p>
+          <p>In 2026, the platforms reward volume and testing. The accounts that win aren't posting three times a week. They're testing fifty, a hundred variations a month and doubling down on what hits.</p>
           <p>A human team can't produce at that speed. <strong>You were never going to out-film this problem.</strong></p>
 
-          <div class="t-beat">01:55 &mdash; The Mechanism</div>
+          <div class="t-beat">01:55 &middot; The Mechanism</div>
           <p>So we stopped trying to out-film it, and built a machine instead.</p>
           <p>It's called the Content Engine. Three parts.</p>
-          <p><strong>Part one: the repurposing engine.</strong> Feed it anything &mdash; a podcast, a sales call, a voice memo from your car. It pulls out every hook, every story, every strong opinion, and turns them into fifty-plus finished posts a month. Written in your voice. Formatted for each platform.</p>
-          <p><strong>Part two: the clone studio.</strong> This is the part you're looking at.</p>
-          <p>We build a broadcast-grade AI clone of you &mdash; talking head and full body &mdash; and it delivers thirty reels a month. Full scripts written for you. B-roll cut in automatically.</p>
-          <p>Built in the two formats that actually travel right now: six-point-three-second loops viewers rewatch two or three times without noticing, and fourteen-to-sixteen-second reels tuned for completion rate &mdash; the number the algorithm cares about most.</p>
+          <p><strong>Part one: the repurposing engine.</strong> Feed it anything: a podcast, a sales call, a voice memo from your car. It pulls out every hook, every story, every strong opinion, and turns them into weeks of finished posts. Written in your voice. Formatted for each platform.</p>
+          <p><strong>Part two: the reel studio.</strong> This is the part you're looking at.</p>
+          <p>It writes full scripts and films them with an AI presenter: a polished stock avatar, or a broadcast-grade clone of you, face and voice. Three content paths: a storytelling pitch that lands on a call to action, a real-life use story, and a straight show and tell. B-roll cut in automatically.</p>
+          <p>Built in the two formats that actually travel right now: six-point-three-second loops viewers rewatch two or three times without noticing, and fourteen-to-sixteen-second reels tuned for completion rate, the number the algorithm cares about most.</p>
           <p><strong>Part three: distribution.</strong> SEO blogs publish to your site on autopilot, wired so search engines and AI assistants start finding and recommending you. Every post auto-schedules to peak times on every platform.</p>
           <p>And nothing goes live until you tap approve.</p>
           <p>You stay editor-in-chief. You just stop being the factory.</p>
 
-          <div class="t-beat">03:20 &mdash; The Walkthrough</div>
+          <div class="t-beat">03:20 &middot; The Walkthrough</div>
           <p>Let me show you a Tuesday with the Engine installed.</p>
           <p>Nine-oh-four a.m. You record a four-minute voice memo about a client win on your drive in. That's your entire content workday. Done.</p>
-          <p>Nine forty-five. The Engine has cut it into twelve posts &mdash; carousels, text posts, quote graphics &mdash; plus three reel scripts, each with a hook, a payoff, and B-roll markers.</p>
+          <p>Nine forty-five. The Engine has cut it into twelve posts: carousels, text posts, quote graphics, plus three reel scripts, each with a hook, a payoff, and B-roll markers.</p>
           <p>Ten fifteen. Your clone has already filmed all three reels. Nobody set up a light. Captions burned in. B-roll injected over the slow middle. Loop point checked.</p>
           <p>Ten twenty. Your phone buzzes once. You scroll the approval queue at lunch, kill the one you don't love, approve the rest. Two minutes.</p>
           <p>The rest of the week runs itself. Posts drip out at peak times on every platform. A blog targeting a keyword your buyers actually search goes live on your site.</p>
           <p>And thirty days of that compounds into something you have never had: <strong>a brand that shows up every single day, while you run the business.</strong></p>
 
-          <div class="t-beat">04:35 &mdash; The Offer</div>
-          <p>Here's how you get it. Three tiers. Every tier starts with a fifteen-hundred-dollar one-time setup &mdash; that's us wiring the Engine into your accounts, your voice, and your approval flow.</p>
-          <p><strong>Tier one, the Engine: nine ninety-seven a month.</strong> Fifty-plus posts, SEO blog autopilot, auto-scheduling, approval workflow. The content problem &mdash; handled.</p>
-          <p><strong>Tier two &mdash; the one most people pick &mdash; Engine plus Influencer: nineteen ninety-seven a month.</strong> Everything in tier one, plus your clone. Thirty talking-head and full-body reels a month, scripts included, B-roll injected, built in both viral formats.</p>
-          <p><strong>Tier three, Full Stack: twenty-nine ninety-seven a month.</strong> Everything, plus the hundred-video testing matrix we use to ship fifty videos a day, winning-ad detection, ads-ready creatives, a sample-reel analyzer, and agent automation running the loop end to end.</p>
-          <p>Now do the math on tier two.</p>
-          <p>Thirty reels plus fifty posts is eighty finished assets a month &mdash; about twenty-five dollars per asset. One human UGC video costs one-fifty to two-fifty. One editor's salary would fund this entire system for four years.</p>
+          <div class="t-beat">04:35 &middot; The Offer</div>
+          <p>Here's how you get it. Three plans. No setup fees on any of them. You check out, Hermes onboards you, and the Engine goes to work.</p>
+          <p><strong>Starter: forty-nine dollars a month.</strong> You answer a few questions, connect your accounts, and Hermes fills in your entire brand voice, strategy, and content plan in a couple of clicks. Then the core engine runs: content repurposing, blog and SEO autopilot, the approval queue, auto-scheduling.</p>
+          <p><strong>Creator: two ninety-seven a month.</strong> Everything in Starter, plus UGC avatar reels fronted by stock AI presenters. Full scripts. B-roll injected. All three content paths, in both viral formats.</p>
+          <p><strong>And the one to look at, Influencer: nine ninety-seven a month.</strong> Everything in Creator, plus your own custom AI clone, face and voice. Full cloned videos like the one you're watching. The hundred-video testing matrix, winner detection, ads-ready creative output, and a sample-reel analyzer.</p>
+          <p>Now run the numbers.</p>
+          <p>One human UGC video costs one-fifty to two-fifty. A content manager costs more per week than the entire Influencer machine costs per month. And one video editor's salary would fund it for about eight years.</p>
           <p>This isn't a cheaper way to do content. It's a different species.</p>
 
-          <div class="t-beat">05:50 &mdash; The Guarantee</div>
+          <div class="t-beat">05:50 &middot; The Guarantee</div>
           <p>And the guarantee is simple.</p>
-          <p><strong>Fifty posts live in your first thirty days &mdash; or we keep working for free until they are.</strong></p>
-          <p>No refund theater. No fine-print gymnastics. The Engine delivers, or we don't stop until it does.</p>
+          <p><strong>Try the Engine for fourteen days. If you decide it's not for you, email us and we refund your payment.</strong></p>
+          <p>No hoops. No fine-print gymnastics. We would rather earn your subscription every month than lock you into one.</p>
 
-          <div class="t-beat">06:10 &mdash; The Close</div>
-          <p>One thing before you decide. Clone builds are hands-on &mdash; voice calibration, movement capture, review passes with you. So we onboard a limited number of new engines each month.</p>
-          <p>When this month's slots fill, the next batch starts thirty days later. That's a month of content your competitors post and you don't.</p>
-          <p>So here's the move. Click the button below this video. Pick your tier. Checkout takes about two minutes, and within twenty-one days your clone ships its first reel.</p>
+          <div class="t-beat">06:10 &middot; The Close</div>
+          <p>One thing before you decide. Custom clone builds are hands-on: voice calibration, reference footage review, quality passes with you. So we take on a limited number of new clone builds each month.</p>
+          <p>When this month's builds fill, the next batch starts later. That's weeks of content your competitors post and you don't.</p>
+          <p>So here's the move. Click the button below this video. Pick your plan. Starter is forty-nine dollars. Checkout takes about two minutes, and Hermes starts building your brand voice and content plan the moment you're in.</p>
           <p>You just watched mine do its job for six straight minutes.</p>
           <p><strong>Imagine what yours does with a month.</strong></p>
 
           <div class="transcript-cta">
             <a class="btn" href="index.html#pricing">See Pricing &amp; Start &rarr;</a>
-            <p class="btn-note">Plans from $997/mo &middot; $1,500 one-time setup</p>
+            <p class="btn-note">Plans from $49/mo &middot; No setup fees &middot; 14-day money-back guarantee</p>
           </div>
 
         </div>

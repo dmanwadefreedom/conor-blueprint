@@ -3,17 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="The Content Engine by Elevated AI — an AI content department that ships up to 50 videos a day. Your face, your voice, your brand. 50+ posts and 30 reels a month, without filming.">
-<title>The Content Engine — An AI Content Department That Ships 50 Videos a Day</title>
+<meta name="description" content="The Content Engine by Elevated AI. An AI content department that ships up to 50 videos a day. Answer a few questions, connect your accounts, and Hermes builds your brand voice, strategy, and content plan. Plans start at $49/mo.">
+<title>The Content Engine | An AI Content Department That Ships 50 Videos a Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #020617;
+  color: #f8fafc;
   font-size: 19px;
   line-height: 2.0;
   -webkit-font-smoothing: antialiased;
@@ -26,6 +29,8 @@ h1, h2, h3, h4 { line-height: 1.3; }
   margin: 0 auto;
   padding: 0 32px;
 }
+
+.accent { color: #4ADE80; }
 
 /* Fade-in animation */
 .fade-in {
@@ -42,32 +47,94 @@ h1, h2, h3, h4 { line-height: 1.3; }
 .fade-in.d3 { transition-delay: 0.3s; }
 .fade-in.d4 { transition-delay: 0.4s; }
 
-/* ─── BUTTONS ─── */
+/* NAV */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-brand svg { display: block; }
+.nav-wordmark {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #f8fafc;
+  line-height: 1;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-links a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.3s;
+  line-height: 1.4;
+}
+.nav-links a:hover { color: #f8fafc; }
+.nav-links .nav-cta {
+  background: #22C55E;
+  color: #052e16;
+  padding: 9px 20px;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.3s;
+}
+.nav-links .nav-cta:hover {
+  background: #4ADE80;
+  color: #052e16;
+  transform: translateY(-1px);
+}
+
+/* BUTTONS */
 .btn {
   display: inline-block;
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #22C55E;
+  color: #052e16;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.3px;
   padding: 16px 36px;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   line-height: 1.5;
-  transition: transform 0.3s, opacity 0.3s, border-color 0.3s;
+  transition: transform 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .btn:hover {
   transform: translateY(-2px);
-  opacity: 0.85;
+  background: #4ADE80;
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.25);
 }
 .btn-ghost {
-  background: #ffffff;
-  color: #1a1a1a;
-  border: 1px solid #e0e0e0;
+  background: transparent;
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.3);
 }
 .btn-ghost:hover {
-  opacity: 1;
-  border-color: #bbb;
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: none;
 }
 .btn-block {
   display: block;
@@ -85,44 +152,84 @@ h1, h2, h3, h4 { line-height: 1.3; }
   margin-top: 40px;
 }
 
-/* ─── HERO ─── */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 32px;
+  padding: 120px 32px 80px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(34, 197, 94, 0.08), transparent 60%);
 }
 .hero .brand-label {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 20px;
 }
 .hero h1 {
   font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: -0.5px;
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .hero .subtitle {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 400;
-  color: #555;
+  color: #cbd5e1;
   margin-bottom: 12px;
 }
 .hero .sub-desc {
   font-size: 1rem;
-  color: #888;
-  max-width: 480px;
+  color: #94a3b8;
+  max-width: 520px;
   margin: 0 auto;
 }
 
-/* ─── SECTIONS ─── */
+/* HERMES FEATURE BLOCK */
+.hermes-block {
+  margin: 56px auto 0;
+  max-width: 640px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 36px 32px;
+  text-align: left;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.hermes-block:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
+}
+.hermes-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4ADE80;
+  margin-bottom: 10px;
+}
+.hermes-block h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 12px;
+}
+.hermes-block p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+.hermes-block p strong { color: #f8fafc; }
+
+/* SECTIONS */
 section {
   min-height: 100vh;
   display: flex;
@@ -138,24 +245,24 @@ section .container {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 16px;
 }
 .section-title {
   font-size: clamp(2rem, 4vw, 2.6rem);
-  font-weight: 300;
+  font-weight: 700;
   margin-bottom: 16px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .section-subtitle {
   font-size: 1.05rem;
-  color: #666;
+  color: #94a3b8;
   max-width: 640px;
   margin-bottom: 48px;
   line-height: 1.8;
 }
 
-/* ─── STAT BLOCK ─── */
+/* STAT BLOCK */
 .stat-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -165,39 +272,43 @@ section .container {
 .stat-item {
   text-align: center;
   padding: 32px 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  transition: border-color 0.3s, transform 0.3s;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .stat-item:hover {
-  border-color: #bbb;
-  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .stat-number {
   font-size: 2.4rem;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #4ADE80;
   margin-bottom: 4px;
 }
 .stat-label {
   font-size: 0.85rem;
-  color: #888;
+  color: #94a3b8;
   font-weight: 500;
 }
 
-/* ─── COPY BLOCKS ─── */
+/* COPY BLOCKS */
 .copy-block {
   max-width: 640px;
   margin: 0 auto;
 }
 .copy-block p {
-  color: #555;
+  color: #94a3b8;
   margin-bottom: 24px;
   font-size: 1rem;
 }
-.copy-block p strong { color: #1a1a1a; }
+.copy-block p strong { color: #f8fafc; }
 
-/* ─── CARDS GRID ─── */
+/* CARDS GRID */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -206,45 +317,50 @@ section .container {
   margin-bottom: 48px;
 }
 .card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
   padding: 32px 28px;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .card:hover {
   transform: translateY(-3px);
-  border-color: #bbb;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .card h3 {
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 10px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .card p {
-  color: #666;
+  color: #94a3b8;
   font-size: 0.92rem;
   line-height: 1.7;
 }
 
-/* ─── PULL QUOTE ─── */
+/* PULL QUOTE */
 .pull-quote {
   padding: 20px 0;
   margin: 0 auto;
   max-width: 600px;
   font-size: 1.2rem;
   font-weight: 400;
-  color: #1a1a1a;
+  color: #f8fafc;
   text-align: center;
   line-height: 1.8;
 }
 .pull-quote .highlight {
-  background: #ffeb3b44;
+  background: rgba(34, 197, 94, 0.15);
+  color: #f8fafc;
   padding: 2px 6px;
+  border-radius: 4px;
 }
 
-/* ─── FLOW ─── */
+/* FLOW */
 .journey-flow {
   display: flex;
   align-items: center;
@@ -254,16 +370,19 @@ section .container {
   margin: 40px 0;
 }
 .journey-step {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
   padding: 14px 22px;
   font-size: 0.88rem;
   font-weight: 500;
   text-align: center;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .journey-arrow {
-  color: #ccc;
+  color: #22C55E;
   font-size: 1.2rem;
 }
 .big-stat {
@@ -273,19 +392,19 @@ section .container {
 .big-stat-number {
   font-size: 4.5rem;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #4ADE80;
   line-height: 1;
 }
 .big-stat-label {
   font-size: 1rem;
-  color: #666;
+  color: #94a3b8;
   margin-top: 12px;
   max-width: 380px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* ─── MODULE CARDS ─── */
+/* MODULE CARDS */
 .module-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -293,37 +412,41 @@ section .container {
   margin-top: 40px;
 }
 .module-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
   padding: 36px 32px;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
 }
 .module-card:hover {
   transform: translateY(-3px);
-  border-color: #bbb;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .module-num {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #4ADE80;
   margin-bottom: 8px;
 }
 .module-card h3 {
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 16px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .module-card ul {
   list-style: none;
   margin-bottom: 20px;
 }
 .module-card li {
-  color: #555;
+  color: #94a3b8;
   font-size: 0.92rem;
   padding: 5px 0 5px 20px;
   position: relative;
@@ -335,15 +458,16 @@ section .container {
   left: 0; top: 13px;
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: #ccc;
+  background: #22C55E;
 }
 .module-result {
   font-size: 0.88rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #4ADE80;
   padding: 10px 16px;
-  background: #ffeb3b22;
-  border-radius: 6px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 8px;
   display: inline-block;
   margin-top: auto;
 }
@@ -352,46 +476,51 @@ section .container {
   margin-top: 16px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #4ADE80;
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #4ADE80;
   padding-bottom: 1px;
   transition: opacity 0.3s;
   align-self: flex-start;
 }
-.module-link:hover { opacity: 0.6; }
+.module-link:hover { opacity: 0.7; }
 
-/* ─── SOLUTION / FEATURE BLOCKS ─── */
+/* SOLUTION / FEATURE BLOCKS */
 .solution-block {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
   padding: 40px 36px;
   margin-bottom: 24px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .solution-block:hover {
-  border-color: #bbb;
+  border-color: rgba(34, 197, 94, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .solution-part-label {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #4ADE80;
   margin-bottom: 8px;
 }
 .solution-block h3 {
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .solution-block ul {
   list-style: none;
   margin-bottom: 20px;
 }
 .solution-block li {
-  color: #555;
+  color: #94a3b8;
   font-size: 0.95rem;
   padding: 5px 0 5px 20px;
   position: relative;
@@ -403,19 +532,20 @@ section .container {
   left: 0; top: 14px;
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: #ccc;
+  background: #22C55E;
 }
 .solution-result {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #4ADE80;
   padding: 10px 16px;
-  background: #ffeb3b22;
-  border-radius: 6px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 8px;
   display: inline-block;
 }
 
-/* ─── TIMELINE ─── */
+/* TIMELINE */
 .timeline {
   max-width: 600px;
   margin: 0 auto;
@@ -427,7 +557,7 @@ section .container {
   position: absolute;
   left: 11px; top: 8px; bottom: 8px;
   width: 1px;
-  background: #e0e0e0;
+  background: rgba(148, 163, 184, 0.2);
 }
 .timeline-item {
   margin-bottom: 40px;
@@ -439,31 +569,31 @@ section .container {
   left: -33px; top: 8px;
   width: 10px; height: 10px;
   border-radius: 50%;
-  background: #1a1a1a;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1px #e0e0e0;
+  background: #22C55E;
+  border: 2px solid #020617;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.4);
 }
 .timeline-label {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #4ADE80;
   margin-bottom: 4px;
 }
 .timeline-title {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 6px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .timeline-desc {
-  color: #666;
+  color: #94a3b8;
   font-size: 0.92rem;
   line-height: 1.7;
 }
 
-/* ─── BEFORE / AFTER ─── */
+/* BEFORE / AFTER */
 .ba-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -472,8 +602,11 @@ section .container {
 }
 .ba-col {
   padding: 36px 32px;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
 }
 .ba-col h3 {
   font-size: 0.8rem;
@@ -481,43 +614,46 @@ section .container {
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 24px;
-  color: #999;
+  color: #94a3b8;
 }
 .ba-col ul { list-style: none; }
 .ba-col li {
-  color: #555;
+  color: #94a3b8;
   font-size: 0.95rem;
   padding: 8px 0 8px 24px;
   position: relative;
   line-height: 1.6;
 }
 .ba-before li::before {
-  content: '\2014';
+  content: '\00d7';
   position: absolute;
   left: 0;
-  color: #ccc;
-  font-weight: 500;
+  color: #EF4444;
+  font-weight: 600;
 }
 .ba-after li::before {
   content: '\2713';
   position: absolute;
   left: 0;
-  color: #1a1a1a;
+  color: #22C55E;
   font-weight: 600;
 }
 
-/* ─── PRICING ─── */
+/* PRICING */
 .pricing-note {
   text-align: center;
   padding: 20px 24px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
   margin-bottom: 32px;
   font-size: 0.95rem;
-  color: #555;
+  color: #94a3b8;
 }
 .pricing-note strong {
-  color: #1a1a1a;
+  color: #4ADE80;
   display: block;
   margin-bottom: 4px;
   font-size: 1rem;
@@ -529,27 +665,32 @@ section .container {
   margin-bottom: 24px;
 }
 .pricing-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
   padding: 36px 28px 32px;
   position: relative;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
 }
 .pricing-card:hover {
   transform: translateY(-3px);
-  border-color: #bbb;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
 }
 .pricing-card.recommended {
-  border: 2px solid #1a1a1a;
+  border: 2px solid #22C55E;
+  box-shadow: 0 0 32px rgba(34, 197, 94, 0.15);
 }
 .pricing-badge {
   position: absolute;
   top: -12px; left: 50%;
   transform: translateX(-50%);
-  background: #1a1a1a;
-  color: #fff;
+  background: #22C55E;
+  color: #052e16;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -560,36 +701,36 @@ section .container {
 }
 .pricing-tier {
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 4px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .pricing-price {
   font-size: 2.2rem;
   font-weight: 300;
   margin-bottom: 4px;
-  color: #1a1a1a;
+  color: #f8fafc;
 }
 .pricing-price span {
   font-size: 0.9rem;
   font-weight: 400;
-  color: #999;
+  color: #94a3b8;
 }
 .pricing-desc {
   font-size: 0.85rem;
-  color: #888;
+  color: #94a3b8;
   line-height: 1.6;
 }
 .pricing-features {
   list-style: none;
   margin: 20px 0 0;
   padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
   flex-grow: 1;
 }
 .pricing-features li {
   font-size: 0.85rem;
-  color: #555;
+  color: #94a3b8;
   padding: 5px 0 5px 20px;
   position: relative;
   line-height: 1.6;
@@ -598,88 +739,95 @@ section .container {
   content: '\2713';
   position: absolute;
   left: 0;
-  color: #1a1a1a;
+  color: #22C55E;
   font-weight: 600;
   font-size: 0.8rem;
 }
 .pricing-fine {
   text-align: center;
-  color: #aaa;
+  color: #94a3b8;
   font-size: 0.82rem;
 }
 
-/* ─── ROI BOX ─── */
+/* ROI BOX */
 .roi-box {
   margin-top: 80px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   padding: 48px 40px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
   text-align: center;
 }
 .roi-kicker {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #999;
+  color: #4ADE80;
   margin-bottom: 16px;
 }
 .roi-box h3 {
   font-size: 28px;
-  font-weight: 300;
+  font-weight: 700;
   margin-bottom: 24px;
   line-height: 1.4;
+  color: #f8fafc;
 }
 .roi-box p {
   font-size: 18px;
   line-height: 2.0;
-  color: #444;
+  color: #94a3b8;
   margin-bottom: 24px;
 }
 .roi-inset {
   padding: 32px;
-  background: #fafafa;
-  border-radius: 8px;
+  background: #1e293b;
+  border-radius: 12px;
   margin-bottom: 24px;
 }
 .roi-inset .roi-big {
   font-size: 20px;
-  font-weight: 500;
-  color: #1a1a1a;
+  font-weight: 600;
+  color: #4ADE80;
   margin-bottom: 8px;
 }
 .roi-inset .roi-small {
   font-size: 16px;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 0;
   line-height: 1.7;
 }
 .roi-close {
   font-size: 16px !important;
-  color: #666 !important;
+  color: #cbd5e1 !important;
   line-height: 1.8 !important;
   margin-bottom: 0 !important;
 }
 
-/* ─── FAQ ─── */
+/* FAQ */
 .faq-list {
   margin-top: 40px;
 }
 .faq-item {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
   margin-bottom: 12px;
   transition: border-color 0.3s;
 }
-.faq-item:hover { border-color: #bbb; }
+.faq-item:hover { border-color: rgba(34, 197, 94, 0.4); }
 .faq-item summary {
   padding: 20px 24px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #f8fafc;
   line-height: 1.6;
   list-style: none;
   display: flex;
@@ -692,21 +840,21 @@ section .container {
   content: '+';
   font-size: 1.4rem;
   font-weight: 300;
-  color: #999;
+  color: #4ADE80;
   flex-shrink: 0;
   line-height: 1;
 }
 .faq-item[open] summary::after { content: '\2212'; }
 .faq-a {
   padding: 0 24px 24px;
-  color: #666;
+  color: #94a3b8;
   font-size: 0.95rem;
   line-height: 1.8;
 }
 .faq-a p { margin-bottom: 12px; }
 .faq-a p:last-child { margin-bottom: 0; }
 
-/* ─── NEXT STEPS ─── */
+/* NEXT STEPS */
 .next-steps {
   text-align: center;
 }
@@ -716,39 +864,41 @@ section .container {
 }
 .next-steps .steps-list li {
   font-size: 1rem;
-  color: #555;
+  color: #94a3b8;
   padding: 8px 0;
   line-height: 1.8;
 }
 .next-steps .steps-list li span {
-  color: #1a1a1a;
-  font-weight: 500;
+  color: #4ADE80;
+  font-weight: 600;
 }
 .next-steps .ready {
   font-size: 1.1rem;
-  color: #1a1a1a;
+  color: #f8fafc;
   margin-top: 32px;
   margin-bottom: 32px;
   font-weight: 400;
 }
 
-/* ─── FOOTER ─── */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 48px 32px;
-  border-top: 1px solid #e0e0e0;
-  color: #ccc;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  color: #64748b;
   font-size: 0.82rem;
 }
 footer a {
-  color: #999;
+  color: #94a3b8;
   text-decoration: none;
 }
-footer a:hover { color: #1a1a1a; }
+footer a:hover { color: #4ADE80; }
 
-/* ─── RESPONSIVE ─── */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   section { padding: 60px 24px; min-height: auto; min-height: 100vh; }
+  .nav-inner { padding: 12px 20px; }
+  .nav-links a:not(.nav-cta) { display: none; }
   .stat-row { grid-template-columns: 1fr; gap: 16px; }
   .cards-grid { grid-template-columns: 1fr; }
   .module-grid { grid-template-columns: 1fr; }
@@ -760,11 +910,12 @@ footer a:hover { color: #1a1a1a; }
   .solution-block { padding: 28px 24px; }
   .module-card { padding: 28px 24px; }
   .roi-box { padding: 36px 24px; }
+  .hermes-block { padding: 28px 24px; }
 }
 
 @media (max-width: 480px) {
   body { font-size: 17px; }
-  .hero { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
   .hero h1 { font-size: 2rem; }
   .pull-quote { font-size: 1.05rem; }
   .big-stat-number { font-size: 3.5rem; }
@@ -774,24 +925,47 @@ footer a:hover { color: #1a1a1a; }
 </head>
 <body>
 
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top" aria-label="Elevated AI home">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2 2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 12l10 5 10-5"></path>
+        <path d="M2 17l10 5 10-5"></path>
+      </svg>
+      <span class="nav-wordmark">Elevated AI</span>
+    </a>
+    <div class="nav-links">
+      <a href="vsl.html">Watch the Breakdown</a>
+      <a href="#pricing" class="nav-cta">Start at $49</a>
+    </div>
+  </div>
+</nav>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="container">
     <div class="fade-in">
       <div class="brand-label">Elevated AI</div>
-      <h1>The Content Engine</h1>
+      <h1>The Content <span class="accent">Engine</span></h1>
     </div>
     <div class="fade-in d1">
       <p class="subtitle">An AI content department that ships up to 50 videos a day.</p>
     </div>
     <div class="fade-in d2">
-      <p class="sub-desc">Your face. Your voice. Your offer. 50+ posts and 30 reels a month &mdash; without picking up a camera.</p>
+      <p class="sub-desc">Self-serve software, not an agency retainer. Sign up in minutes, start at $49 a month, and cancel anytime. 50+ posts and 30 reels a month without picking up a camera.</p>
     </div>
     <div class="fade-in d3">
       <div class="hero-cta">
         <a href="#pricing" class="btn">See Plans &amp; Pricing</a>
         <a href="vsl.html" class="btn btn-ghost">Watch the 6-Minute Breakdown</a>
       </div>
+    </div>
+    <div class="hermes-block fade-in d4">
+      <div class="hermes-label">Hermes Onboarding &middot; Included in Every Plan</div>
+      <h2>Answer a few questions. Connect your accounts. Hermes fills in everything else.</h2>
+      <p>Hermes reads your answers and your connected accounts, then autofills your <strong>entire brand voice, content strategy, and a ready-to-run content plan</strong>. No workshops, no onboarding calls, no blank pages. A couple of clicks and the Engine is producing in your voice.</p>
     </div>
   </div>
 </section>
@@ -801,7 +975,7 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Bottleneck</div>
-      <div class="section-title">Content Is the Highest-Leverage Thing You're Not Doing Enough Of</div>
+      <div class="section-title">Content Is the Highest-Leverage Thing You're Not Doing <span class="accent">Enough</span> Of</div>
     </div>
 
     <div class="stat-row fade-in d1">
@@ -822,11 +996,11 @@ footer a:hover { color: #1a1a1a; }
     <div class="copy-block fade-in d2">
       <p>You already know how this works. The brands winning your market aren't smarter than you. <strong>They post more than you.</strong> Every day. Every platform. Every format.</p>
 
-      <p>And you've done the math on catching up. Film it yourself &mdash; you burn out by week three. Hire an editor &mdash; $100k+ fully loaded for 1&ndash;2 videos a day. Hire an agency &mdash; the "$5k/mo" quote quietly becomes $67k&ndash;$100k a year once creative production and tool fees hit the invoice.</p>
+      <p>And you've done the math on catching up. Film it yourself, and you burn out by week three. Hire an editor, and that's $100k+ fully loaded for 1&ndash;2 videos a day. Hire an agency, and the "$5k/mo" quote quietly becomes far more once creative production and tool fees hit the invoice.</p>
 
       <p><strong>The bottleneck was never ideas. It's production.</strong></p>
 
-      <p>So we automated production.</p>
+      <p>So we turned production into software. It starts at $49 a month, and anyone can switch it on.</p>
     </div>
   </div>
 </section>
@@ -836,7 +1010,7 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Challenge</div>
-      <div class="section-title">Why the Old Options Keep Failing</div>
+      <div class="section-title">Why the Old Options Keep <span class="accent">Failing</span></div>
     </div>
     <div class="fade-in d1">
       <div class="section-subtitle">Every path to daily content has the same ending: you pay too much, ship too little, and quit before the compounding starts.</div>
@@ -845,11 +1019,11 @@ footer a:hover { color: #1a1a1a; }
     <div class="cards-grid fade-in d2">
       <div class="card">
         <h3>The Agency Trap</h3>
-        <p>"$5k/mo" almost never includes creative. Add $500&ndash;$3,000/mo for production, plus tool pass-throughs. Real bill: $67k&ndash;$100k a year &mdash; for 15&ndash;20 assets a month.</p>
+        <p>"$5k/mo" almost never includes creative. Add production fees and tool pass-throughs, and the real bill lands far higher, for 15&ndash;20 assets a month.</p>
       </div>
       <div class="card">
         <h3>Founder Burnout</h3>
-        <p>Script, film, edit, caption, post. Every day. Forever. You have a business to run. Something has to give &mdash; and it's always the content.</p>
+        <p>Script, film, edit, caption, post. Every day. Forever. You have a business to run. Something has to give, and it's always the content.</p>
       </div>
       <div class="card">
         <h3>The Volume Problem</h3>
@@ -872,7 +1046,7 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Reality</div>
-      <div class="section-title">Distribution Is Decided in 1.5 Seconds</div>
+      <div class="section-title">Distribution Is Decided in <span class="accent">1.5 Seconds</span></div>
     </div>
 
     <div class="journey-flow fade-in d1">
@@ -903,7 +1077,7 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Engine</div>
-      <div class="section-title">One Input. Fifty Outputs.</div>
+      <div class="section-title">One Input. <span class="accent">Fifty</span> Outputs.</div>
       <div class="section-subtitle">Feed it a podcast episode. A blog post. A voice memo. One idea on a walk. The Engine does the rest.</div>
     </div>
 
@@ -920,7 +1094,7 @@ footer a:hover { color: #1a1a1a; }
     </div>
 
     <div class="copy-block fade-in d2">
-      <p>The Engine writes the scripts. Your AI clone delivers them &mdash; talking-head or full-body. B-roll drops in on beat. Captions burn in. Every video is cut to the format that wins on each platform: <strong>6.3-second seamless loops</strong> that push watch time past 100% on TikTok, <strong>14&ndash;16 second reels</strong> built for the completion rates Instagram rewards.</p>
+      <p>The Engine writes the scripts. An AI avatar delivers them, a stock avatar on Creator, or your own custom clone on Influencer. B-roll drops in on beat. Captions burn in. Every video is cut to the format that wins on each platform: <strong>6.3-second seamless loops</strong> that push watch time past 100% on TikTok, and <strong>14&ndash;16 second reels</strong> built for the completion rates Instagram rewards.</p>
 
       <p>Then everything lands in your approval queue. One tap. Scheduled. Published. <strong>You went from one idea to fifty assets without touching a camera.</strong></p>
     </div>
@@ -936,8 +1110,8 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Modules</div>
-      <div class="section-title">Four Modules. One Machine.</div>
-      <div class="section-subtitle">Start with the core engine. Stack modules as you scale. Everything talks to everything.</div>
+      <div class="section-title">Four Modules. One <span class="accent">Machine</span>.</div>
+      <div class="section-subtitle">Start with the core engine at $49. Step up as you scale. Everything talks to everything.</div>
     </div>
 
     <div class="module-grid">
@@ -945,24 +1119,24 @@ footer a:hover { color: #1a1a1a; }
         <div class="module-num">Module 01</div>
         <h3>UGC / AI Influencer Studio</h3>
         <ul>
-          <li>A clone of you &mdash; talking-head and full-body reels, built from about 20 minutes of footage</li>
-          <li>30 reels a month, scripted end to end, B-roll injected on beat</li>
-          <li>6.3s seamless loops (rewatches count &mdash; loops push watch time past 100%) and 14&ndash;16s completion-rate formats</li>
-          <li>Three content lanes running at once: storytelling &rarr; CTA, real-life product use, and show-and-tell demos</li>
+          <li>Avatar-delivered reels: stock AI avatars on Creator, your own custom clone (face + voice) on Influencer</li>
+          <li>Reels scripted end to end, B-roll injected on beat</li>
+          <li>6.3s seamless loops (rewatches count, so loops push watch time past 100%) and 14&ndash;16s completion-rate formats</li>
+          <li>Three content paths running at once: storytelling pitch to CTA, real-life product use, and show-and-tell demos</li>
         </ul>
-        <div class="module-result">Result: Ads that don't look like ads &mdash; UGC-style creative runs ~4x the CTR at half the CPC</div>
+        <div class="module-result">Result: Native-feeling reels that read like they were filmed, not generated</div>
       </div>
 
       <div class="module-card fade-in d2">
         <div class="module-num">Module 02</div>
         <h3>SEO Autopilot &middot; botmo.io</h3>
         <ul>
-          <li>Get organic traffic to your website on autopilot &mdash; guaranteed</li>
           <li>AI-written SEO blogs published on schedule, matched to what your buyers search</li>
-          <li>Full site SEO wiring &mdash; structure, speed, and schema handled</li>
-          <li>AI assistants start seeing and recommending your content when buyers ask them for options</li>
+          <li>Full site SEO wiring: structure, speed, and schema handled</li>
+          <li>Optimized to be found and cited by AI assistants when buyers ask them for options</li>
+          <li>Lite version included in every Content Engine plan, starting at $49</li>
         </ul>
-        <div class="module-result">Result: Traffic that compounds while the reels do the daily work</div>
+        <div class="module-result">Result: Organic traffic working in the background while the reels do the daily work</div>
         <a class="module-link" href="https://botmo.io">Also sold standalone at botmo.io &rarr;</a>
       </div>
 
@@ -970,12 +1144,12 @@ footer a:hover { color: #1a1a1a; }
         <div class="module-num">Module 03</div>
         <h3>Ads Attachment &middot; The AI Ads Department</h3>
         <ul>
-          <li>A full AI CMO, chief of staff, and creative department &mdash; codename GIZMO</li>
+          <li>A full AI CMO, chief of staff, and creative department, codename GIZMO</li>
+          <li>The entire ads department, run from your phone</li>
           <li>Feeds directly on the Engine's 50-videos-a-day output</li>
           <li>Winning organic hooks become paid creative automatically</li>
-          <li>Replaces a $5k/mo agency plus an $8k/mo in-house creative team</li>
         </ul>
-        <div class="module-result">Result: Paid traffic poured on proven creative &mdash; never on guesses</div>
+        <div class="module-result">Result: Paid traffic poured on proven creative, never on guesses</div>
         <a class="module-link" href="../ads-system/index.html">Explore The AI Ads Department &rarr;</a>
       </div>
 
@@ -983,12 +1157,12 @@ footer a:hover { color: #1a1a1a; }
         <div class="module-num">Module 04</div>
         <h3>Testing Matrix + Agent Automation</h3>
         <ul>
-          <li>100-video testing matrix per angle &mdash; sprints of 10&ndash;20 variants, one variable at a time</li>
+          <li>100-video testing matrix per angle: sprints of 10&ndash;20 variants, one variable at a time</li>
           <li>Winner detection on 3-second hold, completion, saves, and shares</li>
           <li>Losers killed at 48 hours; winners scaled and refreshed every 10&ndash;14 days</li>
           <li>Hermes agent orchestration runs the whole loop while you sleep</li>
         </ul>
-        <div class="module-result">Result: You stop guessing which video works &mdash; the matrix tells you</div>
+        <div class="module-result">Result: You stop guessing which video works. The matrix tells you.</div>
       </div>
     </div>
   </div>
@@ -999,8 +1173,8 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Sample-Reel Analyzer</div>
-      <div class="section-title">See a Reel You Wish You'd Made? Send It.</div>
-      <div class="section-subtitle">Every niche has ten videos doing most of the winning. The Analyzer reverse-engineers why &mdash; then rebuilds the mechanics with your face, your voice, and your offer.</div>
+      <div class="section-title">See a Reel You Wish You'd Made? <span class="accent">Send It.</span></div>
+      <div class="section-subtitle">Every niche has ten videos doing most of the winning. The Analyzer reverse-engineers why, then rebuilds the mechanics with your face, your voice, and your offer.</div>
     </div>
 
     <div class="journey-flow fade-in d1">
@@ -1016,11 +1190,11 @@ footer a:hover { color: #1a1a1a; }
     <div class="copy-block fade-in d2">
       <p>It breaks down the spoken hook word by word. Reads the emotional arc of the delivery. Maps every cut, zoom, and caption beat against the retention curve.</p>
 
-      <p><strong>Not a copy. A blueprint.</strong> The structure that earned the views, rebuilt around your brand &mdash; then multiplied into variants and fed straight into the testing matrix.</p>
+      <p><strong>Not a copy. A blueprint.</strong> The structure that earned the views, rebuilt around your brand, then multiplied into variants and fed straight into the testing matrix.</p>
     </div>
 
     <div class="fade-in d3" style="text-align: center;">
-      <div class="solution-result">Included in the Full Stack tier</div>
+      <div class="solution-result">Included in the Influencer plan</div>
     </div>
   </div>
 </section>
@@ -1030,39 +1204,39 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">How It Works</div>
-      <div class="section-title">Setup to Autopilot in 60 Days</div>
+      <div class="section-title">Signup to <span class="accent">Autopilot</span> in 60 Days</div>
     </div>
 
     <div class="timeline fade-in d1">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
+        <div class="timeline-label">Day 1</div>
+        <div class="timeline-title">Hermes Onboarding</div>
+        <div class="timeline-desc">Answer a few questions and connect your accounts. Hermes autofills your brand voice, strategy, and content plan in a couple of clicks. No setup fees, no build calls.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
         <div class="timeline-label">Week 1</div>
-        <div class="timeline-title">The Build</div>
-        <div class="timeline-desc">Your $1,500 setup covers all of it: clone built from ~20 minutes of footage, brand and voice ingested, accounts connected, approval workflow live.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-label">Week 2</div>
         <div class="timeline-title">First Batch</div>
-        <div class="timeline-desc">Your first 50 posts hit the approval queue. You review in one sitting. Auto-scheduling begins across every platform.</div>
+        <div class="timeline-desc">Your first posts hit the approval queue. You review in one sitting. Auto-scheduling begins across every platform.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-label">Weeks 3&ndash;4</div>
+        <div class="timeline-label">Weeks 2&ndash;4</div>
         <div class="timeline-title">Reels Go Live</div>
-        <div class="timeline-desc">Your clone starts shipping &mdash; 6.3s loops and 14&ndash;16s formats, three content lanes running simultaneously. People start asking when you found time to film.</div>
+        <div class="timeline-desc">On Creator, stock AI avatars start shipping your scripts. On Influencer, your custom clone is built from about 20 minutes of footage and takes over: 6.3s loops and 14&ndash;16s formats, three content paths running at once.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-label">Weeks 5&ndash;8</div>
         <div class="timeline-title">The Matrix Turns On</div>
-        <div class="timeline-desc">Variant sprints begin. Hook rate and completion tracked per variant. Losers cut at 48 hours. Winners scaled and refreshed on cycle.</div>
+        <div class="timeline-desc">On Influencer, variant sprints begin. Hook rate and completion tracked per variant. Losers cut at 48 hours. Winners scaled and refreshed on cycle.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-label">After 60 Days</div>
         <div class="timeline-title">Autopilot</div>
-        <div class="timeline-desc">The Engine runs itself. You approve in weekly batches, watch the dashboard, and take calls from people who saw you everywhere.</div>
+        <div class="timeline-desc">The Engine runs itself. You approve in weekly batches, watch the dashboard, and show up on every platform without touching a camera.</div>
       </div>
     </div>
   </div>
@@ -1073,7 +1247,7 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Results</div>
-      <div class="section-title">What Changes in 60 Days</div>
+      <div class="section-title">What Changes in <span class="accent">60 Days</span></div>
     </div>
 
     <div class="ba-grid fade-in d1">
@@ -1082,7 +1256,7 @@ footer a:hover { color: #1a1a1a; }
         <ul>
           <li>Posting when you find the time</li>
           <li>3&ndash;5 assets a month, zero data on why</li>
-          <li>$5k/mo agency invoices &mdash; creative billed extra</li>
+          <li>Agency invoices with creative billed extra</li>
           <li>Your best ideas die in your notes app</li>
           <li>Invisible the week you get busy</li>
         </ul>
@@ -1091,8 +1265,8 @@ footer a:hover { color: #1a1a1a; }
         <h3>After 60 Days</h3>
         <ul>
           <li>50+ posts and 30 reels a month, on schedule</li>
-          <li>Every video measured &mdash; hook, hold, completion</li>
-          <li>One flat monthly number, creative included</li>
+          <li>Every video measured: hook, hold, completion</li>
+          <li>One flat monthly subscription, creative included</li>
           <li>Every idea becomes 10 variants by Friday</li>
           <li>Present on every platform, every day, without you</li>
         </ul>
@@ -1106,72 +1280,74 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">The Investment</div>
-      <div class="section-title">Pick Your Engine</div>
+      <div class="section-title">Pick Your <span class="accent">Engine</span></div>
     </div>
 
     <div class="pricing-note fade-in d1">
-      <strong>One-time setup: $1,500 (every tier)</strong>
-      <span>Covers clone build, brand ingest, and full system wiring. Month to month after that.</span>
+      <strong>No setup fees. No contracts. 14-day money-back guarantee.</strong>
+      <span>Every plan starts with Hermes onboarding: answer a few questions, connect your accounts, and your brand voice, strategy, and content plan are filled in for you.</span>
     </div>
 
     <div class="pricing-grid fade-in d2">
       <div class="pricing-card">
-        <div class="pricing-tier">Engine</div>
-        <div class="pricing-price">$997<span>/mo</span></div>
-        <p class="pricing-desc">The production layer. Daily presence without filming daily.</p>
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">$49<span>/mo</span></div>
+        <p class="pricing-desc">The core engine. Daily presence without filming daily.</p>
         <ul class="pricing-features">
-          <li>Content repurposing engine &mdash; 50+ posts a month</li>
-          <li>SEO blog autopilot (lite)</li>
+          <li>Hermes onboarding: brand voice, strategy, and content plan autofilled in a couple of clicks</li>
+          <li>Content repurposing engine</li>
+          <li>Blog / SEO autopilot (lite)</li>
+          <li>Approval queue: nothing ships without your sign-off</li>
           <li>Auto-scheduling across every platform</li>
-          <li>Approval workflow &mdash; nothing ships without your sign-off</li>
         </ul>
-        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_TIER1_ENGINE">Start with Engine</a>
+        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_STARTER">Start with Starter</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Creator</div>
+        <div class="pricing-price">$297<span>/mo</span></div>
+        <p class="pricing-desc">Add video. Stock AI avatars do the talking.</p>
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>UGC avatar reels with stock AI avatars</li>
+          <li>B-roll injection, on beat</li>
+          <li>Full scripts included</li>
+          <li>3 content paths: storytelling pitch to CTA, real-life use, show and tell</li>
+          <li>6.3s loop + 14&ndash;16s viral formats</li>
+        </ul>
+        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_CREATOR">Start with Creator</a>
       </div>
 
       <div class="pricing-card recommended">
         <div class="pricing-badge">Recommended</div>
-        <div class="pricing-tier">Engine + Influencer</div>
-        <div class="pricing-price">$1,997<span>/mo</span></div>
-        <p class="pricing-desc">The full content department. Your clone does the talking.</p>
+        <div class="pricing-tier">Influencer</div>
+        <div class="pricing-price">$997<span>/mo</span></div>
+        <p class="pricing-desc">The whole machine, with your own AI clone at the center.</p>
         <ul class="pricing-features">
-          <li>Everything in Engine</li>
-          <li>UGC AI clone &mdash; talking-head + full-body reels</li>
-          <li>30 reels a month, full scripts included</li>
-          <li>B-roll injection, on beat</li>
-          <li>6.3s loop + 14&ndash;16s viral formats</li>
-        </ul>
-        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_TIER2_INFLUENCER">Start with Engine + Influencer</a>
-      </div>
-
-      <div class="pricing-card">
-        <div class="pricing-tier">Full Stack</div>
-        <div class="pricing-price">$2,997<span>/mo</span></div>
-        <p class="pricing-desc">The whole machine, including the parts that find winners.</p>
-        <ul class="pricing-features">
-          <li>Everything in Engine + Influencer</li>
+          <li>Everything in Creator</li>
+          <li>Your own custom AI clone: your face, your voice</li>
+          <li>Full cloned videos</li>
           <li>100-video testing matrix</li>
-          <li>Winning-ad detection</li>
-          <li>Ads-ready creatives</li>
+          <li>Winner detection</li>
+          <li>Ads-ready creative output</li>
           <li>Sample-reel analyzer</li>
-          <li>Hermes agent automation</li>
         </ul>
-        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_TIER3_FULLSTACK">Start with Full Stack</a>
+        <a class="btn btn-block" href="https://buy.stripe.com/REPLACE_CE_INFLUENCER">Start with Influencer</a>
       </div>
     </div>
 
-    <p class="pricing-fine fade-in d3">Setup billed at checkout. No annual contract. Cancel anytime &mdash; you keep your clone and every asset the Engine has shipped.</p>
+    <p class="pricing-fine fade-in d3">All plans are month to month with no setup fees. Cancel anytime and keep every asset the Engine has shipped. If the Engine isn't for you, request a full refund of your first payment within 14 days of purchase.</p>
 
-    <!-- HORMOZI ROI -->
+    <!-- DO THE MATH -->
     <div class="roi-box fade-in d4">
       <div class="roi-kicker">Do the Math</div>
-      <h3>What Does a Creative Department Actually Cost?</h3>
-      <p>A "$5k/mo" agency really bills $67k&ndash;$100k a year once creative and tool fees land on the invoice. An in-house video team runs ~$300k. Either way, you get 15&ndash;20 assets a month.</p>
-      <p>The Engine at the recommended tier: $1,997 a month plus $1,500 once. That's 80+ finished assets a month &mdash; about <strong>$25 per asset</strong>. Your editor charges more than that per revision.</p>
+      <h3>What Does a Content Department Actually Cost?</h3>
+      <p>A typical content agency retainer runs thousands a month before creative fees, for 15&ndash;20 assets. An in-house editor runs $100k+ a year for 1&ndash;2 videos a day. Either way, production is the expensive part.</p>
       <div class="roi-inset">
-        <p class="roi-big">$25,464 &mdash; your entire year one at Engine + Influencer.</p>
-        <p class="roi-small">Less than five months of the agency you'd hire instead.</p>
+        <p class="roi-big">The Engine starts at $49 a month.</p>
+        <p class="roi-small">Creator is $297. The full Influencer stack, custom clone included, is $997. All month to month, no setup fees.</p>
       </div>
-      <p class="roi-close">The output of a creative department. A tenth of the payroll.</p>
+      <p class="roi-close">The output of a content department, at software pricing.</p>
     </div>
   </div>
 </section>
@@ -1181,23 +1357,23 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="fade-in">
       <div class="section-label">Fair Questions</div>
-      <div class="section-title">Asked Before Buying</div>
+      <div class="section-title">Asked Before <span class="accent">Buying</span></div>
     </div>
 
     <div class="faq-list fade-in d1">
       <details class="faq-item">
         <summary>Will it look like AI?</summary>
         <div class="faq-a">
-          <p>The litmus test is simple: does it feel native, or does it feel like an ad? The Engine is built to pass that test. Your clone is trained on your real footage and your real voice. Scripts follow the organic formats already winning your feed &mdash; storytelling, day-in-the-life, show-and-tell.</p>
-          <p>UGC-style creative outperforms polished brand content (~4x the CTR at roughly half the CPC) precisely because it doesn't look produced. And nothing publishes without your approval &mdash; if a video reads fake to you, kill it with one tap.</p>
+          <p>The litmus test is simple: does it feel native, or does it feel like an ad? The Engine is built to pass that test. On Influencer, your clone is trained on your real footage and your real voice. Scripts follow the organic formats already winning your feed: storytelling, day-in-the-life, show-and-tell.</p>
+          <p>And nothing publishes without your approval. If a video reads fake to you, kill it with one tap.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>What about platform rules on AI content?</summary>
         <div class="faq-a">
-          <p>Handled automatically. TikTok and Meta both allow AI-generated content when it's labeled, and the Engine applies the correct label per platform. Meta has stated its AI label carries no distribution penalty.</p>
-          <p>Scripts follow policy too: AI avatars deliver demos and information &mdash; never fake personal testimonials. EU labeling requirements arriving August 2026 are already built in.</p>
+          <p>Handled automatically. TikTok and Meta both allow AI-generated content when it's labeled, and the Engine applies the correct label per platform.</p>
+          <p>Scripts follow policy too: AI avatars deliver demos and information, never fake personal testimonials. EU labeling requirements arriving August 2026 are already built in.</p>
         </div>
       </details>
 
@@ -1211,37 +1387,37 @@ footer a:hover { color: #1a1a1a; }
       <details class="faq-item">
         <summary>How much of my time does this take?</summary>
         <div class="faq-a">
-          <p>About 20 minutes a week. You open the approval queue, kill anything off-brand, and tap approve. Setup week asks the most of you: roughly 20 minutes of recorded footage and one onboarding call. By day 60, most clients approve in a single weekly batch.</p>
+          <p>About 20 minutes a week. You open the approval queue, kill anything off-brand, and tap approve. Onboarding is the fastest part: answer a few questions, connect your accounts, and Hermes fills in your brand voice, strategy, and content plan in a couple of clicks. On Influencer, the clone build asks for roughly 20 minutes of recorded footage.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>What do you need from me to start?</summary>
         <div class="faq-a">
-          <p>Three things. About 20 minutes of footage &mdash; a podcast, a Zoom recording, or clips we walk you through filming on your phone. Your brand assets. Access to your social accounts.</p>
-          <p>That's the whole list. If you have existing content sitting around &mdash; episodes, blog posts, old videos &mdash; the Engine turns it into your first month of posts.</p>
+          <p>On Starter and Creator: your answers to a few onboarding questions and access to your social accounts. That's it. Hermes handles the rest.</p>
+          <p>On Influencer, add about 20 minutes of footage for the clone build: a podcast, a Zoom recording, or clips we walk you through filming on your phone. If you have existing content sitting around, episodes, blog posts, old videos, the Engine turns it into your first month of posts.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>I already have an agency or an editor.</summary>
         <div class="faq-a">
-          <p>Keep them if they're working. Clients typically do one of two things: replace the $5k/mo retainer outright, or keep the strategist and let the Engine handle production at ~$25 per asset instead of $150&ndash;$300. Either way your cost per asset drops 80&ndash;90%.</p>
+          <p>Keep them if they're working. Some people replace the retainer outright; others keep the strategist and let the Engine handle production at software pricing. Compare what you pay per finished asset today with a $49 to $997 monthly subscription and the choice usually makes itself.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>What if the content doesn't perform?</summary>
         <div class="faq-a">
-          <p>Performance isn't a hope here &mdash; it's a process. Every variant is measured on 3-second hold and completion. Anything under a 25% hook rate is killed at 48 hours. Winners get scaled and refreshed every 10&ndash;14 days.</p>
-          <p>The system is built to find what works in your niche, not assume it. You see every number on the dashboard.</p>
+          <p>Performance isn't a hope here, it's a process. Every variant is measured on 3-second hold and completion. Anything under target is killed at 48 hours. Winners get scaled and refreshed every 10&ndash;14 days.</p>
+          <p>The system is built to find what works in your niche, not assume it. You see every number on the dashboard. And every plan carries a 14-day money-back guarantee, so you can judge the fit for yourself.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>What's the contract?</summary>
         <div class="faq-a">
-          <p>Month to month. No annual lock-in. The $1,500 setup is one-time and covers your clone build and full system wiring. Cancel whenever &mdash; you keep your clone and every asset shipped.</p>
+          <p>Month to month. No setup fees, no annual lock-in. Cancel whenever, and you keep your clone and every asset shipped. If you decide it's not for you within 14 days of purchase, request a full refund of your first payment.</p>
         </div>
       </details>
     </div>
@@ -1253,13 +1429,13 @@ footer a:hover { color: #1a1a1a; }
   <div class="container">
     <div class="next-steps fade-in">
       <div class="section-label" style="text-align:center;">Next Steps</div>
-      <div class="section-title">Your Next 50 Videos Are One Decision Away</div>
+      <div class="section-title">Your Next 50 Videos Are One <span class="accent">Decision</span> Away</div>
       <p class="section-subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">Same brand. Same voice. Just shipping every day instead of when you find time.</p>
 
       <ul class="steps-list">
-        <li><span>1.</span> Pick your tier &mdash; checkout takes 2 minutes</li>
-        <li><span>2.</span> Book your build call &mdash; we collect footage and brand assets</li>
-        <li><span>3.</span> First 50 posts hit your approval queue by Week 2</li>
+        <li><span>1.</span> Pick your plan. Checkout takes 2 minutes.</li>
+        <li><span>2.</span> Answer a few questions and connect your accounts. Hermes fills in the rest.</li>
+        <li><span>3.</span> Your first posts hit the approval queue within the week.</li>
       </ul>
 
       <p class="ready">Ready? Pick your engine.</p>
